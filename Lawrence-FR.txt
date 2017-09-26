@@ -1,0 +1,3 @@
+The system shall provide a win/loss history of matches.
+The system shall provide a leaderboard for the top 3 players.
+The system shall provide an offline mode.

@@ -1,0 +1,3 @@
+As a user, I want the game stages to have more obstacles as the game progresses, so that the game stays interesting.
+As a user, I want to pause the game, so that I can take a break and resume playing.
+As a user, I want to play on multiple game boards, so that the game remains interesting.
