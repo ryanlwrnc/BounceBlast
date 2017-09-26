@@ -1,0 +1,4 @@
+1. The system shall keep track of and display the scores for each player.
+2. The system shall provide input to  allow the players to control their in-game characters.
+3. The system shall provide the player the option to pause the game.
+

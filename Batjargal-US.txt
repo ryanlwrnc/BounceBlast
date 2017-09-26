@@ -1,0 +1,4 @@
+1. As a user, I want the ability to invite my friends to a match, so that I can get more enjoyment playing the game with people I know.
+2. As a user, I want the ability to view game instructions and controls, so that I would know how to play the game my first time.
+3. As a user, I want the option of having to play against the computer, so that I can play the game if none of my friends want to play.
+
