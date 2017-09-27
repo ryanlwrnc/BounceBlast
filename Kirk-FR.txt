@@ -1,3 +1,0 @@
-The system shall provide a choice of opponents, except in tournament mode.
-The system shall provide configuration options for the game board.
-The system shall provide a pregame menu for choosing game objects.
