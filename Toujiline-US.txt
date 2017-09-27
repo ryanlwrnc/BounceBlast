@@ -1,0 +1,3 @@
+As a user, I want to finish games in under 10 minutes, so that I can play during a short break.
+As a user, I want to have at least 3 character avatars to choose from, sos that the game is more personal.
+As a user, I want to be presented a tutorial upon starting the game for the first time, so that I know how to play the game.
