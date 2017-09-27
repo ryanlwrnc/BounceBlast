@@ -1,0 +1,3 @@
+The system shall provide messages to each player once the game ends, indicating a win or a loss.
+The system shall limit the number of rounds per game to 5.
+The system shall provide a color blind mode.
