@@ -1,0 +1,3 @@
+As a user, I want to play a 2-dimensional game.
+As a user, I want to play a game using my smartphone.
+As a user, I want to hear background music while playing the game.
