@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,7 +6,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -17,18 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
-public class MainMenu extends Application{
-	Label label1;
-	Button button1;
-	Button numButton0;
-	
-	public static void main(String[] args) {
-        launch(args);
-    }
-	 @Override
-    public void start(Stage stage) throws Exception{
+public class MainMenu {
+	public static Scene getScene() {
 		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
 		String buttonStyle = "-fx-border-width: 3;" + 
@@ -251,7 +240,6 @@ public class MainMenu extends Application{
 	    });
 		 
 		Scene scene = new Scene(gridpane, 800, 600);
-    		stage.setScene(scene);
-        stage.show();
-    }
+		return scene;
+	}
 }
