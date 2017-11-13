@@ -10,11 +10,10 @@ public class ScreenFactory extends Main{
 		if(screenType.equals("Main Menu"))
 		{
 			screen = new MainMenu();
-			scene = screen.getScene();	
 		}
 		
 		else// if(screenType.equals("Login"))
-			scene = Login.getScene();
+			screen = new Login();
 	/*	else if(screenType.equals("Play Online"))
 			scene = PlayOnline.getScene();
 		else if(screenType.equals("Play Offline"))
@@ -28,6 +27,7 @@ public class ScreenFactory extends Main{
 		else if(screenType.equals("Play Online"))
 			scene = PlayOnline.getScene();
 	*/	
+		scene = screen.getScene();
 		updateScene(scene);
 	}
 }
