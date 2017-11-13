@@ -13,6 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -20,6 +21,7 @@ public class MainMenu implements Screen{
 	public Scene getScene() {
 		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
+		ScreenFactory screenFactory = new ScreenFactory();
 		String buttonStyle = "-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
@@ -93,6 +95,14 @@ public class MainMenu implements Screen{
 	        		login.setStyle(buttonStyle);
 	        }
 	    });
+		login.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				screenFactory.newScreen("Login");
+			}
+		});
 		
 		// Play online button
 		playOnline = new Button("Play Online");
@@ -114,6 +124,14 @@ public class MainMenu implements Screen{
 	        		playOnline.setStyle(buttonStyle);
 	        }
 	    });
+		playOnline.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				screenFactory.newScreen("Play Online");
+			}
+		});
 		
 		// Play offline button
 		playOffline = new Button("Play Offline");
@@ -135,6 +153,14 @@ public class MainMenu implements Screen{
 	        		playOffline.setStyle(buttonStyle);
 	        }
 	    });
+		playOffline.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				screenFactory.newScreen("Play Offline");
+			}
+		});
 		
 		// Settings button
 		settings = new Button("Settings");
@@ -156,6 +182,14 @@ public class MainMenu implements Screen{
 	        		settings.setStyle(buttonStyle);
 	        }
 	    });
+		settings.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				screenFactory.newScreen("Settings");
+			}
+		});
 		
 		// Leaderboard button
 		leaderboard = new Button("Leaderboard");
@@ -177,6 +211,14 @@ public class MainMenu implements Screen{
 	        		leaderboard.setStyle(buttonStyle);
 	        }
 	    });
+		leaderboard.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				screenFactory.newScreen("Leaderboard");
+			}
+		});
 		
 		// Tutorial button
 		tutorial = new Button("Tutorial");
@@ -198,6 +240,14 @@ public class MainMenu implements Screen{
 	        		tutorial.setStyle(buttonStyle);
 	        }
 	    });
+		tutorial.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				screenFactory.newScreen("Tutorial");
+			}
+		});
 		
 		// Exit button
 		exit = new Button("Exit");
