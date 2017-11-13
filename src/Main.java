@@ -9,7 +9,8 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception{
 		Scene scene;
-		scene = MainMenu.getScene();
+		MainMenu mainMenu = new MainMenu();
+		scene = mainMenu.getScene();
 		stage.setScene(scene);
 		stage.show();
 	}

@@ -16,8 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class MainMenu {
-	public static Scene getScene() {
+public class MainMenu implements Screen{
+	public Scene getScene() {
 		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
 		String buttonStyle = "-fx-border-width: 3;" + 
