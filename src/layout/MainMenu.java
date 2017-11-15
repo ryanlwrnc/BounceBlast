@@ -17,7 +17,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class MainMenu extends Main implements Screen{
+public class MainMenu extends Main implements Screen{	
+	private boolean loggedIn = false;
+	private String username = null;
+	
 	public Scene getScene() {
 		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
@@ -63,6 +66,19 @@ public class MainMenu extends Main implements Screen{
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
 		gridpane.add(gameTitle, screenButtonCol, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
+		
+		// User logged-in text
+		if (this.loggedIn) {
+			Text user = new Text();
+			user.setFont(new Font(20));
+			user.setFill(Color.WHITE);
+			user.setText(this.username);
+			user.setStyle("-fx-font: 40 arial;");
+			user.setTextAlignment(TextAlignment.CENTER);
+			GridPane.setHalignment(gameTitle, HPos.CENTER);
+			gridpane.add(user, screenButtonCol, 0);
+			GridPane.setMargin(user, new Insets(5, 10, 5, 10));
+		}
 		
 		// Main menu text
 		Text screenTitle = new Text();
@@ -298,5 +314,10 @@ public class MainMenu extends Main implements Screen{
 		 
 		Scene scene = new Scene(gridpane, 800, 600);
 		return scene;
+	}
+	
+	public void logIn(String username) {
+		this.username = username;
+		this.loggedIn = true;
 	}
 }
