@@ -118,7 +118,7 @@ public class PlayOnline extends Main implements Screen {
 				"-fx-text-fill: white;");
 		gridpane.add(start, 2, 5);
 		GridPane.setHalignment(start, HPos.CENTER);
-		GridPane.setMargin(start, new Insets(5, 10, 5, 10));
+		GridPane.setMargin(start, new Insets(5, 80, 30, 10));
 		// Return to Main Menu when back is pressed
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
