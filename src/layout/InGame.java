@@ -229,7 +229,7 @@ public class InGame  extends Main implements Screen{
 				"-fx-text-fill: white;");
 		gridpane.add(exit, 0, 10);
 		GridPane.setHalignment(exit, HPos.CENTER);
-		GridPane.setMargin(exit, new Insets(5, 10, 5, 10));
+		GridPane.setMargin(exit, new Insets(5, 45, 5, 10));
 		// Exit the application when exit pressed
 		exit.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
