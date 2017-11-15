@@ -1,30 +1,57 @@
 package layout;
-import javafx.scene.Scene;
 import game.GameScene;
 
-public class ScreenFactory extends Main{
+public class ScreenFactory {
+	public enum ScreenType {
+		MAIN_MENU("Main Menu"),
+		LOGIN("Login"),
+		PLAY_ONLINE("Play Online"),
+		PLAY_OFFLINE("Play Offline"),
+		SETTINGS("Settings"),
+		LEADERBOARD("Leaderboard"),
+		TUTORIAL("Tutorial");
+		
+		private String screenName;
+		
+		ScreenType(String screenName) {
+			this.screenName = screenName;
+		}
+		
+		public String getScreenName() {
+			return this.screenName;
+		}
+	};
 	
-	public void newScreen(String screenType)
+	public Screen newScreen(ScreenType screenType)
 	{
-		Screen screen = null;
-		Scene scene = null;
-		if(screenType.equals("Main Menu"))
-			screen = new MainMenu();
-		else if(screenType.equals("Login"))
-			screen = new Login();
-		else if(screenType.equals("Play Online"))
+		Screen screen;
+		switch (screenType) {
+		case MAIN_MENU:
+			screen =  new MainMenu();
+			break;
+		case LOGIN:
+			screen =  new Login();
+			break;
+		case PLAY_ONLINE:
 			screen = new GameScene();
-		/*
-		else if(screenType.equals("Play Offline"))
+			break;
+		case PLAY_OFFLINE:
 			screen = new PlayOffline();
-		else if(screenType.equals("Settings"))
+			break;
+		case SETTINGS:
 			screen = new Settings();
-		else if(screenType.equals("Leaderboard"))
-			screen = new Leaderboard();
-		else if(screenType.equals("Tutorial"))
-			screen = new Tutorial();
-	*/	
-		scene = screen.getScene();
-		updateScene(scene);
-	}
+			break;
+			/*
+		case ScreenType.LEADERBOARD.getScreenName():
+			return new LeaderBoard();
+			break;
+		case ScreenType.LEADERBOARD.getScreenName():
+			return new Tutorial();
+			break;
+			*/
+		default:
+			screen = null;
+		}
+		return screen;
+	}	
 }

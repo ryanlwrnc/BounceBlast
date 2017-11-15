@@ -14,11 +14,10 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class MainMenu implements Screen{
+public class MainMenu extends Main implements Screen{
 	public Scene getScene() {
 		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
@@ -101,7 +100,8 @@ public class MainMenu implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				screenFactory.newScreen("Login");
+				Screen loginScreen = screenFactory.newScreen(ScreenFactory.ScreenType.LOGIN);
+				updateScene(loginScreen.getScene());
 			}
 		});
 		
@@ -130,7 +130,9 @@ public class MainMenu implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				screenFactory.newScreen("Play Online");
+				Screen playOnline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
+				updateScene(playOnline.getScene());
+				
 			}
 		});
 		
@@ -159,7 +161,8 @@ public class MainMenu implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				screenFactory.newScreen("Play Offline");
+				Screen playOffline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_OFFLINE);
+				updateScene(playOffline.getScene());
 			}
 		});
 		
@@ -188,7 +191,8 @@ public class MainMenu implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				screenFactory.newScreen("Settings");
+				Screen settings = screenFactory.newScreen(ScreenFactory.ScreenType.SETTINGS);
+				updateScene(settings.getScene());
 			}
 		});
 		
@@ -217,7 +221,8 @@ public class MainMenu implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				screenFactory.newScreen("Leaderboard");
+				Screen leaderboard = screenFactory.newScreen(ScreenFactory.ScreenType.LEADERBOARD);
+				updateScene(leaderboard.getScene());
 			}
 		});
 		
@@ -246,7 +251,8 @@ public class MainMenu implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				screenFactory.newScreen("Tutorial");
+				Screen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL);
+				updateScene(tutorial.getScene());
 			}
 		});
 		
