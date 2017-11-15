@@ -19,10 +19,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class Settings implements Screen {
+public class Settings extends Main implements Screen {
 
 	public Scene getScene() {
 		Button back;
+		ScreenFactory screenFactory = new ScreenFactory();
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
 		ColumnConstraints cons1 = new ColumnConstraints();
@@ -134,10 +135,11 @@ public class Settings implements Screen {
 		gridpane.add(back, 0, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Exit the application when exit pressed
+		// Return to Main Menu when back is pressed
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Platform.exit();
+				Screen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+				updateScene(mainmenu.getScene());
 			}
 		});
 		back.setOnMouseEntered(new EventHandler<MouseEvent>() {
