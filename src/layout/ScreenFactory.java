@@ -10,7 +10,9 @@ public class ScreenFactory {
 		IN_GAME("In Game"),
 		SETTINGS("Settings"),
 		LEADERBOARD("Leaderboard"),
+		GAME_SCENE("Game Scene"),
 		TUTORIAL("Tutorial");
+		
 		
 		private String screenName;
 		
@@ -44,6 +46,9 @@ public class ScreenFactory {
 			break;
 		case IN_GAME:
 			screen = new InGame();
+			break;
+		case GAME_SCENE:
+			screen = new GameScene();
 			break;
 			/*
 		case ScreenType.LEADERBOARD.getScreenName():

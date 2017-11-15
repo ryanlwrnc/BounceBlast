@@ -23,7 +23,7 @@ public class PlayOnline extends Main implements Screen {
 	@Override
 	public Scene getScene() {
 		// TODO Auto-generated method stub
-		Button back, start;
+		Button back, start, temp;
 		ScreenFactory screenFactory = new ScreenFactory();
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
@@ -189,6 +189,48 @@ public class PlayOnline extends Main implements Screen {
 	        }
 	    });
 		 
+		//Temporary GameScene Button
+		temp = new Button("Game Scene");
+		temp.setPrefHeight(25);
+		temp.setPrefWidth(200);
+		temp.setStyle("-fx-border-width: 3;" + 
+				"-fx-border-color: white;" + 
+				"-fx-background-color: #24618F;" +
+				"-fx-font-size: 16;" + 
+				"-fx-text-fill: white;");
+		gridpane.add(temp, 2, 10);
+		GridPane.setHalignment(back, HPos.CENTER);
+		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
+		// Return to Main Menu when back is pressed
+		temp.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				Screen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
+				updateScene(games.getScene());
+			}
+		});
+		temp.setOnMouseEntered(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent t) {
+	        	temp.setStyle("-fx-border-width: 3;" + 
+	        				"-fx-border-color: white;" + 
+	        				"-fx-background-color: #003399;" +
+	        				"-fx-font-size: 16;" + 
+	        				"-fx-text-fill: white;");
+	        }
+	    });
+
+		temp.setOnMouseExited(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent t) {
+	        		back.setStyle("-fx-border-width: 3;" + 
+	        				"-fx-border-color: white;" + 
+	        				"-fx-background-color: #24618F;" +
+	        				"-fx-font-size: 16;" + 
+	        				"-fx-text-fill: white;");
+	        }
+	    });
+		
+		
 		Scene scene = new Scene(gridpane, 800, 600);
 		return scene;
 		
