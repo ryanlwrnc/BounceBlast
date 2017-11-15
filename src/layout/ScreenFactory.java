@@ -7,6 +7,7 @@ public class ScreenFactory {
 		LOGIN("Login"),
 		PLAY_ONLINE("Play Online"),
 		PLAY_OFFLINE("Play Offline"),
+		IN_GAME("In Game"),
 		SETTINGS("Settings"),
 		LEADERBOARD("Leaderboard"),
 		TUTORIAL("Tutorial");
@@ -33,13 +34,16 @@ public class ScreenFactory {
 			screen =  new Login();
 			break;
 		case PLAY_ONLINE:
-			screen = new GameScene();
+			screen = new PlayOnline();
 			break;
 		case PLAY_OFFLINE:
 			screen = new PlayOffline();
 			break;
 		case SETTINGS:
 			screen = new Settings();
+			break;
+		case IN_GAME:
+			screen = new InGame();
 			break;
 			/*
 		case ScreenType.LEADERBOARD.getScreenName():
