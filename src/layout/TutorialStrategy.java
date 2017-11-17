@@ -198,7 +198,8 @@ public class TutorialStrategy extends Main implements Screen {
 		// Exit the application when exit pressed
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Platform.exit();
+				Screen mainMenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+				updateScene(mainMenu.getScene());
 			}
 		});
 		back.setOnMouseEntered(new EventHandler<MouseEvent>() {
