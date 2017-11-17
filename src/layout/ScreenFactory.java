@@ -11,8 +11,9 @@ public class ScreenFactory {
 		SETTINGS("Settings"),
 		LEADERBOARD("Leaderboard"),
 		GAME_SCENE("Game Scene"),
-		TUTORIAL("Tutorial");
-		
+		TUTORIAL_RULES("TutorialRules"),
+		TUTORIAL_CONTROLS("TutorialControls"),
+		TUTORIAL_STRATEGY("TutorialStrategy");
 		
 		private String screenName;
 		
@@ -49,6 +50,15 @@ public class ScreenFactory {
 			break;
 		case GAME_SCENE:
 			screen = new GameScene();
+			break;
+		case TUTORIAL_RULES:
+			screen = new TutorialRules();
+			break;
+		case TUTORIAL_CONTROLS:
+			screen = new TutorialControls();
+			break;
+		case TUTORIAL_STRATEGY:
+			screen = new TutorialStrategy();
 			break;
 			/*
 		case ScreenType.LEADERBOARD.getScreenName():

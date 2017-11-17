@@ -267,7 +267,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL);
+				Screen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
 				updateScene(tutorial.getScene());
 			}
 		});
