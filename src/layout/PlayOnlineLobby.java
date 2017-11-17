@@ -18,12 +18,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class PlayOnline extends Main implements Screen {
+public class PlayOnlineLobby extends Main implements Screen {
 
 	@Override
 	public Scene getScene() {
 		// TODO Auto-generated method stub
-		Button back, start, temp, lobby;
+		Button back, start, temp, settings;
 		ScreenFactory screenFactory = new ScreenFactory();
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
@@ -71,41 +71,7 @@ public class PlayOnline extends Main implements Screen {
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");
         
-        
-		Text directionKeys = new Text();
-		directionKeys.setFont(new Font(20));
-		directionKeys.setFill(Color.WHITE);
-		directionKeys.setText("CPUs");
-		directionKeys.setStyle("-fx-font: 30 arial;");
-		directionKeys.setTextAlignment(TextAlignment.LEFT);
-		GridPane.setHalignment(directionKeys, HPos.LEFT);
-		box.add(directionKeys, 0, 0);
-		GridPane.setMargin(directionKeys, new Insets(5, 10, 5, 200));	
-		
-		ComboBox<String> cbCPU = new ComboBox<String>();
-        cbCPU.getItems().add("0");
-        cbCPU.getItems().add("1");
-        cbCPU.getItems().add("2");
-        cbCPU.getItems().add("3");
-	    box.add(cbCPU, 1, 0);
-	    
-	    Text ballTypes = new Text();
-	    ballTypes.setFont(new Font(20));
-	    ballTypes.setFill(Color.WHITE);
-	    ballTypes.setText("Balls");
-	    ballTypes.setStyle("-fx-font: 30 arial;");
-	    ballTypes.setTextAlignment(TextAlignment.LEFT);
-		GridPane.setHalignment(ballTypes, HPos.LEFT);
-		box.add(ballTypes, 0, 1);
-		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 200));	
-		
-		ComboBox<String> cbBall = new ComboBox<String>();
-        cbBall.getItems().add("Basketball");
-        cbBall.getItems().add("Bowling Ball");
-        cbBall.getItems().add("Tennis Ball");
-	    box.add(cbBall, 1, 1);
-		
-		gridpane.add(box, screenButtonCol, 1);
+        gridpane.add(box, screenButtonCol, 1);
 
 		// Start Button
 		start = new Button("Start");
@@ -120,18 +86,18 @@ public class PlayOnline extends Main implements Screen {
 		GridPane.setHalignment(start, HPos.CENTER);
 		GridPane.setMargin(start, new Insets(5, 80, 30, 10));
 		
-		// Lobby menu button
-		lobby = new Button("Lobby");
-		lobby.setPrefHeight(25);
-		lobby.setPrefWidth(100);
-		lobby.setStyle("-fx-border-width: 3;" + 
+		// Match Settings Button
+		settings = new Button("Settings");
+		settings.setPrefHeight(25);
+		settings.setPrefWidth(100);
+		settings.setStyle("-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
 				"-fx-font-size: 16;" + 
 				"-fx-text-fill: white;");
-		gridpane.add(lobby, 2, 4);
-		GridPane.setHalignment(lobby, HPos.CENTER);
-		GridPane.setMargin(lobby, new Insets(5, 80, 30, 10));
+		gridpane.add(settings, 2, 4);
+		GridPane.setHalignment(settings, HPos.CENTER);
+		GridPane.setMargin(settings, new Insets(5, 80, 30, 10));
 		
 		// Return to Main Menu when back is pressed
 		start.setOnAction(new EventHandler<ActionEvent>() {
@@ -150,23 +116,23 @@ public class PlayOnline extends Main implements Screen {
 	        				"-fx-text-fill: white;");
 	        }
 	    });
-		// Return to lobby when the lobby button is pressed
-		lobby.setOnAction(new EventHandler<ActionEvent>() {
+		// Return to settings menu when the settings button is pressed
+		settings.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Screen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE_LOBBY);
-				updateScene(ingame.getScene());
+				Screen settings_menu = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
+				updateScene(settings_menu.getScene());
 			}
 		});
-		lobby.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			    @Override
-			    public void handle(MouseEvent t) {
-			    lobby.setStyle("-fx-border-width: 3;" + 
-			        		"-fx-border-color: white;" + 
-			        		"-fx-background-color: #003399;" +
-			        		"-fx-font-size: 16;" + 
-			        		"-fx-text-fill: white;");
-			    }
-		});
+		settings.setOnMouseEntered(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent t) {
+	        	settings.setStyle("-fx-border-width: 3;" + 
+	        				"-fx-border-color: white;" + 
+	        				"-fx-background-color: #003399;" +
+	        				"-fx-font-size: 16;" + 
+	        				"-fx-text-fill: white;");
+	        }
+	    });
 
 		start.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
@@ -178,10 +144,10 @@ public class PlayOnline extends Main implements Screen {
 	        				"-fx-text-fill: white;");
 	        }
 	    });
-		lobby.setOnMouseExited(new EventHandler<MouseEvent>() {
+		settings.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        	lobby.setStyle("-fx-border-width: 3;" + 
+	        	settings.setStyle("-fx-border-width: 3;" + 
 	        				"-fx-border-color: white;" + 
 	        				"-fx-background-color: #24618F;" +
 	        				"-fx-font-size: 16;" + 

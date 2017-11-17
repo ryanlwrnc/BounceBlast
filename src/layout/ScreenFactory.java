@@ -6,6 +6,7 @@ public class ScreenFactory {
 		MAIN_MENU("Main Menu"),
 		LOGIN("Login"),
 		PLAY_ONLINE("Play Online"),
+		PLAY_ONLINE_LOBBY("Play Online Lobby"),
 		PLAY_OFFLINE("Play Offline"),
 		IN_GAME("In Game"),
 		SETTINGS("Settings"),
@@ -38,6 +39,9 @@ public class ScreenFactory {
 			break;
 		case PLAY_ONLINE:
 			screen = new PlayOnline();
+			break;
+		case PLAY_ONLINE_LOBBY:
+			screen = new PlayOnlineLobby();
 			break;
 		case PLAY_OFFLINE:
 			screen = new PlayOffline();
