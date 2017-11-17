@@ -15,6 +15,7 @@ public class Main extends Application{
 		Screen mainMenu = new MainMenu();
 		myScene = mainMenu.getScene();
 		myStage.setScene(myScene);
+		myStage.setResizable(false);
 		myStage.show();
 	}
 	
