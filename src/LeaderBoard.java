@@ -1,14 +1,9 @@
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -51,11 +46,6 @@ public class LeaderBoard extends Application {
     		data.addAll(new PlayerName(3, "Ryan", 23));
     		data.addAll(new PlayerName(4, "Anand", 19));
 
-
-
-
-    		
-    		
     		return data;
     }
 }

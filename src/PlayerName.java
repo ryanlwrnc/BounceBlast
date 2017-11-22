@@ -60,8 +60,6 @@ public class PlayerName {
 		nameCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
 		scoreCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
 
-		
-		
 		i = 0;
 		rankCol.setCellValueFactory(new PropertyValueFactory<PlayerName, Integer>(variableNames[i++]));
 		nameCol.setCellValueFactory(new PropertyValueFactory<PlayerName, String>(variableNames[i++]));
