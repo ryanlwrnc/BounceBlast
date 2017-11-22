@@ -1,4 +1,6 @@
 package layout;
+import game.GameEngine;
+import game.SimpleGameEngine;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -247,6 +249,15 @@ public class PlayOnline extends Main implements Screen {
 			public void handle(ActionEvent event) {
 				Screen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
 				updateScene(games.getScene());
+				//SimpleGameEngine engine = new SimpleGameEngine(this);
+				//engine.run();
+				
+				//mark
+				runnable = new GameEngine();
+		        thread = new Thread(runnable);
+		        thread.start();
+				//mark
+				
 			}
 		});
 		temp.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -276,5 +287,4 @@ public class PlayOnline extends Main implements Screen {
 		return scene;
 		
 	}
-
 }

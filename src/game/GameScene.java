@@ -1,8 +1,12 @@
 package game;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
+import layout.Main;
 import layout.Screen;
 
 public class GameScene implements Screen {
@@ -22,7 +26,21 @@ public class GameScene implements Screen {
 		board.setStroke(Color.BLUE);
 		board.setStrokeWidth(5);
 		
+		Button btn = new Button();
+        btn.setLayoutX(100);
+        btn.setLayoutY(80);
+        btn.setText("Hello World");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World");
+            }
+        });
+        root.getChildren().add(btn);
+		
 		root.getChildren().addAll(board, ball1, ball2);
+		
+		
 		
 		return scene;
 	}
