@@ -64,14 +64,9 @@ public class ScreenFactory {
 		case TUTORIAL_STRATEGY:
 			screen = new TutorialStrategy();
 			break;
-			/*
-		case ScreenType.LEADERBOARD.getScreenName():
-			return new LeaderBoard();
+		case LEADERBOARD:
+			screen =  new Leaderboard();
 			break;
-		case ScreenType.LEADERBOARD.getScreenName():
-			return new Tutorial();
-			break;
-			*/
 		default:
 			screen = null;
 		}
