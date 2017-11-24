@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class Login extends Main implements Screen {
+public class Login extends Main implements CustomScreen {
 
 	@Override
 	public Scene getScene() {
@@ -118,7 +118,7 @@ public class Login extends Main implements Screen {
 		// Login when login button is pressed
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Screen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				updateScene(mainmenu.getScene());
 			}
 		});
@@ -140,13 +140,13 @@ public class Login extends Main implements Screen {
 		// Return to Main Menu when back is pressed
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Screen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				//	mainmenu.logIn(usernameField.getText());
 				updateScene(mainmenu.getScene());
 			}
 		});
 		
-        Scene scene = new Scene(gridpane, 800, 600);
+        Scene scene = new Scene(gridpane,800,600);
 		return scene;
 	}
 

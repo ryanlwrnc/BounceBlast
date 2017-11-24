@@ -27,9 +27,9 @@ public class ScreenFactory {
 		}
 	};
 	
-	public Screen newScreen(ScreenType screenType)
+	public CustomScreen newScreen(ScreenType screenType)
 	{
-		Screen screen;
+		CustomScreen screen;
 		switch (screenType) {
 		case MAIN_MENU:
 			screen =  new MainMenu();

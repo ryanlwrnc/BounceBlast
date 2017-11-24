@@ -18,7 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class PlayOffline extends Main implements Screen {
+public class PlayOffline extends Main implements CustomScreen {
 
 	@Override
 	public Scene getScene() {
@@ -122,7 +122,7 @@ public class PlayOffline extends Main implements Screen {
 		// Return to Main Menu when back is pressed
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Screen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.IN_GAME);
+				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.IN_GAME);
 				updateScene(ingame.getScene());
 			}
 		});
@@ -163,7 +163,7 @@ public class PlayOffline extends Main implements Screen {
 		// Return to Main Menu when back is pressed
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Screen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				updateScene(mainmenu.getScene());
 			}
 		});
@@ -204,7 +204,7 @@ public class PlayOffline extends Main implements Screen {
 		// Return to Main Menu when back is pressed
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				Screen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
+				CustomScreen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
 				updateScene(games.getScene());
 			}
 		});

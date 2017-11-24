@@ -1,7 +1,7 @@
 package layout;
 import javafx.scene.*;
 
-public interface Screen {
+public interface CustomScreen {
 	
 	public Scene getScene();
 }

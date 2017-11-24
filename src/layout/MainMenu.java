@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class MainMenu extends Main implements Screen{	
+public class MainMenu extends Main implements CustomScreen{	
 	private boolean loggedIn = false;
 	private String username = null;
 	
@@ -116,7 +116,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen loginScreen = screenFactory.newScreen(ScreenFactory.ScreenType.LOGIN);
+				CustomScreen loginScreen = screenFactory.newScreen(ScreenFactory.ScreenType.LOGIN);
 				updateScene(loginScreen.getScene());
 			}
 		});
@@ -146,7 +146,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen playOnline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
+				CustomScreen playOnline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
 				updateScene(playOnline.getScene());
 				
 			}
@@ -177,7 +177,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen playOffline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_OFFLINE);
+				CustomScreen playOffline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_OFFLINE);
 				updateScene(playOffline.getScene());
 			}
 		});
@@ -207,7 +207,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen settings = screenFactory.newScreen(ScreenFactory.ScreenType.SETTINGS);
+				CustomScreen settings = screenFactory.newScreen(ScreenFactory.ScreenType.SETTINGS);
 				updateScene(settings.getScene());
 			}
 		});
@@ -237,7 +237,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen leaderboard = screenFactory.newScreen(ScreenFactory.ScreenType.LEADERBOARD);
+				CustomScreen leaderboard = screenFactory.newScreen(ScreenFactory.ScreenType.LEADERBOARD);
 				updateScene(leaderboard.getScene());
 			}
 		});
@@ -267,7 +267,7 @@ public class MainMenu extends Main implements Screen{
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Screen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
+				CustomScreen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
 				updateScene(tutorial.getScene());
 			}
 		});

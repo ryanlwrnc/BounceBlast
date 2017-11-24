@@ -7,9 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import layout.Main;
-import layout.Screen;
+import layout.CustomScreen;
 
-public class GameScene implements Screen {
+public class GameScene implements CustomScreen {
 
 	GameBoard board;
 	Ball ball1;
