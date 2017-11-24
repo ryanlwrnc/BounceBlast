@@ -3,7 +3,9 @@ package game;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
 import javafx.animation.AnimationTimer;
@@ -15,7 +17,8 @@ public class BallControlPrototype extends Application
 	final int WIDTH = 1200;
 	final int HEIGHT = 800;
 	
-	double ballRadius = 75;
+	double ballRadius = 70;
+	
 	double ballX = 400;
 	double ballY = 400;
 	double xSpeed = 10;
@@ -38,6 +41,26 @@ public class BallControlPrototype extends Application
 		Scene scene = new Scene(root, WIDTH, HEIGHT);
 		
 		Circle ball = new Circle(ballX, ballY, ballRadius, Color.RED);
+		/* Basketball
+		Image ballImg = new Image("file:basketball.jpg");
+		ball.setFill(new ImagePattern(ballImg));
+		*/
+		
+		/* Tennis ball
+		Image ballImg = new Image("file:tennisball.png");
+		ball.setFill(new ImagePattern(ballImg));
+		*/
+		
+		/* Soccer ball
+		Image ballImg = new Image("file:soccerball.jpg");
+		ball.setFill(new ImagePattern(ballImg));
+		*/
+		
+		// Bowling ball
+		Image ballImg = new Image("file:bowlingball.gif");
+		ball.setFill(new ImagePattern(ballImg));
+		//
+		
 		root.getChildren().add(ball);
 		
 		
