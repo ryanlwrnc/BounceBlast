@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class Login extends Main implements CustomScreen {
+public class CreateAccount extends Main implements CustomScreen {
 
 	@Override
 	public Scene getScene() {
@@ -50,7 +50,7 @@ public class Login extends Main implements CustomScreen {
 		Text gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("Login");
+		gameTitle.setText("Create Account");
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
@@ -104,48 +104,32 @@ public class Login extends Main implements CustomScreen {
         passwordField.setPromptText("Enter your password");
         box.add(passwordField, 1, 1);
         
-        // Login button
-        Button login = new Button("login");
-        login.setPrefHeight(40);
-		login.setPrefWidth(100);
-		login.setStyle("-fx-border-width: 3;" + 
+        // Confirm Password field
+        final TextField confirmPasswordField = new TextField();
+        confirmPasswordField.setPromptText("Confirm password");
+        box.add(confirmPasswordField, 1, 2);
+        
+        // Create Account button
+        Button createAccount = new Button("Create Account");
+        createAccount.setPrefHeight(40);
+        createAccount.setPrefWidth(150);
+        createAccount.setStyle("-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
 				"-fx-font-size: 16;" + 
 				"-fx-text-fill: white;");
-		box.add(login, 0, 10);
-		GridPane.setHalignment(login, HPos.CENTER);
-		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
+		box.add(createAccount, 0, 10);
+		GridPane.setHalignment(createAccount, HPos.CENTER);
+		GridPane.setMargin(createAccount, new Insets(5, 10, 5, 10));
 		
-		// Login when login button is pressed
-		login.setOnAction(new EventHandler<ActionEvent>() {
+		// Login when create account button is pressed
+		createAccount.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				updateScene(mainmenu.getScene());
 			}
 		});
-		
-		// Create Account button
-		Button createAccount = new Button("Create New Account");
-		createAccount.setPrefHeight(40);
-		createAccount.setPrefWidth(190);
-		createAccount.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
-		 box.add(createAccount, 1, 10);
-		 GridPane.setHalignment(createAccount, HPos.CENTER);
-		 GridPane.setMargin(createAccount, new Insets(5, 10, 5, 10));
-		
-		// Go to Create New Account Screen when button is pressed
-		createAccount.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent event) {
-					CustomScreen createAccountScreen = screenFactory.newScreen(ScreenFactory.ScreenType.CREATE_NEW_ACCOUNT);
-					updateScene(createAccountScreen.getScene());
-				}
-			});
-        
+		        
 		gridpane.add(box, screenButtonCol, 1);
 		
 		// Back button

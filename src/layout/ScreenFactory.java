@@ -5,6 +5,7 @@ public class ScreenFactory {
 	public enum ScreenType {
 		MAIN_MENU("Main Menu"),
 		LOGIN("Login"),
+		CREATE_NEW_ACCOUNT("Create New Account"),	// ADDED
 		PLAY_ONLINE("Play Online"),
 		PLAY_ONLINE_LOBBY("Play Online Lobby"),
 		PLAY_OFFLINE("Play Offline"),
@@ -36,6 +37,9 @@ public class ScreenFactory {
 			break;
 		case LOGIN:
 			screen =  new Login();
+			break;
+		case CREATE_NEW_ACCOUNT:
+			screen = new CreateAccount();
 			break;
 		case PLAY_ONLINE:
 			screen = new PlayOnline();
