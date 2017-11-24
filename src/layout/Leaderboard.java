@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class Leaderboard extends Main implements Screen{
+public class Leaderboard extends Main implements CustomScreen{
 	private TableView<PlayerName> table;
 	
 	public Scene getScene() {
@@ -85,7 +85,7 @@ public class Leaderboard extends Main implements Screen{
  		// Return to Main Menu when back is pressed
  		back.setOnAction(new EventHandler<ActionEvent>() {
  			public void handle(ActionEvent event) {
- 				Screen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+ 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
  				updateScene(mainmenu.getScene());
  			}
  		});
