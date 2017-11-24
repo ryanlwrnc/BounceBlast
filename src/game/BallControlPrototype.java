@@ -2,6 +2,7 @@ package game;
 
 import javafx.application.Application;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -16,19 +17,23 @@ public class BallControlPrototype extends Application
 {
 	final int WIDTH = 1200;
 	final int HEIGHT = 800;
-	
+	/*
 	double ballRadius = 70;
 	
 	double ballX = 400;
 	double ballY = 400;
 	double xSpeed = 10;
 	double boostMultiplier = 1.5;
-	
+	*/
 	boolean goUp = false;
 	boolean goDown = false;
 	boolean goLeft = false;
 	boolean goRight = false;
 	boolean boost = false;
+	/*
+	BallFactory bFact = new BallFactory();
+	GameBall gBall = bFact.newGameBall(BallFactory.BallType.BASKETBALL);
+	*/
 	
 	public static void main(String[] args)
 	{
@@ -40,29 +45,13 @@ public class BallControlPrototype extends Application
 		Group root = new Group();
 		Scene scene = new Scene(root, WIDTH, HEIGHT);
 		
-		Circle ball = new Circle(ballX, ballY, ballRadius, Color.RED);
-		/* Basketball
-		Image ballImg = new Image("file:basketball.jpg");
-		ball.setFill(new ImagePattern(ballImg));
-		*/
 		
-		/* Tennis ball
-		Image ballImg = new Image("file:tennisball.png");
-		ball.setFill(new ImagePattern(ballImg));
-		*/
+		BasketBall gameBall = new BasketBall();
+		//TennisBall gameBall = new TennisBall();
+		//BowlingBall gameBall = new BowlingBall();
+		//SoccerBall gameBall = new SoccerBall();
 		
-		/* Soccer ball
-		Image ballImg = new Image("file:soccerball.jpg");
-		ball.setFill(new ImagePattern(ballImg));
-		*/
-		
-		// Bowling ball
-		Image ballImg = new Image("file:bowlingball.gif");
-		ball.setFill(new ImagePattern(ballImg));
-		//
-		
-		root.getChildren().add(ball);
-		
+		root.getChildren().add(gameBall.ball);
 		
 		gameScreen.setScene(scene);
 		gameScreen.setTitle("Bounce Blast!");
@@ -107,65 +96,52 @@ public class BallControlPrototype extends Application
 	        @Override
 	        public void handle(long arg0) 
 	        {
-	      	  	// UPDATE
-	      	  		
+	      	  // UPDATE
 	      	  	// Prevent ball from leaving the right edge
-	      	  		if(ballX + ball.getRadius() >= WIDTH)
+	      	  		if(gameBall.atRightBorder(WIDTH))
 	      	  		{
-	      	  			ballX = WIDTH - ball.getRadius();
+	      	  			//ballX = WIDTH - ball.getRadius();
+	      	  			gameBall.setBallX(WIDTH - gameBall.getBallRadius());
 	      	  		}
 	      	  	// Prevent ball from leaving the left edge
-	      	  		if(ballX - ball.getRadius() <= 0)
+	      	  		if(gameBall.atLeftBorder(0))
 	      	  		{
-	      	  			ballX = ball.getRadius();
+	      	  			//ballX = ball.getRadius();
+	      	  			gameBall.setBallX(gameBall.getBallRadius());
 	      	  		}
 	      	  	// Prevent ball from leaving the top edge
-	      	  		if(ballY + ball.getRadius() >= HEIGHT)
+	      	  		if(gameBall.atTopBorder(HEIGHT))
 	      	  		{
-	      	  			ballY = HEIGHT - ball.getRadius();
+	      	  			//ballY = HEIGHT - ball.getRadius();
+	      	  			gameBall.setBallY(HEIGHT - gameBall.getBallRadius());
 	      	  		}
 	      	  	// Prevent ball from leaving the bottom edge
-	      	  		if(ballY - ball.getRadius() <= 0)
+	      	  		if(gameBall.atBottomBorder(0))
 	      	  		{
-	      	  			ballY = ball.getRadius();
+	      	  			//ballY = ball.getRadius();
+	      	  			gameBall.setBallY(gameBall.getBallRadius());
 	      	  		}
 	      	  		
 	      	  		if(goUp)
 	      	  		{
-	      	  			ballY -= xSpeed;
+	      	  			gameBall.moveUp(boost);
 	      	  		}
 	      	  		if(goDown)
 	      	  		{
-	      	  			ballY += xSpeed;
+	      	  			gameBall.moveDown(boost);
 	      	  		}
 	      	  		if(goLeft)
 	      	  		{
-	      	  			ballX -= xSpeed;
+	      	  			gameBall.moveLeft(boost);
 	      	  		}
 	      	  		if(goRight)
 	      	  		{
-	      	  			ballX += xSpeed;
+	      	  			gameBall.moveRight(boost);
 	      	  		}
-	      	  		
-	      	  		if(goUp && boost)
-	      	  		{
-	      	  			ballY -= xSpeed * boostMultiplier;
-	      	  		}
-	      	  		if(goDown && boost)
-	      	  		{
-	      	  			ballY += xSpeed * boostMultiplier;
-	      	  		}
-	      	  		if(goLeft && boost)
-	      	  		{
-	      	  			ballX -= xSpeed * boostMultiplier;
-	      	  		}
-	      	  		if(goRight && boost)
-	      	  		{
-	      	  			ballX += xSpeed * boostMultiplier;
-	      	  		}
-	      	  	// RENDER
-	      	  		ball.setCenterY(ballY);
-	      	  		ball.setCenterX(ballX);
+
+	      	  	// RENDER   	  		
+	      	  		gameBall.ball.setCenterY(gameBall.ballY);
+	      	  		gameBall.ball.setCenterX(gameBall.ballX);
 	        }
 	    };
 	    
