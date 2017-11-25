@@ -16,18 +16,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import layout.components.MainMenuButton;
 
 public class MainMenu implements CustomScreen{	
 	private boolean loggedIn = false;
 	private String username = null;
 	private Main app;
 	
+	private MainMenuButton login;
+	
 	public MainMenu(Main app) {
 		this.app =app;
 	}
 	
 	public Scene getScene() {
-		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
+		Button playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
 		ScreenFactory screenFactory = new ScreenFactory(app);
 		String buttonStyle = "-fx-border-width: 3;" + 
@@ -97,185 +100,40 @@ public class MainMenu implements CustomScreen{
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
 		// Login button
-		login = new Button("Login");
-		login.setPrefHeight(50);
-		login.setPrefWidth(200);
-		login.setStyle(buttonStyle);
+		login = new MainMenuButton(app, "Login", ScreenFactory.ScreenType.LOGIN);
 		gridpane.add(login, screenButtonCol, 2);
 		GridPane.setHalignment(login, HPos.CENTER);
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
-		login.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		login.setStyle(buttonHoverStyle);
-	        }
-	    });
-		login.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		login.setStyle(buttonStyle);
-	        }
-	    });
-		login.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				CustomScreen loginScreen = screenFactory.newScreen(ScreenFactory.ScreenType.LOGIN);
-				app.updateScene(loginScreen.getScene());
-			}
-		});
 		
 		// Play online button
-		playOnline = new Button("Play Online");
-		playOnline.setPrefHeight(50);
-		playOnline.setPrefWidth(200);
-		playOnline.setStyle(buttonStyle);
+		playOnline = new MainMenuButton(app, "Play Online", ScreenFactory.ScreenType.PLAY_ONLINE);
 		gridpane.add(playOnline, screenButtonCol, 3);
 		GridPane.setHalignment(playOnline, HPos.CENTER);
 		GridPane.setMargin(playOnline, new Insets(5, 10, 5, 10));
-		playOnline.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		playOnline.setStyle(buttonHoverStyle);
-	        }
-	    });
-		playOnline.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		playOnline.setStyle(buttonStyle);
-	        }
-	    });
-		playOnline.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				CustomScreen playOnline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
-				app.updateScene(playOnline.getScene());
-				
-			}
-		});
 		
 		// Play offline button
-		playOffline = new Button("Play Offline");
-		playOffline.setPrefHeight(50);
-		playOffline.setPrefWidth(200);
-		playOffline.setStyle(buttonStyle);
+		playOffline = new MainMenuButton(app, "Play Offline", ScreenFactory.ScreenType.PLAY_OFFLINE);
 		gridpane.add(playOffline, screenButtonCol, 4);
 		GridPane.setHalignment(playOffline, HPos.CENTER);
 		GridPane.setMargin(playOffline, new Insets(5, 10, 5, 10));
-		playOffline.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		playOffline.setStyle(buttonHoverStyle);
-	        }
-	    });
-		playOffline.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		playOffline.setStyle(buttonStyle);
-	        }
-	    });
-		playOffline.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				CustomScreen playOffline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_OFFLINE);
-				app.updateScene(playOffline.getScene());
-			}
-		});
 		
 		// Settings button
-		settings = new Button("Settings");
-		settings.setPrefHeight(50);
-		settings.setPrefWidth(200);
-		settings.setStyle(buttonStyle);
+		settings = new MainMenuButton(app, "Settings", ScreenFactory.ScreenType.SETTINGS);
 		gridpane.add(settings, screenButtonCol, 5);
 		GridPane.setHalignment(settings, HPos.CENTER);
 		GridPane.setMargin(settings, new Insets(5, 10, 5, 10));
-		settings.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		settings.setStyle(buttonHoverStyle);
-	        }
-	    });
-		settings.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		settings.setStyle(buttonStyle);
-	        }
-	    });
-		settings.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				CustomScreen settings = screenFactory.newScreen(ScreenFactory.ScreenType.SETTINGS);
-				app.updateScene(settings.getScene());
-			}
-		});
 		
 		// Leaderboard button
-		leaderboard = new Button("Leaderboard");
-		leaderboard.setPrefHeight(50);
-		leaderboard.setPrefWidth(200);
-		leaderboard.setStyle(buttonStyle);
+		leaderboard = new MainMenuButton(app, "Leaderboard", ScreenFactory.ScreenType.LEADERBOARD);
 		gridpane.add(leaderboard, screenButtonCol, 6);
 		GridPane.setHalignment(leaderboard, HPos.CENTER);
 		GridPane.setMargin(leaderboard, new Insets(5, 10, 5, 10));
-		leaderboard.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		leaderboard.setStyle(buttonHoverStyle);
-	        }
-	    });
-		leaderboard.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		leaderboard.setStyle(buttonStyle);
-	        }
-	    });
-		leaderboard.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				CustomScreen leaderboard = screenFactory.newScreen(ScreenFactory.ScreenType.LEADERBOARD);
-				app.updateScene(leaderboard.getScene());
-			}
-		});
 		
 		// Tutorial button
-		tutorial = new Button("Tutorial");
-		tutorial.setPrefHeight(50);
-		tutorial.setPrefWidth(200);
-		tutorial.setStyle(buttonStyle);
+		tutorial = new MainMenuButton(app, "Tutorial", ScreenFactory.ScreenType.TUTORIAL_RULES);
 		gridpane.add(tutorial, screenButtonCol, 7);
 		GridPane.setHalignment(tutorial, HPos.CENTER);
 		GridPane.setMargin(tutorial, new Insets(5, 10, 5, 10));
-		tutorial.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		tutorial.setStyle(buttonHoverStyle);
-	        }
-	    });
-		tutorial.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		tutorial.setStyle(buttonStyle);
-	        }
-	    });
-		tutorial.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				CustomScreen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
-				app.updateScene(tutorial.getScene());
-			}
-		});
 		
 		// Exit button
 		exit = new Button("Exit");
