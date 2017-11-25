@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -17,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import layout.components.BackToMainMenuButton;
 
 public class PlayOffline implements CustomScreen {
 
@@ -155,45 +155,7 @@ public class PlayOffline implements CustomScreen {
 	    });
 		
 		// Back button
-		back = new Button("Back");
-		back.setPrefHeight(25);
-		back.setPrefWidth(65);
-		back.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
-		gridpane.add(back, 0, 10);
-		GridPane.setHalignment(back, HPos.CENTER);
-		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Return to Main Menu when back is pressed
-		back.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				app.updateScene(mainmenu.getScene());
-			}
-		});
-		back.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		back.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-
-		back.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		back.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
+		back = new BackToMainMenuButton(app, "Back");
 		 
 		//Temporary GameScene Button
 		temp = new Button("Game Scene");

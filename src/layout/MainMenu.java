@@ -18,49 +18,46 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.MainMenuButton;
 
-public class MainMenu implements CustomScreen{	
+public class MainMenu implements CustomScreen{
+	
+	// Log in
 	private boolean loggedIn = false;
 	private String username = null;
-	private Main app;
 	
-	private MainMenuButton login;
+	// JavaFX
+	private Main app;
+	private Scene scene;
+	
+	// Components
+	private Button login;
+	private Button playOnline;
+	private Button playOffline;
+	private Button leaderboard;
+	private Button settings;
+	private Button tutorial;
+	private Button exit;
 	
 	public MainMenu(Main app) {
-		this.app =app;
-	}
-	
-	public Scene getScene() {
-		Button playOnline, playOffline, leaderboard, settings, tutorial, exit;
-		int screenButtonCol = 2;
-		ScreenFactory screenFactory = new ScreenFactory(app);
-		String buttonStyle = "-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 24;" + 
-				"-fx-text-fill: white;";
-		String buttonHoverStyle = "-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #003399;" +
-				"-fx-font-size: 24;" + 
-				"-fx-text-fill: white;";
+		this.app = app;
+		
+		// GridPane
 		GridPane gridpane = new GridPane();
+		int screenButtonCol = 2;
+		
 		ColumnConstraints cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
-
         ColumnConstraints cons2 = new ColumnConstraints();
         cons2.setHgrow(Priority.ALWAYS);
-        
         gridpane.getColumnConstraints().addAll(cons1, cons2);
         
         RowConstraints rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
-        
         RowConstraints rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
-        
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
+		
+        gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		 
@@ -175,7 +172,10 @@ public class MainMenu implements CustomScreen{
 	        }
 	    });
 		 
-		Scene scene = new Scene(gridpane, 800, 600);
+		scene = new Scene(gridpane, 800, 600);
+	}
+	
+	public Scene getScene() {
 		return scene;
 	}
 	

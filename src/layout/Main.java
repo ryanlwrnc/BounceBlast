@@ -30,7 +30,6 @@ import javafx.stage.Screen;
 public class Main extends Application {
 
 	protected static Thread thread = null;
-	protected static GameEngine runnable = null;
 
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
