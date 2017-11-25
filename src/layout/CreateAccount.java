@@ -152,7 +152,7 @@ public class CreateAccount extends Main implements CustomScreen {
 
 							//Map<String,User> user = new HashMap<>();
 							//user.put(usernameField.getText(), new User(passwordField.getText()));
-							database.setValueAsync(new User(passwordField.getText()));
+							database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
 							
 							// Go back to the main menu
 							CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);

@@ -1,6 +1,13 @@
 package layout;
 
 import javafx.scene.control.TextField;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -19,7 +26,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.control.PasswordField;
 
 public class Login extends Main implements CustomScreen {
-
+	
 	@Override
 	public Scene getScene() {
 		Button back;
@@ -106,7 +113,7 @@ public class Login extends Main implements CustomScreen {
         box.add(passwordField, 1, 1);
         
         // Login button
-        Button login = new Button("login");
+        Button login = new Button("Login");
         login.setPrefHeight(40);
 		login.setPrefWidth(100);
 		login.setStyle("-fx-border-width: 3;" + 
@@ -118,11 +125,34 @@ public class Login extends Main implements CustomScreen {
 		GridPane.setHalignment(login, HPos.CENTER);
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
 		
-		// Login when login button is pressed
+		// Login is pressed
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainmenu.getScene());
+				// If username and password fields are filled.
+				if (!usernameField.getText().trim().isEmpty() && !passwordField.getText().trim().isEmpty()) {
+					// Verify that the username exists and the password matches.
+					final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+					database.child(usernameField.getText()).addValueEventListener(new ValueEventListener() {
+						
+						@Override
+						public void onDataChange(DataSnapshot dataSnapshot) {
+						        User note = dataSnapshot.getValue(User.class);
+						        // If password matches
+						        if(passwordField.getText().equals(note.password)) {
+						      	  		System.out.println("SUCCESSFUL LOG IN");
+						   				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+						   				updateScene(mainmenu.getScene());
+						        }
+						}
+
+						@Override
+						public void onCancelled(DatabaseError arg0)
+						{
+							// TODO Auto-generated method stub
+							
+						}
+						});
+				}
 			}
 		});
 		

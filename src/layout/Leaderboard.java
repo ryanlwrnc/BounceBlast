@@ -1,4 +1,12 @@
 package layout;
+import java.util.HashMap;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +28,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+
+import java.util.ArrayList;
+//
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class Leaderboard extends Main implements CustomScreen{
 	private TableView<PlayerName> table;
@@ -114,14 +135,54 @@ public class Leaderboard extends Main implements CustomScreen{
 		Scene scene = new Scene(gridpane, 800, 600);
 		return scene;
 	}
+		
 	public static ObservableList<PlayerName> getPlayerDummy() {
 		ObservableList<PlayerName> data = FXCollections.observableArrayList();
 		
+		// Fill data object with data from Firebase
+		final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+		
+		database.addValueEventListener(new ValueEventListener() {
+		@Override
+		public void onDataChange(DataSnapshot snapshot) {
+			HashMap<String,Integer> leaderboard = new HashMap<String, Integer>();
+			
+			for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+				User post = postSnapshot.getValue(User.class);
+				System.out.println(post.score);
+				leaderboard.put(post.username, post.score);
+		   }
+			
+			Set<Entry<String, Integer>> set = leaderboard.entrySet();
+	        List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
+	        Collections.sort( list, new Comparator<Map.Entry<String, Integer>>()
+	        {
+	            public int compare( Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2 )
+	            {
+	                return (o2.getValue()).compareTo( o1.getValue() );
+	            }
+	        } );
+	        
+	        int rank = 1;
+	        for(Map.Entry<String, Integer> entry:list){
+	            data.addAll(new PlayerName(rank++, entry.getKey(), entry.getValue()));
+	        }
+		}
+
+		@Override
+		public void onCancelled(DatabaseError error)
+		{
+			// TODO Auto-generated method stub
+			
+		}
+
+		});
+		//
+		/*
 		data.addAll(new PlayerName(1, "DFalessi", 30));
 		data.addAll(new PlayerName(2, "Mark", 24));
 		data.addAll(new PlayerName(3, "Ryan", 23));
-		data.addAll(new PlayerName(4, "Anand", 19));
-
+		*/
 		return data;
 	}
 }
