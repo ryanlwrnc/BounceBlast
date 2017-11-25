@@ -46,8 +46,8 @@ public class BallControlPrototype extends Application
 		Scene scene = new Scene(root, WIDTH, HEIGHT);
 		
 		
-		BasketBall gameBall = new BasketBall();
-		//TennisBall gameBall = new TennisBall();
+		//BasketBall gameBall = new BasketBall();
+		TennisBall gameBall = new TennisBall();
 		//BowlingBall gameBall = new BowlingBall();
 		//SoccerBall gameBall = new SoccerBall();
 		

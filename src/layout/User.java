@@ -4,18 +4,27 @@ public class User
 {
 	public String username;
 	public String password;
-	public int score;
+	public Integer score;
 	
-	public User(String un, String p, int s)
-	{
-		username = un;
-		password = p;
-		score = s;
-	}
+	public User() {};
 	
-	public User(String p, int s)
+	public User(String p)
 	{
 		password = p;
+		score = 0;
+	}	
+	
+	public User(String p, Integer s)
+	{
+		password = p;
 		score = s;
-	}
+	}	
+	
+	public User(String n, String p, Integer s)
+	{
+		username = n;
+		password = p;
+		score = s;
+
+	}	
 }

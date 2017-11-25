@@ -2,9 +2,9 @@ package layout;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.logging.Log;
 
@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import game.GameEngine;
@@ -49,43 +50,36 @@ public class Main extends Application{
 
 		FirebaseApp.initializeApp(options);
 		
-		final FirebaseDatabase database = FirebaseDatabase.getInstance();
-		DatabaseReference ref = database.getReference("accounts");
-		DatabaseReference usersRef = ref.child("users");
-
+		/*
+		final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+		//DatabaseReference ref = database.getReference("accounts");
+		//DatabaseReference usersRef = database.child("users");
+		
 		// Write to database
 		Map<String,User> users = new HashMap<>();
 		users.put("dfalessi", new User("123qwe@", 1000));
-		usersRef.setValueAsync(users);
+		database.setValueAsync(users);
 		
 		// Read from database
-		final AtomicInteger count = new AtomicInteger();
+		database.child("dfalessi").addValueEventListener(new ValueEventListener() {
+		@Override
+		public void onDataChange(DataSnapshot dataSnapshot) {
+		        User note = dataSnapshot.getValue(User.class);
+		        System.out.println(note.password);
+		        System.out.println(note.score);
+		}
 
-		ref.addChildEventListener(new ChildEventListener() {
-		    @Override
-		    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-		        // New child added, increment count
-		        int newCount = count.incrementAndGet();
-		        System.out.println("Added " + dataSnapshot.getKey() + ", count is " + newCount);
-		    }
-
-		    // ...
+		@Override
+		public void onCancelled(DatabaseError arg0)
+		{
+			// TODO Auto-generated method stub
+			
+		}
 		});
-
-		// The number of children will always be equal to 'count' since the value of
-		// the dataSnapshot here will include every child_added event triggered before this point.
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-		    @Override
-		    public void onDataChange(DataSnapshot dataSnapshot) {
-		        long numChildren = dataSnapshot.getChildrenCount();
-		        System.out.println(count.get() + " == " + numChildren);
-		    }
-
-		    @Override
-		    public void onCancelled(DatabaseError databaseError) {}
-		});
-		// TESTING Firebase, to be removed later
+		//
 		
+		// TESTING Firebase, to be removed later
+		*/
         launch(args);
     	}
 	@Override

@@ -1,6 +1,13 @@
 package layout;
 
 import javafx.scene.control.TextField;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -96,17 +103,17 @@ public class CreateAccount extends Main implements CustomScreen {
         
         // User name field
         final TextField usernameField = new TextField();
-        usernameField.setPromptText("Enter your username");
+        //usernameField.setPromptText("Enter your username");
         box.add(usernameField, 1, 0);
         
         // Password field
         final TextField passwordField = new TextField();
-        passwordField.setPromptText("Enter your password");
+        //passwordField.setPromptText("Enter your password");
         box.add(passwordField, 1, 1);
         
         // Confirm Password field
         final TextField confirmPasswordField = new TextField();
-        confirmPasswordField.setPromptText("Confirm password");
+        //confirmPasswordField.setPromptText("Confirm password");
         box.add(confirmPasswordField, 1, 2);
         
         // Create Account button
@@ -122,11 +129,36 @@ public class CreateAccount extends Main implements CustomScreen {
 		GridPane.setHalignment(createAccount, HPos.CENTER);
 		GridPane.setMargin(createAccount, new Insets(5, 10, 5, 10));
 		
-		// Login when create account button is pressed
+		// Create Account Pressed
 		createAccount.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				/*
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				updateScene(mainmenu.getScene());
+				*/
+				
+				// Verify users input
+					// If username field is not empty
+				if (!usernameField.getText().trim().isEmpty()) {
+					// Verify if the two password fields are not empty
+					if(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty())
+						// Make sure the two password fields match
+						if(passwordField.getText().equals(confirmPasswordField.getText()))
+						{
+							System.out.println("Passwords match!");
+							// Write to database
+							final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
+							Map<String,User> user = new HashMap<>();
+							user.put(usernameField.getText(), new User(passwordField.getText()));
+							database.setValueAsync(user);
+							
+							// Go back to the main menu
+							CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
+							//	mainmenu.logIn(usernameField.getText());
+							updateScene(mainmenu.getScene());
+						}
+				}
 			}
 		});
 		        
