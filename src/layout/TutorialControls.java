@@ -19,11 +19,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class TutorialControls extends Main implements CustomScreen {
+public class TutorialControls implements CustomScreen {
 
+	private Main app;
+	
+	public TutorialControls(Main app) {
+		this.app = app;
+	}
+	
 	@Override
 	public Scene getScene() {
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		Button back;
 		GridPane gridpane = new GridPane();
 		
@@ -118,7 +124,7 @@ public class TutorialControls extends Main implements CustomScreen {
         rules.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				CustomScreen tutorialRules = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
-				updateScene(tutorialRules.getScene());
+				app.updateScene(tutorialRules.getScene());
 			}
 		});
         rules.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -174,7 +180,7 @@ public class TutorialControls extends Main implements CustomScreen {
         strategy.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				CustomScreen tutorialStrategy = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_STRATEGY);
-				updateScene(tutorialStrategy.getScene());
+				app.updateScene(tutorialStrategy.getScene());
 			}
 		});
         strategy.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -215,7 +221,7 @@ public class TutorialControls extends Main implements CustomScreen {
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen mainMenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainMenu.getScene());
+				app.updateScene(mainMenu.getScene());
 			}
 		});
 		back.setOnMouseEntered(new EventHandler<MouseEvent>() {

@@ -19,11 +19,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class Settings extends Main implements CustomScreen {
+public class Settings implements CustomScreen {
 
+	private Main app;
+	
+	public Settings(Main app) {
+		this.app = app;
+	}
+	
 	public Scene getScene() {
 		Button back;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
 		ColumnConstraints cons1 = new ColumnConstraints();
@@ -139,7 +145,7 @@ public class Settings extends Main implements CustomScreen {
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainmenu.getScene());
+				app.updateScene(mainmenu.getScene());
 			}
 		});
 		back.setOnMouseEntered(new EventHandler<MouseEvent>() {

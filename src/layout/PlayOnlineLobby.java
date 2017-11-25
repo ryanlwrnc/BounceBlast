@@ -18,13 +18,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class PlayOnlineLobby extends Main implements CustomScreen {
+public class PlayOnlineLobby implements CustomScreen {
 
+	private Main app;
+	
+	public PlayOnlineLobby(Main app) {
+		this.app = app;
+	}
+	
 	@Override
 	public Scene getScene() {
 		// TODO Auto-generated method stub
 		Button back, start, temp, settings;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
 		ColumnConstraints cons1 = new ColumnConstraints();
@@ -103,7 +109,7 @@ public class PlayOnlineLobby extends Main implements CustomScreen {
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.IN_GAME);
-				updateScene(ingame.getScene());
+				app.updateScene(ingame.getScene());
 			}
 		});
 		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -120,7 +126,7 @@ public class PlayOnlineLobby extends Main implements CustomScreen {
 		settings.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen settings_menu = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
-				updateScene(settings_menu.getScene());
+				app.updateScene(settings_menu.getScene());
 			}
 		});
 		settings.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -171,7 +177,7 @@ public class PlayOnlineLobby extends Main implements CustomScreen {
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainmenu.getScene());
+				app.updateScene(mainmenu.getScene());
 			}
 		});
 		back.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -212,7 +218,7 @@ public class PlayOnlineLobby extends Main implements CustomScreen {
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
-				updateScene(games.getScene());
+				app.updateScene(games.getScene());
 			}
 		});
 		temp.setOnMouseEntered(new EventHandler<MouseEvent>() {

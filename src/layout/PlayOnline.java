@@ -1,6 +1,5 @@
 package layout;
 import game.GameEngine;
-import game.SimpleGameEngine;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -20,13 +19,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class PlayOnline extends Main implements CustomScreen {
+public class PlayOnline implements CustomScreen {
 
+	private Main app;
+	
+	public PlayOnline(Main app) {
+		this.app = app;
+	}
+	
 	@Override
 	public Scene getScene() {
 		// TODO Auto-generated method stub
 		Button back, start, temp, lobby;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
 		ColumnConstraints cons1 = new ColumnConstraints();
@@ -139,7 +144,7 @@ public class PlayOnline extends Main implements CustomScreen {
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.IN_GAME);
-				updateScene(ingame.getScene());
+				app.updateScene(ingame.getScene());
 			}
 		});
 		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -156,7 +161,7 @@ public class PlayOnline extends Main implements CustomScreen {
 		lobby.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE_LOBBY);
-				updateScene(ingame.getScene());
+				app.updateScene(ingame.getScene());
 			}
 		});
 		lobby.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -207,7 +212,7 @@ public class PlayOnline extends Main implements CustomScreen {
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainmenu.getScene());
+				app.updateScene(mainmenu.getScene());
 			}
 		});
 		back.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -248,14 +253,14 @@ public class PlayOnline extends Main implements CustomScreen {
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				CustomScreen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
-				updateScene(games.getScene());
+				app.updateScene(games.getScene());
 				//SimpleGameEngine engine = new SimpleGameEngine(this);
 				//engine.run();
 				
 				//mark
-				runnable = new GameEngine();
-		        thread = new Thread(runnable);
-		        thread.start();
+				//runnable = new GameEngine();
+		        //thread = new Thread(runnable);
+		        //thread.start();
 				//mark
 				
 			}

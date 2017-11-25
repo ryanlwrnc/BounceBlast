@@ -42,12 +42,17 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class Leaderboard extends Main implements CustomScreen{
+public class Leaderboard implements CustomScreen{
 	private TableView<PlayerName> table;
+	private Main app;
+	
+	public Leaderboard(Main app) {
+		this.app = app;
+	}
 	
 	public Scene getScene() {
 		Button back;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
 
 		GridPane gridpane = new GridPane();
@@ -107,7 +112,7 @@ public class Leaderboard extends Main implements CustomScreen{
  		back.setOnAction(new EventHandler<ActionEvent>() {
  			public void handle(ActionEvent event) {
  				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
- 				updateScene(mainmenu.getScene());
+ 				app.updateScene(mainmenu.getScene());
  			}
  		});
  		back.setOnMouseEntered(new EventHandler<MouseEvent>() {

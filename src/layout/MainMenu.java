@@ -17,14 +17,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class MainMenu extends Main implements CustomScreen{	
+public class MainMenu implements CustomScreen{	
 	private boolean loggedIn = false;
 	private String username = null;
+	private Main app;
+	
+	public MainMenu(Main app) {
+		this.app =app;
+	}
 	
 	public Scene getScene() {
 		Button login, playOnline, playOffline, leaderboard, settings, tutorial, exit;
 		int screenButtonCol = 2;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		String buttonStyle = "-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
@@ -117,7 +122,7 @@ public class MainMenu extends Main implements CustomScreen{
 			public void handle(ActionEvent event)
 			{
 				CustomScreen loginScreen = screenFactory.newScreen(ScreenFactory.ScreenType.LOGIN);
-				updateScene(loginScreen.getScene());
+				app.updateScene(loginScreen.getScene());
 			}
 		});
 		
@@ -147,7 +152,7 @@ public class MainMenu extends Main implements CustomScreen{
 			public void handle(ActionEvent event)
 			{
 				CustomScreen playOnline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE);
-				updateScene(playOnline.getScene());
+				app.updateScene(playOnline.getScene());
 				
 			}
 		});
@@ -178,7 +183,7 @@ public class MainMenu extends Main implements CustomScreen{
 			public void handle(ActionEvent event)
 			{
 				CustomScreen playOffline = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_OFFLINE);
-				updateScene(playOffline.getScene());
+				app.updateScene(playOffline.getScene());
 			}
 		});
 		
@@ -208,7 +213,7 @@ public class MainMenu extends Main implements CustomScreen{
 			public void handle(ActionEvent event)
 			{
 				CustomScreen settings = screenFactory.newScreen(ScreenFactory.ScreenType.SETTINGS);
-				updateScene(settings.getScene());
+				app.updateScene(settings.getScene());
 			}
 		});
 		
@@ -238,7 +243,7 @@ public class MainMenu extends Main implements CustomScreen{
 			public void handle(ActionEvent event)
 			{
 				CustomScreen leaderboard = screenFactory.newScreen(ScreenFactory.ScreenType.LEADERBOARD);
-				updateScene(leaderboard.getScene());
+				app.updateScene(leaderboard.getScene());
 			}
 		});
 		
@@ -268,7 +273,7 @@ public class MainMenu extends Main implements CustomScreen{
 			public void handle(ActionEvent event)
 			{
 				CustomScreen tutorial = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
-				updateScene(tutorial.getScene());
+				app.updateScene(tutorial.getScene());
 			}
 		});
 		

@@ -25,12 +25,18 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.control.PasswordField;
 
-public class CreateAccount extends Main implements CustomScreen {
+public class CreateAccount implements CustomScreen {
+	
+	Main app;
+	
+	public CreateAccount(Main app) {
+		this.app = app;
+	}
 
 	@Override
 	public Scene getScene() {
 		Button back;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
 		
@@ -157,7 +163,7 @@ public class CreateAccount extends Main implements CustomScreen {
 							// Go back to the main menu
 							CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 							//	mainmenu.logIn(usernameField.getText());
-							updateScene(mainmenu.getScene());
+							app.updateScene(mainmenu.getScene());
 						}
 				}
 			}
@@ -182,7 +188,7 @@ public class CreateAccount extends Main implements CustomScreen {
 			public void handle(ActionEvent event) {
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				//	mainmenu.logIn(usernameField.getText());
-				updateScene(mainmenu.getScene());
+				app.updateScene(mainmenu.getScene());
 			}
 		});
 		

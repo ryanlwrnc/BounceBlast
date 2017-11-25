@@ -25,12 +25,18 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.control.PasswordField;
 
-public class Login extends Main implements CustomScreen {
+public class Login implements CustomScreen {
+	
+	private Main app;
+	
+	public Login(Main app) {
+		this.app = app;
+	}
 	
 	@Override
 	public Scene getScene() {
 		Button back;
-		ScreenFactory screenFactory = new ScreenFactory();
+		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
 		GridPane gridpane = new GridPane();
 		
@@ -141,7 +147,7 @@ public class Login extends Main implements CustomScreen {
 						        if(passwordField.getText().equals(note.password)) {
 						      	  		System.out.println("SUCCESSFUL LOG IN");
 						   				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-						   				updateScene(mainmenu.getScene());
+						   				app.updateScene(mainmenu.getScene());
 						        }
 						}
 
@@ -173,7 +179,7 @@ public class Login extends Main implements CustomScreen {
 		createAccount.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
 					CustomScreen createAccountScreen = screenFactory.newScreen(ScreenFactory.ScreenType.CREATE_NEW_ACCOUNT);
-					updateScene(createAccountScreen.getScene());
+					app.updateScene(createAccountScreen.getScene());
 				}
 			});
         
@@ -196,7 +202,7 @@ public class Login extends Main implements CustomScreen {
 			public void handle(ActionEvent event) {
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
 				//	mainmenu.logIn(usernameField.getText());
-				updateScene(mainmenu.getScene());
+				app.updateScene(mainmenu.getScene());
 			}
 		});
 		

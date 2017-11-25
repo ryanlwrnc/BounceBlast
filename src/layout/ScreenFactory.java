@@ -2,6 +2,13 @@ package layout;
 import game.GameScene;
 
 public class ScreenFactory {
+	
+	private Main app;
+	
+	public ScreenFactory(Main app) {
+		this.app =app;
+	}
+	
 	public enum ScreenType {
 		MAIN_MENU("Main Menu"),
 		LOGIN("Login"),
@@ -33,25 +40,25 @@ public class ScreenFactory {
 		CustomScreen screen;
 		switch (screenType) {
 		case MAIN_MENU:
-			screen =  new MainMenu();
+			screen =  new MainMenu(app);
 			break;
 		case LOGIN:
-			screen =  new Login();
+			screen =  new Login(app);
 			break;
 		case CREATE_NEW_ACCOUNT:
-			screen = new CreateAccount();
+			screen = new CreateAccount(app);
 			break;
 		case PLAY_ONLINE:
-			screen = new PlayOnline();
+			screen = new PlayOnline(app);
 			break;
 		case PLAY_ONLINE_LOBBY:
-			screen = new PlayOnlineLobby();
+			screen = new PlayOnlineLobby(app);
 			break;
 		case PLAY_OFFLINE:
-			screen = new PlayOffline();
+			screen = new PlayOffline(app);
 			break;
 		case SETTINGS:
-			screen = new Settings();
+			screen = new Settings(app);
 			break;
 		case IN_GAME:
 			screen = new InGame();
@@ -60,16 +67,16 @@ public class ScreenFactory {
 			screen = new GameScene();
 			break;
 		case TUTORIAL_RULES:
-			screen = new TutorialRules();
+			screen = new TutorialRules(app);
 			break;
 		case TUTORIAL_CONTROLS:
-			screen = new TutorialControls();
+			screen = new TutorialControls(app);
 			break;
 		case TUTORIAL_STRATEGY:
-			screen = new TutorialStrategy();
+			screen = new TutorialStrategy(app);
 			break;
 		case LEADERBOARD:
-			screen =  new Leaderboard();
+			screen =  new Leaderboard(app);
 			break;
 		default:
 			screen = null;
