@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.control.PasswordField;
 
 public class Login extends Main implements CustomScreen {
 
@@ -100,7 +101,7 @@ public class Login extends Main implements CustomScreen {
         box.add(usernameField, 1, 0);
         
         // Password field
-        final TextField passwordField = new TextField();
+        final PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Enter your password");
         box.add(passwordField, 1, 1);
         

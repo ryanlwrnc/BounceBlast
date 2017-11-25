@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.control.PasswordField;
 
 public class CreateAccount extends Main implements CustomScreen {
 
@@ -103,17 +104,17 @@ public class CreateAccount extends Main implements CustomScreen {
         
         // User name field
         final TextField usernameField = new TextField();
-        //usernameField.setPromptText("Enter your username");
+        usernameField.setPromptText("Enter your username");
         box.add(usernameField, 1, 0);
         
         // Password field
-        final TextField passwordField = new TextField();
-        //passwordField.setPromptText("Enter your password");
+        final PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Enter your password");
         box.add(passwordField, 1, 1);
         
         // Confirm Password field
-        final TextField confirmPasswordField = new TextField();
-        //confirmPasswordField.setPromptText("Confirm password");
+        final PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField.setPromptText("Confirm password");
         box.add(confirmPasswordField, 1, 2);
         
         // Create Account button
@@ -147,11 +148,11 @@ public class CreateAccount extends Main implements CustomScreen {
 						{
 							System.out.println("Passwords match!");
 							// Write to database
-							final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+							final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
 
-							Map<String,User> user = new HashMap<>();
-							user.put(usernameField.getText(), new User(passwordField.getText()));
-							database.setValueAsync(user);
+							//Map<String,User> user = new HashMap<>();
+							//user.put(usernameField.getText(), new User(passwordField.getText()));
+							database.setValueAsync(new User(passwordField.getText()));
 							
 							// Go back to the main menu
 							CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);

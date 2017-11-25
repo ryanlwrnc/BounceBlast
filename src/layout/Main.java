@@ -49,7 +49,6 @@ public class Main extends Application{
 		  .build();
 
 		FirebaseApp.initializeApp(options);
-		
 		/*
 		final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 		//DatabaseReference ref = database.getReference("accounts");
@@ -60,6 +59,7 @@ public class Main extends Application{
 		users.put("dfalessi", new User("123qwe@", 1000));
 		database.setValueAsync(users);
 		
+		/*
 		// Read from database
 		database.child("dfalessi").addValueEventListener(new ValueEventListener() {
 		@Override
