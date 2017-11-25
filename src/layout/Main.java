@@ -1,4 +1,23 @@
 package layout;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.apache.commons.logging.Log;
+
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import game.GameEngine;
 import game.SimpleGameEngine;
 import javafx.application.Application;
@@ -19,7 +38,54 @@ public class Main extends Application{
 	
 	static Scene myScene;
 	static Stage myStage;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
+		// TESTING Firebase, to be removed later
+		FileInputStream serviceAccount = new FileInputStream("bounceblast-12d9c-firebase-adminsdk-5agr2-4d1fd4fbc0.json");
+
+		FirebaseOptions options = new FirebaseOptions.Builder()
+		  .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+		  .setDatabaseUrl("https://bounceblast-12d9c.firebaseio.com/")
+		  .build();
+
+		FirebaseApp.initializeApp(options);
+		
+		final FirebaseDatabase database = FirebaseDatabase.getInstance();
+		DatabaseReference ref = database.getReference("accounts");
+		DatabaseReference usersRef = ref.child("users");
+
+		// Write to database
+		Map<String,User> users = new HashMap<>();
+		users.put("dfalessi", new User("123qwe@", 1000));
+		usersRef.setValueAsync(users);
+		
+		// Read from database
+		final AtomicInteger count = new AtomicInteger();
+
+		ref.addChildEventListener(new ChildEventListener() {
+		    @Override
+		    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+		        // New child added, increment count
+		        int newCount = count.incrementAndGet();
+		        System.out.println("Added " + dataSnapshot.getKey() + ", count is " + newCount);
+		    }
+
+		    // ...
+		});
+
+		// The number of children will always be equal to 'count' since the value of
+		// the dataSnapshot here will include every child_added event triggered before this point.
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+		    @Override
+		    public void onDataChange(DataSnapshot dataSnapshot) {
+		        long numChildren = dataSnapshot.getChildrenCount();
+		        System.out.println(count.get() + " == " + numChildren);
+		    }
+
+		    @Override
+		    public void onCancelled(DatabaseError databaseError) {}
+		});
+		// TESTING Firebase, to be removed later
+		
         launch(args);
     	}
 	@Override
