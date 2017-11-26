@@ -17,7 +17,6 @@ public class Ball extends Circle {
 	private double vx = 0;
 	private double vy = 0;
 	private double t = 0.5;
-//	private final double MULTIPLIER = 1.5;
 	
 	// Keyboard Controls Being Pressed
 	private boolean up;
