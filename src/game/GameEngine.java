@@ -1,11 +1,7 @@
 package game;
-import java.util.Map;
 
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-
-
 public class GameEngine implements Runnable {
 
 	private final double UPDATE_CAP = 1.0/60.0;
@@ -78,6 +74,7 @@ public class GameEngine implements Runnable {
 						
 						// Move Platform Clockwise
 						movePlatform();
+						ballHitsPlatform();
 					}
 				});
 				frames++;
@@ -209,12 +206,14 @@ public class GameEngine implements Runnable {
 				scene.v.setStartY(-100);
 				scene.v.setEndX(-100);
 				scene.v.setEndY(-100);
-			}
-			
+			}		
 		}
 	}
 	
-	public double lineLength(double x1, double x2, double y1, double y2) {
-		return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+	public void ballHitsPlatform() {
+		if (scene.v.getBoundsInParent().intersects(scene.ball1.getBoundsInParent()) ||
+				scene.h.getBoundsInParent().intersects(scene.ball1.getBoundsInParent())) {
+			scene.ball1.setFill(Color.WHITE);
+		}
 	}
 }

@@ -1,9 +1,7 @@
 package game;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -11,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Path;
 import layout.CustomScreen;
 
 public class GameScene implements CustomScreen {
@@ -56,6 +53,8 @@ public class GameScene implements CustomScreen {
 						case LEFT: ball.setLeft(true); break;
 						case RIGHT: ball.setRight(true); break;
 						case SHIFT: ball.setShift(true); break;
+					default:
+						break;
 					}
 				}
 			}
@@ -74,6 +73,8 @@ public class GameScene implements CustomScreen {
 						case LEFT: ball.setLeft(false); break;
 						case RIGHT: ball.setRight(false); break;
 						case SHIFT: ball.setShift(false); break;
+					default:
+						break;
 					}
 				}
 			}
