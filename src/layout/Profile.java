@@ -25,11 +25,11 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.control.PasswordField;
 
-public class CreateAccount implements CustomScreen {
+public class Profile implements CustomScreen {
 	
 	Main app;
 	
-	public CreateAccount(Main app) {
+	public Profile(Main app) {
 		this.app = app;
 	}
 
@@ -64,7 +64,7 @@ public class CreateAccount implements CustomScreen {
 		Text gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("Create Account");
+		gameTitle.setText("User Profile");
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
@@ -86,9 +86,11 @@ public class CreateAccount implements CustomScreen {
         
         // User name text
         Text username = new Text();
+        // Will get the current user's name from the database
+        String playerName = "Test";
         username.setFont(new Font(20));
         username.setFill(Color.WHITE);
-        username.setText("Username");
+        username.setText("Username: " + playerName);
         username.setStyle("-fx-font: 30 arial;");
         username.setTextAlignment(TextAlignment.RIGHT);
         GridPane.setHalignment(username, HPos.RIGHT);
@@ -97,7 +99,7 @@ public class CreateAccount implements CustomScreen {
         Text password = new Text();
         password.setFont(new Font(20));
         password.setFill(Color.WHITE);
-        password.setText("Password");
+        password.setText("Change Password");
         password.setStyle("-fx-font: 30 arial;");
         password.setTextAlignment(TextAlignment.RIGHT);
         GridPane.setHalignment(password, HPos.RIGHT);
@@ -107,70 +109,20 @@ public class CreateAccount implements CustomScreen {
         
         GridPane.setMargin(username, new Insets(5, 10, 5, 10));
         GridPane.setMargin(password, new Insets(5, 10, 5, 10));
-        
-        // User name field
-        final TextField usernameField = new TextField();
-        usernameField.setPromptText("Enter your username");
-        box.add(usernameField, 1, 0);
-        
-        // Password field
+   
+        // Change password field
         final PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Enter your password");
+        passwordField.setPromptText("Enter your new password");
         box.add(passwordField, 1, 1);
         
-        // Confirm Password field
+        // Confirm change password field
         final PasswordField confirmPasswordField = new PasswordField();
-        confirmPasswordField.setPromptText("Confirm password");
+        confirmPasswordField.setPromptText("Confirm new password");
         box.add(confirmPasswordField, 1, 2);
+        GridPane.setHalignment(box, HPos.CENTER);
         
-        // Create Account button
-        Button createAccount = new Button("Create Account");
-        createAccount.setPrefHeight(40);
-        createAccount.setPrefWidth(150);
-        createAccount.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
-		box.add(createAccount, 0, 10);
-		GridPane.setHalignment(createAccount, HPos.CENTER);
-		GridPane.setMargin(createAccount, new Insets(5, 10, 5, 10));
-		
-		// Create Account Pressed
-		createAccount.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				/*
-				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainmenu.getScene());
-				*/
-				
-				// Verify users input
-				// If username field is not empty:
-				if (!usernameField.getText().trim().isEmpty()) {
-					// Verify if the two password fields are not empty
-					if(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty())
-						// Make sure the two password fields match
-						if(passwordField.getText().equals(confirmPasswordField.getText()))
-						{
-							System.out.println("Passwords match!");
-							// Write to database
-							final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
-
-							//Map<String,User> user = new HashMap<>();
-							//user.put(usernameField.getText(), new User(passwordField.getText()));
-							database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
-							
-							// Go back to the main menu
-							CustomScreen profile = screenFactory.newScreen(ScreenFactory.ScreenType.PROFILE);
-							//	mainmenu.logIn(usernameField.getText());
-							app.updateScene(profile.getScene());
-						}
-				}
-			}
-		});
-		        
-		gridpane.add(box, screenButtonCol, 1);
-		
+        gridpane.add(box, screenButtonCol, 1);
+        
 		// Back button
 		back = new Button("Back");
 		back.setPrefHeight(25);

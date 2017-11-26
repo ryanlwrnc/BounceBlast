@@ -12,7 +12,8 @@ public class ScreenFactory {
 	public enum ScreenType {
 		MAIN_MENU("Main Menu"),
 		LOGIN("Login"),
-		CREATE_NEW_ACCOUNT("Create New Account"),	// ADDED
+		CREATE_NEW_ACCOUNT("Create New Account"),
+		PROFILE("Profile"),
 		PLAY_ONLINE("Play Online"),
 		PLAY_ONLINE_LOBBY("Play Online Lobby"),
 		PLAY_OFFLINE("Play Offline"),
@@ -77,6 +78,9 @@ public class ScreenFactory {
 			break;
 		case LEADERBOARD:
 			screen =  new Leaderboard(app);
+			break;
+		case PROFILE:
+			screen = new Profile(app);
 			break;
 		default:
 			screen = null;
