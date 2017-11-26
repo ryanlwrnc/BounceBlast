@@ -145,9 +145,9 @@ public class Login implements CustomScreen {
 						        User note = dataSnapshot.getValue(User.class);
 						        // If password matches
 						        if(passwordField.getText().equals(note.password)) {
+						        			CustomScreen profile = screenFactory.newScreen(ScreenFactory.ScreenType.PROFILE);
+					   					app.updateScene(profile.getScene());
 						      	  		System.out.println("SUCCESSFUL LOG IN");
-						   				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-						   				app.updateScene(mainmenu.getScene());
 						        }
 						}
 
@@ -183,6 +183,7 @@ public class Login implements CustomScreen {
 				}
 			});
         
+		GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, screenButtonCol, 1);
 		
 		// Back button

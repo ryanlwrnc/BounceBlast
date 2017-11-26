@@ -113,6 +113,7 @@ public class PlayOnline implements CustomScreen {
         cbBall.getItems().add("Tennis Ball");
 	    box.add(cbBall, 1, 1);
 		
+	    GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, screenButtonCol, 1);
 
 		// Start Button

@@ -127,6 +127,7 @@ public class Settings implements CustomScreen {
 				new MenuItem("FGHJ"));
 		box.add(menuButton, 1, 1);*/
 		
+	    GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, screenButtonCol, 1);
 
 		// Back button

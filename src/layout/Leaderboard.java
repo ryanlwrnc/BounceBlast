@@ -80,12 +80,14 @@ public class Leaderboard implements CustomScreen{
 		GridPane.setMargin(gameTitle, new Insets(3, 12, 3, 12));
 		
 		table = new TableView<PlayerName>(); 
+		table.setPrefWidth(400);
 		table.getColumns().addAll(PlayerName.getColumn(table));
 		table.setItems(getPlayerDummy());
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		VBox root = new VBox();
         root.getChildren().addAll(table);
 		
+        GridPane.setHalignment(root, HPos.CENTER);
         gridpane.add(root, screenButtonCol, 1);
         
         // Back button

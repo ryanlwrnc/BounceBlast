@@ -202,6 +202,7 @@ public class TutorialControls implements CustomScreen {
 	        }
 	    });
         
+        GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, 1, 2, 3, 1);
 		
 

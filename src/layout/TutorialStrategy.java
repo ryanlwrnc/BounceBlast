@@ -185,7 +185,7 @@ public class TutorialStrategy implements CustomScreen {
         StackPane.setAlignment(strategyTitle, Pos.CENTER);
         gridpane.add(strategy, 3, 1, 1, 1);
         
-        
+        GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, 1, 2, 3, 2);
 		
 

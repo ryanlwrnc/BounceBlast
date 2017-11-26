@@ -110,7 +110,8 @@ public class PlayOffline implements CustomScreen {
         cbBall.getItems().add("Bowling Ball");
         cbBall.getItems().add("Tennis Ball");
 	    box.add(cbBall, 1, 1);
-		
+	    
+	    GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, screenButtonCol, 1);
 
 		// Start Button
@@ -156,6 +157,7 @@ public class PlayOffline implements CustomScreen {
 		
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");
+		gridpane.add(back, 1, 10);
 		 
 		//Temporary GameScene Button
 		temp = new Button("Game Scene");

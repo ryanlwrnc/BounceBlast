@@ -77,6 +77,7 @@ public class PlayOnlineLobby implements CustomScreen {
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");
         
+        GridPane.setHalignment(box, HPos.CENTER);
         gridpane.add(box, screenButtonCol, 1);
 
 		// Start Button
