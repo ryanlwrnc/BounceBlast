@@ -35,17 +35,18 @@ public class Ball extends Circle {
 		
 		double deltaAX = 0;
 		double deltaAY = 0;
+		double maxDelta = 3;
 		
 		// calculate new accelerations
 		if (up) {
 			System.out.println("Pressing up");
-			deltaAY -= 2;
+			deltaAY -= 1;
 		} else if (down) {
-			deltaAY += 2;
+			deltaAY += 1;
 		} else if (left) {
-			deltaAX -= 2;
+			deltaAX -= 1;
 		} else if (right) {
-			deltaAX += 2;
+			deltaAX += 1;
 		} 
 //		else if (shift) {
 //			deltaAX *= MULTIPLIER;
@@ -54,6 +55,18 @@ public class Ball extends Circle {
 		vx += deltaAX;
 		vy += deltaAY;
 		
+		if (vx > maxDelta) {
+			vx = maxDelta;
+		}
+		if (vx < (maxDelta * -1)) {
+			vx = (maxDelta * -1);
+		}
+		if (vy > maxDelta) {
+			vy = maxDelta;
+		}
+		if (vy < (maxDelta * -1)) {
+			vy = (maxDelta * -1);
+		}		
 		// calculate new positions
 		setCenterX(getCenterX() + vx);
 		setCenterY(getCenterY() + vy);

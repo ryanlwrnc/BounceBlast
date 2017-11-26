@@ -30,6 +30,7 @@ import javafx.stage.Screen;
 public class Main extends Application {
 
 	protected static Thread thread = null;
+	protected static Thread pod = null; //platform of death
 
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
@@ -110,6 +111,9 @@ public class Main extends Application {
 		super.stop();
 		if (thread != null) {
 			thread.interrupt();
+		}
+		if (pod != null) {
+			pod.interrupt();
 		}
 		System.out.println("Stopping application");
 	}
