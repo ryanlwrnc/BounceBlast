@@ -15,8 +15,7 @@ public class GameEngine implements Runnable {
 	private boolean goingDown = false;
 	private boolean goingLeft = false;
 	private boolean goingUp = false;
-	private boolean topRightCorner = false;
-	private double delta = 2;
+	private double delta = 5;
 	private double podLength = 50;
 	
 	public GameEngine(GameScene scene) {
@@ -126,7 +125,10 @@ public class GameEngine implements Runnable {
 			}
 			else if (!goingLeft){
 				goingLeft = true;
-				scene.h = new Line(scene.board.xmax(), scene.board.ymax(), scene.board.xmax(), scene.board.ymax());
+				scene.h.setStartX(scene.board.xmax());
+				scene.h.setStartY(scene.board.ymax());
+				scene.h.setEndX(scene.board.xmax());
+				scene.h.setEndY(scene.board.ymax());
 			}
 			
 			if (scene.v.getStartY() < scene.board.ymax()) {
@@ -145,6 +147,70 @@ public class GameEngine implements Runnable {
 				scene.v.setEndX(-100);
 				scene.v.setEndY(-100);
 			}
+		}
+		if (goingLeft) {
+			//end
+			//hasn't reached the end yet
+			if (scene.h.getEndX() > scene.board.getX()) {
+				scene.h.setEndX(scene.h.getEndX() - delta);
+			}
+			else if (!goingUp){
+				goingUp = true;
+				scene.v.setStartX(scene.board.getX());
+				scene.v.setStartY(scene.board.ymax());
+				scene.v.setEndX(scene.board.getX());
+				scene.v.setEndY(scene.board.ymax());
+			}
+			
+			if (scene.h.getStartX() > scene.board.getX()) {
+				// pod growing in size
+				if (scene.board.xmax() - scene.h.getEndX() >= podLength) {
+					scene.h.setStartX(scene.h.getStartX() - delta);
+				}
+				else if (scene.h.getEndX() >= scene.board.xmax()) {
+					scene.h.setStartX(scene.h.getStartX() - delta);
+				}
+			}
+			else {
+				goingLeft = false;
+				scene.h.setStartX(-100);
+				scene.h.setStartY(-100);
+				scene.h.setEndX(-100);
+				scene.h.setEndY(-100);
+			}
+		}
+		
+		if (goingUp) {
+			//end
+			//hasn't reached the end yet
+			if (scene.v.getEndY() > scene.board.getY()) {
+				scene.v.setEndY(scene.v.getEndY() - delta);
+			}
+			else if (!goingRight){
+				goingRight = true;
+				scene.h.setStartX(scene.board.getX());
+				scene.h.setStartY(scene.board.getY());
+				scene.h.setEndX(scene.board.getX());
+				scene.h.setEndY(scene.board.getY());
+			}
+			
+			if (scene.v.getStartY() > scene.board.getY()) {
+				// pod growing in size
+				if (scene.board.ymax() - scene.v.getEndY() >= podLength) {
+					scene.v.setStartY(scene.v.getStartY() - delta);
+				}
+				else if (scene.v.getEndY() >= scene.board.ymax()) {
+					scene.v.setStartY(scene.v.getStartY() - delta);
+				}
+			}
+			else {
+				goingUp = false;
+				scene.v.setStartX(-100);
+				scene.v.setStartY(-100);
+				scene.v.setEndX(-100);
+				scene.v.setEndY(-100);
+			}
+			
 		}
 	}
 	
