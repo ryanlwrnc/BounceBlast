@@ -132,11 +132,11 @@ public class Ball implements Comparable<Ball>{
 
 	}
 
-	private void setMass(float mass) {
+	public void setMass(float mass) {
 		this.mass = mass;
 	}
 
-	private float getMass() {
+	public float getMass() {
 		return mass;
 	}
 

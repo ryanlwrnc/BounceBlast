@@ -72,21 +72,41 @@ public class Ball extends Circle {
 	public void setUp(boolean up) {
 		this.up = up;
 	}
+	
+	public boolean getUp() {
+		return this.up;
+	}
 
 	public void setDown(boolean down) {
 		this.down = down;
 	}
 
+	public boolean getDown() {
+		return this.down;
+	}
+	
 	public void setLeft(boolean left) {
 		this.left = left;
+	}
+	
+	public boolean getLeft() {
+		return this.left;
 	}
 
 	public void setRight(boolean right) {
 		this.right = right;
 	}
+	
+	public boolean getRight() {
+		return this.right;
+	}
 
 	public void setShift(boolean shift) {
 		this.shift = shift;
+	}
+	
+	public boolean getShift() {
+		return this.shift;
 	}
 	
 	public double getNewX(double xi, double vxi, double t, double ax) {
