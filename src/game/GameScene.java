@@ -24,10 +24,10 @@ public class GameScene implements CustomScreen {
 		Group root = new Group();
 		Scene scene = new Scene(root, 800, 600);
 		ball1 = new Ball(400, 400, 10, Color.BLUE);
+		ball2 = new Ball(300, 300, 10, Color.RED);
 		List<Ball> balls = new LinkedList<Ball>();
 		balls.add(ball1);
-		
-//		ball2 = new Ball(300, 300, 10, Color.RED);
+		balls.add(ball2);
 		board = new GameBoard(250, 250, 600, 400);
 		h = new Line();
 		v = new Line();
@@ -37,7 +37,7 @@ public class GameScene implements CustomScreen {
 		h.setStroke(Color.ORANGE);
 		v.setStroke(Color.ORANGE);
 		
-		root.getChildren().addAll(board, ball1, h, v);
+		root.getChildren().addAll(board, ball1, ball2, h, v);
 		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() 
 		{

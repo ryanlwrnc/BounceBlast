@@ -75,6 +75,9 @@ public class GameEngine implements Runnable {
 						// Move Platform Clockwise
 						movePlatform();
 						ballHitsPlatform();
+						if (scene.ball1.getBoundsInParent().intersects(scene.ball2.getBoundsInParent())) {
+							Ball.handleCollision(scene.ball1, scene.ball2);
+						}
 					}
 				});
 				frames++;
