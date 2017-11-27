@@ -1,7 +1,10 @@
 package game;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import game.ball.Ball;
 import game.ball.Ball.Button;
@@ -15,76 +18,89 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import layout.CustomScreen;
 
-public class GameScene implements CustomScreen {
+public class GameScene extends Scene implements CustomScreen {
 
+	private Group root;
+	Scene scene;
+	
+	// Pieces
 	GameBoard board;
-	Ball ball1;
-	Ball ball2;
+	Ball mainPlayer;
+	Ball playerOne;
+	Ball playerTwo;
+	Ball playerThree;
+	public final List<Ball> ALL_POSSIBLE_PLAYERS;
+	
 	Line h;
 	Line v;
 	
-	@Override
-	public Scene getScene() {
-		Group root = new Group();
-		Scene scene = new Scene(root, 800, 600);
-		ball1 = new BowlingBall(400, 400);
-		ball2 = new TennisBall(300, 300);
-		List<Ball> balls = new LinkedList<Ball>();
-		balls.add(ball1);
-		balls.add(ball2);
+	public GameScene() {
+		super(new Group(), 800, 600);
+		root = (Group) getRoot();
+		// Create players
+		mainPlayer = new BowlingBall(400, 400);
+		playerOne = new TennisBall(300, 300);
+		ALL_POSSIBLE_PLAYERS = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
+		// Create board
 		board = new GameBoard(250, 250, 600, 400);
 		h = new Line();
 		v = new Line();
-		
 		h.setStrokeWidth(6);
 		v.setStrokeWidth(6);
 		h.setStroke(Color.ORANGE);
 		v.setStroke(Color.ORANGE);
 		
-		root.getChildren().addAll(board, ball1, ball2, h, v);
+		root.getChildren().addAll(board, h, v);
+		root.getChildren().addAll(getAllPlayers());
 		
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() 
+		setOnKeyPressed(new EventHandler<KeyEvent>() 
 		{
 			@Override
 			public void handle(KeyEvent e)
 			{
-				System.out.println("Pressing: " + e.getCode());
-				for (Ball ball : balls) {
-					switch (e.getCode()) 
-					{
-						case UP: ball.press(Button.UP, true); break;
-						case DOWN: ball.press(Button.DOWN, true); break;
-						case LEFT: ball.press(Button.LEFT, true); break;
-						case RIGHT: ball.press(Button.RIGHT, true); break;
-						case SHIFT: ball.press(Button.SPACE, true); break;
-					default:
-						break;
-					}
+				switch (e.getCode()) 
+				{
+					case UP: mainPlayer.press(Button.UP, true); break;
+					case DOWN: mainPlayer.press(Button.DOWN, true); break;
+					case LEFT: mainPlayer.press(Button.LEFT, true); break;
+					case RIGHT: mainPlayer.press(Button.RIGHT, true); break;
+					case SHIFT: mainPlayer.press(Button.SPACE, true); break;
+				default:
+					break;
 				}
 			}
 		});
 		
-		scene.setOnKeyReleased(new EventHandler<KeyEvent>() 
+		setOnKeyReleased(new EventHandler<KeyEvent>() 
 		{
 			@Override
 			public void handle(KeyEvent e)
 			{
-				for (Ball ball : balls) {
-					switch (e.getCode()) 
-					{
-						case UP: ball.press(Button.UP, false); break;
-						case DOWN: ball.press(Button.DOWN, false); break;
-						case LEFT: ball.press(Button.LEFT, false); break;
-						case RIGHT: ball.press(Button.RIGHT, false); break;
-						case SHIFT: ball.press(Button.SPACE, false); break;
-					default:
-						break;
-					}
+				switch (e.getCode()) 
+				{
+					case UP: mainPlayer.press(Button.UP, false); break;
+					case DOWN: mainPlayer.press(Button.DOWN, false); break;
+					case LEFT: mainPlayer.press(Button.LEFT, false); break;
+					case RIGHT: mainPlayer.press(Button.RIGHT, false); break;
+					case SHIFT: mainPlayer.press(Button.SPACE, false); break;
+				default:
+					break;
 				}
 			}
 		});
-		
-		return scene;
 	}
+	
+	@Override
+	public Scene getScene() {
+		return this;
+	}
+	
+	public List<Ball> getAllPlayers() {
+		return new ArrayList<>(ALL_POSSIBLE_PLAYERS).stream()
+				.filter(Objects::nonNull)
+				.collect(Collectors.toList());
+	}
+	
+	
 }
 

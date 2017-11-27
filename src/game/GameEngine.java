@@ -16,10 +16,10 @@ public class GameEngine implements Runnable {
 	private double delta = 5;
 	private double podLength = 50;
 	private boolean exiting = false;
-	private boolean ball1VertWallExiting = false;
-	private boolean ball1HorizWallExiting = false;
-	private boolean ball2VertWallExiting = false;
-	private boolean ball2HorizWallExiting = false;
+	private boolean mainPlayerVertWallExiting = false;
+	private boolean mainPlayerHorizWallExiting = false;
+	private boolean playerOneVertWallExiting = false;
+	private boolean playerOneHorizWallExiting = false;
 	
 	public GameEngine(GameScene scene) {
 		this.scene = scene;
@@ -70,55 +70,55 @@ public class GameEngine implements Runnable {
 					@Override
 					public void run() {
 						//Update game
-						if (scene.board.isTouchingTop(scene.ball1) || scene.board.isTouchingBottom(scene.ball1)
-								&& !ball1VertWallExiting) {
-							scene.ball1.reflectVertical();
-							ball1VertWallExiting = true;
+						if (scene.board.isTouchingTop(scene.mainPlayer) || scene.board.isTouchingBottom(scene.mainPlayer)
+								&& !mainPlayerVertWallExiting) {
+							scene.mainPlayer.reflectVertical();
+							mainPlayerVertWallExiting = true;
 						}
-						if (scene.board.isTouchingLeft(scene.ball1) || scene.board.isTouchingRight(scene.ball1)
-								&& !ball1HorizWallExiting) {
-							scene.ball1.reflectHorizontal();
-							ball1HorizWallExiting = true;
+						if (scene.board.isTouchingLeft(scene.mainPlayer) || scene.board.isTouchingRight(scene.mainPlayer)
+								&& !mainPlayerHorizWallExiting) {
+							scene.mainPlayer.reflectHorizontal();
+							mainPlayerHorizWallExiting = true;
 						}
 						
-						if (scene.board.isTouchingTop(scene.ball2) || scene.board.isTouchingBottom(scene.ball2)
-								&& !ball1VertWallExiting) {
-							scene.ball2.reflectVertical();
-							ball2VertWallExiting = true;
+						if (scene.board.isTouchingTop(scene.playerOne) || scene.board.isTouchingBottom(scene.playerOne)
+								&& !mainPlayerVertWallExiting) {
+							scene.playerOne.reflectVertical();
+							playerOneVertWallExiting = true;
 						}
-						if (scene.board.isTouchingLeft(scene.ball2) || scene.board.isTouchingRight(scene.ball2)
-								&& !ball1HorizWallExiting) {
-							scene.ball2.reflectHorizontal();
-							ball2HorizWallExiting = true;
+						if (scene.board.isTouchingLeft(scene.playerOne) || scene.board.isTouchingRight(scene.playerOne)
+								&& !mainPlayerHorizWallExiting) {
+							scene.playerOne.reflectHorizontal();
+							playerOneHorizWallExiting = true;
 						}
 						
 						// Prevent ball from getting stuck in wall
-						if (!(scene.board.isTouchingTop(scene.ball1) || scene.board.isTouchingBottom(scene.ball1)) && ball1VertWallExiting) {
-							ball1VertWallExiting = false;
+						if (!(scene.board.isTouchingTop(scene.mainPlayer) || scene.board.isTouchingBottom(scene.mainPlayer)) && mainPlayerVertWallExiting) {
+							mainPlayerVertWallExiting = false;
 						}
 						
-						if ( !(scene.board.isTouchingLeft(scene.ball1) || scene.board.isTouchingRight(scene.ball1)) && ball1HorizWallExiting) {
-							ball1HorizWallExiting = false;
+						if ( !(scene.board.isTouchingLeft(scene.mainPlayer) || scene.board.isTouchingRight(scene.mainPlayer)) && mainPlayerHorizWallExiting) {
+							mainPlayerHorizWallExiting = false;
 						}
 						
-						if (!(scene.board.isTouchingTop(scene.ball2) || scene.board.isTouchingBottom(scene.ball2)) && ball2VertWallExiting) {
-							ball2VertWallExiting = false;
+						if (!(scene.board.isTouchingTop(scene.playerOne) || scene.board.isTouchingBottom(scene.playerOne)) && playerOneVertWallExiting) {
+							playerOneVertWallExiting = false;
 						}
 						
-						if ( !(scene.board.isTouchingLeft(scene.ball2) || scene.board.isTouchingRight(scene.ball2)) && ball2HorizWallExiting) {
-							ball1HorizWallExiting = false;
+						if ( !(scene.board.isTouchingLeft(scene.playerOne) || scene.board.isTouchingRight(scene.playerOne)) && playerOneHorizWallExiting) {
+							mainPlayerHorizWallExiting = false;
 						}
 						
-						scene.ball1.updatePosition();
-						scene.ball2.setF(0);
-						scene.ball2.updatePosition();
+						scene.mainPlayer.updatePosition();
+						scene.playerOne.setF(0);
+						scene.playerOne.updatePosition();
 						
 						// Move Platform Clockwise
 						movePlatform();
 						ballHitsPlatform();
-						Shape intersect = Shape.intersect(scene.ball1, scene.ball2);
+						Shape intersect = Shape.intersect(scene.mainPlayer, scene.playerOne);
 						if (intersect.getBoundsInLocal().getWidth() != -1 && !exiting) {
-							Ball.handleCollision(scene.ball1, scene.ball2);
+							Ball.handleCollision(scene.mainPlayer, scene.playerOne);
 							exiting = true;
 							System.out.println(exiting);
 						}
@@ -265,9 +265,9 @@ public class GameEngine implements Runnable {
 	}
 	
 	public void ballHitsPlatform() {
-		if (scene.v.getBoundsInParent().intersects(scene.ball1.getBoundsInParent()) ||
-				scene.h.getBoundsInParent().intersects(scene.ball1.getBoundsInParent())) {
-			scene.ball1.setFill(Color.WHITE);
+		if (scene.v.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent()) ||
+				scene.h.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent())) {
+			scene.mainPlayer.setFill(Color.WHITE);
 		}
 	}
 }

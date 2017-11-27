@@ -32,14 +32,14 @@ public class TestBallLayout {
 	}
 	@Test
 	public void TestBallLayoutColliding() {
-		Ball ball1 = new Ball((float)1, (float)1, (float)3, (float)1);
-		Ball ball2 = new Ball((float)1, (float)1, (float)3, (float)1);
-		assertEquals(ball1.colliding(ball2), true);
+		Ball mainPlayer = new Ball((float)1, (float)1, (float)3, (float)1);
+		Ball playerOne = new Ball((float)1, (float)1, (float)3, (float)1);
+		assertEquals(mainPlayer.colliding(playerOne), true);
 	}
 	@Test
 	public void TestBallLayoutMass() {
-		Ball ball1 = new Ball((float)1, (float)1, (float)3, (float)1);
-		Ball ball2 = new Ball((float)1, (float)1, (float)3, (float)1);
-		assertEquals(ball1.compareTo(ball2), 0);
+		Ball mainPlayer = new Ball((float)1, (float)1, (float)3, (float)1);
+		Ball playerOne = new Ball((float)1, (float)1, (float)3, (float)1);
+		assertEquals(mainPlayer.compareTo(playerOne), 0);
 	}
 }
