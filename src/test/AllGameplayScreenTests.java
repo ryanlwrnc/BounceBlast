@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestInGame.class, TestPlayOffline.class, TestPlayOnline.class, TestPlayOnlineLobby.class })
+@SuiteClasses({ TestInGame.class })
 public class AllGameplayScreenTests {
 
 }
