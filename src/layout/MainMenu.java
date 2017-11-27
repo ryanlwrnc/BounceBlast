@@ -183,4 +183,7 @@ public class MainMenu implements CustomScreen{
 		this.username = username;
 		this.loggedIn = true;
 	}
+	public String getUsername() {
+		return this.username;
+	}
 }

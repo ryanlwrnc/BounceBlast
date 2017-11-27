@@ -28,7 +28,6 @@ public class PlayOffline implements CustomScreen {
 	
 	@Override
 	public Scene getScene() {
-		// TODO Auto-generated method stub
 		Button back, start, temp;
 		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;

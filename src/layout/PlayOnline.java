@@ -30,7 +30,6 @@ public class PlayOnline implements CustomScreen {
 	
 	@Override
 	public Scene getScene() {
-		// TODO Auto-generated method stub
 		Button back, start, temp, lobby;
 		ScreenFactory screenFactory = new ScreenFactory(app);
 		int screenButtonCol = 2;
