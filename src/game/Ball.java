@@ -10,7 +10,7 @@ public class Ball extends Circle {
 	// F direction depends on keyboard key being pressed
 	private double F = 5;
 	private double m = 10;
-	private double maxSpeed = 5;
+	private double maxSpeed = 50/m;
 	
 	private double ax = 0;
 	private double ay = 0;
@@ -53,6 +53,19 @@ public class Ball extends Circle {
 		}
 		
 		//System.out.println("x: " + getNewX(x, vx, t, ax) + "y: " + getNewY(y, vy, t, ay));
+		if (vx > maxSpeed) {
+			vx = maxSpeed;
+		}
+		if (vy > maxSpeed) {
+			vy = maxSpeed;
+		}
+		
+		if (vx < -maxSpeed) {
+			vx = -maxSpeed;
+		}
+		if (vy < -maxSpeed) {
+			vy = -maxSpeed;
+		}
 		setCenterX(getNewX(getCenterX(), vx, t, ax));
 		setCenterY(getNewY(getCenterY(), vy, t, ay));
 		

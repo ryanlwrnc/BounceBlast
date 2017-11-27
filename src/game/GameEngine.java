@@ -1,6 +1,7 @@
 package game;
 
 import javafx.application.Platform;
+import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
 public class GameEngine implements Runnable {
 
@@ -13,6 +14,11 @@ public class GameEngine implements Runnable {
 	private boolean goingUp = false;
 	private double delta = 5;
 	private double podLength = 50;
+	private boolean exiting = false;
+	private boolean ball1VertWallExiting = false;
+	private boolean ball1HorizWallExiting = false;
+	private boolean ball2VertWallExiting = false;
+	private boolean ball2HorizWallExiting = false;
 	
 	public GameEngine(GameScene scene) {
 		this.scene = scene;
@@ -64,19 +70,64 @@ public class GameEngine implements Runnable {
 					public void run() {
 						scene.ball1.setFill(Color.GREEN);
 						//Update game
-						if (scene.board.isTouchingTop(scene.ball1) || scene.board.isTouchingBottom(scene.ball1)) {
+						if (scene.board.isTouchingTop(scene.ball1) || scene.board.isTouchingBottom(scene.ball1)
+								&& !ball1VertWallExiting) {
 							scene.ball1.reflectVertical();
+							ball1VertWallExiting = true;
 						}
-						if (scene.board.isTouchingLeft(scene.ball1) || scene.board.isTouchingRight(scene.ball1)) {
+						if (scene.board.isTouchingLeft(scene.ball1) || scene.board.isTouchingRight(scene.ball1)
+								&& !ball1HorizWallExiting) {
 							scene.ball1.reflectHorizontal();
+							ball1HorizWallExiting = true;
 						}
+						
+						if (scene.board.isTouchingTop(scene.ball2) || scene.board.isTouchingBottom(scene.ball2)
+								&& !ball1VertWallExiting) {
+							scene.ball2.reflectVertical();
+							ball2VertWallExiting = true;
+						}
+						if (scene.board.isTouchingLeft(scene.ball2) || scene.board.isTouchingRight(scene.ball2)
+								&& !ball1HorizWallExiting) {
+							scene.ball2.reflectHorizontal();
+							ball2HorizWallExiting = true;
+						}
+						
+						// Prevent ball from getting stuck in wall
+						if (!(scene.board.isTouchingTop(scene.ball1) || scene.board.isTouchingBottom(scene.ball1)) && ball1VertWallExiting) {
+							ball1VertWallExiting = false;
+						}
+						
+						if ( !(scene.board.isTouchingLeft(scene.ball1) || scene.board.isTouchingRight(scene.ball1)) && ball1HorizWallExiting) {
+							ball1HorizWallExiting = false;
+						}
+						
+						if (!(scene.board.isTouchingTop(scene.ball2) || scene.board.isTouchingBottom(scene.ball2)) && ball2VertWallExiting) {
+							ball2VertWallExiting = false;
+						}
+						
+						if ( !(scene.board.isTouchingLeft(scene.ball2) || scene.board.isTouchingRight(scene.ball2)) && ball2HorizWallExiting) {
+							ball1HorizWallExiting = false;
+						}
+						
 						scene.ball1.updatePosition();
+						scene.ball2.setF(0);
+						scene.ball2.updatePosition();
 						
 						// Move Platform Clockwise
 						movePlatform();
 						ballHitsPlatform();
-						if (scene.ball1.getBoundsInParent().intersects(scene.ball2.getBoundsInParent())) {
+						Shape intersect = Shape.intersect(scene.ball1, scene.ball2);
+						if (intersect.getBoundsInLocal().getWidth() != -1 && !exiting) {
 							Ball.handleCollision(scene.ball1, scene.ball2);
+							exiting = true;
+							System.out.println(exiting);
+						}
+						
+						if (exiting) {
+							if (!(intersect.getBoundsInLocal().getWidth() != -1)) {
+								exiting = false;
+								System.out.println(exiting);
+							}
 						}
 					}
 				});
