@@ -2,6 +2,7 @@ package game.ball;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -26,6 +27,10 @@ public class Ball extends Circle {
 	private double maxSpeed = 50/m;
 	private double t = 0.5;
 	
+	// AI ball fields
+	private boolean ai = false;
+	private List<Ball> players;
+	
 	public Ball() {
 		super();
 	}
@@ -40,29 +45,57 @@ public class Ball extends Circle {
 	}
 	
 	public void updatePosition() {
-		// set acceleration
-		ax = 0;
-		ay = 0;
-		
-		if (pressed.get(Button.UP)) {
-			ay = -F / m;
+		// if the ball is controlled by an AI
+		if (ai) {
+			this.updatePositionAI();
 		}
-		if (pressed.get(Button.DOWN)) {
-			ay = ay + F / m;
+		// else if the ball is player-controlled
+		else {
+			// set acceleration
+			ax = 0;
+			ay = 0;
+			
+			if (pressed.get(Button.UP)) {
+				ay = -F / m;
+			}
+			if (pressed.get(Button.DOWN)) {
+				ay = ay + F / m;
+			}
+			if (pressed.get(Button.LEFT)) {
+				ax = -F / m;
+			}
+			if (pressed.get(Button.RIGHT)) {
+				ax += F/m;
+			}
+			
+			setCenterX(getNewX(getCenterX(), vx, t, ax));
+			setCenterY(getNewY(getCenterY(), vy, t, ay));
+			
+			setVx(getVx(vx, ax, t));
+			setVy(getVy(vy, ay, t));
 		}
-		if (pressed.get(Button.LEFT)) {
-			ax = -F / m;
-		}
-		if (pressed.get(Button.RIGHT)) {
-			ax += F/m;
-		}
-		
-		setCenterX(getNewX(getCenterX(), vx, t, ax));
-		setCenterY(getNewY(getCenterY(), vy, t, ay));
-		
-		setVx(getVx(vx, ax, t));
-		setVy(getVy(vy, ay, t));
+	}
 	
+	public void updatePositionAI() {
+		Ball target = AIgetTarget();
+		
+	}
+	
+	public Ball AIgetTarget() {
+		double minDistance = Integer.MAX_VALUE;
+		Ball target = this.players.get(0); 
+		
+		for (Ball player : this.players) {
+			double ballx = player.getCenterX();
+			double bally = player.getCenterY();
+			
+			double distance = (Math.sqrt((ballx * ballx) + (bally * bally)));
+			if ((distance < minDistance) && (distance != 0)) {
+				minDistance = distance;
+				target = player;
+			}
+		}
+		return(target);
 	}
 	
 	public void reflectVertical() {
@@ -168,5 +201,10 @@ public class Ball extends Circle {
 
 	public void setM(double m) {
 		this.m = m;
+	}
+	
+	public void setAI(boolean enabled, List<Ball> players) {
+		this.players = players;
+		this.ai = enabled;
 	}
 }

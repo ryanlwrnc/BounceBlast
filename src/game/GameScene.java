@@ -55,6 +55,8 @@ public class GameScene extends Scene {
 		// Create players
 		mainPlayer = new BowlingBall(400, 400);
 		playerOne = new TennisBall(300, 300);
+		playerOne.setAI(true, getAllPlayers());
+		
 		ALL_POSSIBLE_PLAYERS = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
