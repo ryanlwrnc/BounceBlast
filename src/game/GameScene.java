@@ -3,6 +3,10 @@ package game;
 import java.util.LinkedList;
 import java.util.List;
 
+import game.ball.Ball;
+import game.ball.Ball.Button;
+import game.ball.BowlingBall;
+import game.ball.TennisBall;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -23,8 +27,8 @@ public class GameScene implements CustomScreen {
 	public Scene getScene() {
 		Group root = new Group();
 		Scene scene = new Scene(root, 800, 600);
-		ball1 = new Ball(400, 400, 10, Color.BLUE);
-		ball2 = new Ball(300, 300, 10, Color.RED);
+		ball1 = new BowlingBall(400, 400);
+		ball2 = new TennisBall(300, 300);
 		List<Ball> balls = new LinkedList<Ball>();
 		balls.add(ball1);
 		balls.add(ball2);
@@ -48,11 +52,11 @@ public class GameScene implements CustomScreen {
 				for (Ball ball : balls) {
 					switch (e.getCode()) 
 					{
-						case UP: ball.setUp(true); break;
-						case DOWN: ball.setDown(true); break;
-						case LEFT: ball.setLeft(true); break;
-						case RIGHT: ball.setRight(true); break;
-						case SHIFT: ball.setShift(true); break;
+						case UP: ball.press(Button.UP, true); break;
+						case DOWN: ball.press(Button.DOWN, true); break;
+						case LEFT: ball.press(Button.LEFT, true); break;
+						case RIGHT: ball.press(Button.RIGHT, true); break;
+						case SHIFT: ball.press(Button.SPACE, true); break;
 					default:
 						break;
 					}
@@ -68,11 +72,11 @@ public class GameScene implements CustomScreen {
 				for (Ball ball : balls) {
 					switch (e.getCode()) 
 					{
-						case UP: ball.setUp(false); break;
-						case DOWN: ball.setDown(false); break;
-						case LEFT: ball.setLeft(false); break;
-						case RIGHT: ball.setRight(false); break;
-						case SHIFT: ball.setShift(false); break;
+						case UP: ball.press(Button.UP, false); break;
+						case DOWN: ball.press(Button.DOWN, false); break;
+						case LEFT: ball.press(Button.LEFT, false); break;
+						case RIGHT: ball.press(Button.RIGHT, false); break;
+						case SHIFT: ball.press(Button.SPACE, false); break;
 					default:
 						break;
 					}

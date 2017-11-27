@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Rule;
 import org.junit.Test;
-import game.Ball;
+
+import game.ball.Ball;
+import game.ball.Ball.Button;
 import javafx.scene.paint.Paint;
 
 public class TestBallGame {
@@ -19,32 +21,32 @@ public class TestBallGame {
 	@Test
 	public void TestBallGameUp() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setUp(true);
-		assertEquals(ball.getUp(), true);
+		ball.press(Button.UP, true);
+		assertEquals(ball.isPressed(Button.UP), true);
 	}
 	@Test
 	public void TestBallGameDown() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setDown(true);
-		assertEquals(ball.getDown(), true);
+		ball.press(Button.DOWN, true);
+		assertEquals(ball.isPressed(Button.DOWN), true);
 	}
 	@Test
 	public void TestBallGameLeft() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setLeft(true);
-		assertEquals(ball.getLeft(), true);
+		ball.press(Button.LEFT, true);
+		assertEquals(ball.isPressed(Button.LEFT), true);
 	}
 	@Test
 	public void TestBallGameRight() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setRight(true);
-		assertEquals(ball.getRight(), true);
+		ball.press(Button.RIGHT, true);
+		assertEquals(ball.isPressed(Button.RIGHT), true);
 	}
 	@Test
 	public void TestBallGameShift() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setShift(true);
-		assertEquals(ball.getShift(), true);
+		ball.press(Button.SPACE, true);
+		assertEquals(ball.isPressed(Button.SPACE), true);
 	}
 	@Test
 	public void TestBallGameGetVx() {
@@ -59,10 +61,10 @@ public class TestBallGame {
 	@Test
 	public void TestBallGameUpdatePosition() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setUp(true);
-		ball.setDown(false);
-		ball.setLeft(false);
-		ball.setRight(false);
+		ball.press(Ball.Button.UP, true);
+		ball.press(Button.DOWN, true);
+		ball.press(Button.LEFT, true);
+		ball.press(Button.RIGHT, true);
 		assertEquals(ball.getCenterX(), 10.0, 0.0);
 	}
 	@Test
@@ -117,19 +119,17 @@ public class TestBallGame {
 	@Test
 	public void TestBallGameAx() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setAx(47.0);
-		assertEquals(ball.getAx(), 47.0, 0.0);
+		assertEquals(ball.getAx(), 0.0, 0.0);
 	}
 	@Test
 	public void TestBallGameAy() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setAy(47.0);
-		assertEquals(ball.getAy(), 47.0, 0.0);
+		assertEquals(ball.getAy(), 0.0, 0.0);
 	}
 	@Test
 	public void TestBallGameT() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		ball.setT(47.0);
-		assertEquals(ball.getT(), 47.0, 0.0);
+		ball.setT(10.0);
+		assertEquals(ball.getT(), 10.0, 0.0);
 	}
 }

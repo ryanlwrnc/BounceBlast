@@ -5,9 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Rule;
 import org.junit.Test;
-import game.BallFactory;
-import game.GameBall;
-import game.BallFactory.BallType;
+
+import game.ball.Ball;
+import game.ball.BallFactory;
+import game.ball.BasketBall;
+import game.ball.BallFactory.BallType;
 
 public class TestBallFactory {
 	@Rule
@@ -16,7 +18,7 @@ public class TestBallFactory {
 	public void TestBallFactoryNewGameBall() {
 		 
 		BallFactory factory = new BallFactory();
-		GameBall ball = factory.newGameBall(BallType.BASKETBALL);
-		assertTrue(ball instanceof GameBall);
+		Ball ball = factory.newGameBall(BallType.BASKETBALL);
+		assertTrue(ball instanceof BasketBall);
 	}
 }

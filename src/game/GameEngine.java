@@ -1,5 +1,6 @@
 package game;
 
+import game.ball.Ball;
 import javafx.application.Platform;
 import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
@@ -68,7 +69,6 @@ public class GameEngine implements Runnable {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						scene.ball1.setFill(Color.GREEN);
 						//Update game
 						if (scene.board.isTouchingTop(scene.ball1) || scene.board.isTouchingBottom(scene.ball1)
 								&& !ball1VertWallExiting) {

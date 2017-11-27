@@ -1,4 +1,6 @@
-package game;
+package game.ball;
+
+import javafx.scene.paint.Color;
 
 public class BallFactory
 {
@@ -10,13 +12,13 @@ public class BallFactory
 		SOCCERBALL;
 	}
 	
-	public GameBall newGameBall(BallType ballType)
+	public Ball newGameBall(BallType ballType)
 	{
-		GameBall ball;
+		Ball ball;
 		
 		switch(ballType) {
 			case BASKETBALL:
-				ball = new BasketBall();
+				ball = new BasketBall(400, 400);
 				break;
 			default:
 				ball = null;
