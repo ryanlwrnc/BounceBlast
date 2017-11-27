@@ -19,19 +19,21 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
 
-public class TutorialControls implements CustomScreen {
+public class TutorialControls extends Scene {
 
-	private Main app;
+	// JavaFX
+	private GridPane gridpane;
+
+	// Components
+	
+	// Constants
+	
 	
 	public TutorialControls(Main app) {
-		this.app = app;
-	}
-	
-	@Override
-	public Scene getScene() {
-		ScreenFactory screenFactory = new ScreenFactory(app);
+		super(new GridPane(), 800, 600);
+		gridpane = (GridPane) getRoot();
+
 		Button back;
-		GridPane gridpane = new GridPane();
 		
 		final int numCols = 5 ;
         final int numRows = 5 ;
@@ -123,8 +125,7 @@ public class TutorialControls implements CustomScreen {
         gridpane.add(rules, 1, 1, 1, 1);
         rules.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				CustomScreen tutorialRules = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_RULES);
-				app.updateScene(tutorialRules.getScene());
+				app.updateScene(new TutorialRules(app));
 			}
 		});
         rules.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -179,8 +180,7 @@ public class TutorialControls implements CustomScreen {
         gridpane.add(strategy, 3, 1, 1, 1);
         strategy.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				CustomScreen tutorialStrategy = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_STRATEGY);
-				app.updateScene(tutorialStrategy.getScene());
+				app.updateScene(new TutorialStrategy(app));
 			}
 		});
         strategy.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -211,10 +211,7 @@ public class TutorialControls implements CustomScreen {
 		gridpane.add(back, 0, 4);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Exit the application when exit pressed
-		 
-		Scene scene = new Scene(gridpane, 800, 600);
-		return scene;
-	}
 
+	
+	}	
 }

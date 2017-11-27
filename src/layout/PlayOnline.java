@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -19,43 +18,54 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
+import layout.components.PlayOnlineButton;
 
-public class PlayOnline implements CustomScreen {
+public class PlayOnline extends Scene {
 
-	private Main app;
+	// JavaFX
+	private GridPane gridpane;
+	
+	// Components
+	public Button back;
+	public Button start;
+	public Button temp;
+	public Button lobby;
+	public Text directionKeys;
+	public Text gameTitle;
+	public Text ballTypes;
+	public GridPane box;
+	public ComboBox<String> cbBall;
+	public ComboBox<String> cbCPU;
+	public ColumnConstraints cons1;
+	public ColumnConstraints cons2;
+	public RowConstraints rcons1;
+	public RowConstraints rcons2;
+	
+	// Constants
+	private final int screenButtonCol = 2;
 	
 	public PlayOnline(Main app) {
-		this.app = app;
-	}
-	
-	@Override
-	public Scene getScene() {
-		Button back, start, temp, lobby;
-		ScreenFactory screenFactory = new ScreenFactory(app);
-		int screenButtonCol = 2;
-		GridPane gridpane = new GridPane();
-		ColumnConstraints cons1 = new ColumnConstraints();
+		super(new GridPane(), 800, 600);
+		this.gridpane =  (GridPane) getRoot();
+		
+		// Gridpane
+		cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
-
-        ColumnConstraints cons2 = new ColumnConstraints();
+        cons2 = new ColumnConstraints();
         cons2.setHgrow(Priority.ALWAYS);
-        
         gridpane.getColumnConstraints().addAll(cons1, cons2);
-        
-        RowConstraints rcons1 = new RowConstraints();
+        rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
-        
-        RowConstraints rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-        
+        rcons2 = new RowConstraints();
+        rcons2.setVgrow(Priority.ALWAYS);    
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		 
 		// BounceBlast text
-		Text gameTitle = new Text();
+		gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Play Online");
@@ -66,7 +76,7 @@ public class PlayOnline implements CustomScreen {
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
-        GridPane box = new GridPane();
+        box = new GridPane();
         box.setPadding(new Insets(20,20,20,20));
         box.setMaxWidth(650);
         box.setMaxHeight(250);
@@ -79,7 +89,7 @@ public class PlayOnline implements CustomScreen {
 				 "-fx-border-color: white;-fx-border-width: 3;");
         
         
-		Text directionKeys = new Text();
+		directionKeys = new Text();
 		directionKeys.setFont(new Font(20));
 		directionKeys.setFill(Color.WHITE);
 		directionKeys.setText("CPUs");
@@ -89,14 +99,14 @@ public class PlayOnline implements CustomScreen {
 		box.add(directionKeys, 0, 0);
 		GridPane.setMargin(directionKeys, new Insets(5, 10, 5, 200));	
 		
-		ComboBox<String> cbCPU = new ComboBox<String>();
+		cbCPU = new ComboBox<String>();
         cbCPU.getItems().add("0");
         cbCPU.getItems().add("1");
         cbCPU.getItems().add("2");
         cbCPU.getItems().add("3");
 	    box.add(cbCPU, 1, 0);
 	    
-	    Text ballTypes = new Text();
+	    ballTypes = new Text();
 	    ballTypes.setFont(new Font(20));
 	    ballTypes.setFill(Color.WHITE);
 	    ballTypes.setText("Balls");
@@ -106,7 +116,7 @@ public class PlayOnline implements CustomScreen {
 		box.add(ballTypes, 0, 1);
 		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 200));	
 		
-		ComboBox<String> cbBall = new ComboBox<String>();
+		cbBall = new ComboBox<String>();
         cbBall.getItems().add("Basketball");
         cbBall.getItems().add("Bowling Ball");
         cbBall.getItems().add("Tennis Ball");
@@ -116,7 +126,7 @@ public class PlayOnline implements CustomScreen {
 		gridpane.add(box, screenButtonCol, 1);
 
 		// Start Button
-		start = new Button("Start");
+		start = new PlayOnlineButton(app, "Start", new InGame().getScene());
 		start.setPrefHeight(25);
 		start.setPrefWidth(65);
 		start.setStyle("-fx-border-width: 3;" + 
@@ -129,7 +139,7 @@ public class PlayOnline implements CustomScreen {
 		GridPane.setMargin(start, new Insets(5, 80, 30, 10));
 		
 		// Lobby menu button
-		lobby = new Button("Lobby");
+		lobby = new PlayOnlineButton(app, "Lobby", new PlayOnlineLobby(app));
 		lobby.setPrefHeight(25);
 		lobby.setPrefWidth(100);
 		lobby.setStyle("-fx-border-width: 3;" + 
@@ -139,118 +149,30 @@ public class PlayOnline implements CustomScreen {
 				"-fx-text-fill: white;");
 		gridpane.add(lobby, 2, 4);
 		GridPane.setHalignment(lobby, HPos.CENTER);
-		GridPane.setMargin(lobby, new Insets(5, 80, 30, 10));
-		
-		// Return to Main Menu when back is pressed
-		start.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.IN_GAME);
-				app.updateScene(ingame.getScene());
-			}
-		});
-		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        	start.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-		// Return to lobby when the lobby button is pressed
-		lobby.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.PLAY_ONLINE_LOBBY);
-				app.updateScene(ingame.getScene());
-			}
-		});
-		lobby.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			    @Override
-			    public void handle(MouseEvent t) {
-			    lobby.setStyle("-fx-border-width: 3;" + 
-			        		"-fx-border-color: white;" + 
-			        		"-fx-background-color: #003399;" +
-			        		"-fx-font-size: 16;" + 
-			        		"-fx-text-fill: white;");
-			    }
-		});
-
-		start.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        	start.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-		lobby.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        	lobby.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
+		GridPane.setMargin(lobby, new Insets(5, 80, 30, 10));	
 		
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");
-
 		gridpane.add(back, 0, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 		// Return to Main Menu when back is pressed
 		 
 		//Temporary GameScene Button
-		temp = new Button("Game Scene");
+		temp = new PlayOnlineButton(app, "Game Scene", new GameScene());
 		temp.setPrefHeight(25);
 		temp.setPrefWidth(200);
-		temp.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
 		gridpane.add(temp, 2, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 		// Return to Main Menu when back is pressed
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				CustomScreen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
-				app.updateScene(games.getScene());
-		        Main.thread = new Thread(new GameEngine((GameScene) games));
+				GameScene scene = new GameScene();
+				app.updateScene(scene);
+		        Main.thread = new Thread(new GameEngine(scene));
 		        Main.thread.start();
 			}
 		});
-		temp.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        	temp.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-
-		temp.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		back.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-		
-		
-		Scene scene = new Scene(gridpane, 800, 600);
-		return scene;
-		
 	}
 }

@@ -13,6 +13,7 @@ import layout.Profile;
 public class TestProfile {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
+	/*
 	@Test
 	public void TestProfileGetScreen() {
 		Main main = new Main();
@@ -20,4 +21,5 @@ public class TestProfile {
 		Scene scene = profile.getScene();
 		assertTrue(scene instanceof Scene);
 	}
+	*/
 }

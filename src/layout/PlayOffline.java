@@ -1,4 +1,5 @@
 package layout;
+import game.GameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -18,20 +19,29 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
 
-public class PlayOffline implements CustomScreen {
+public class PlayOffline extends Scene {
 
-	private Main app;
+	// JavaFX
+	public GridPane gridpane;
+	
+	// Components
+	public Button back;
+	public Button start;
+	public Button temp;
+	public Text gameTitle;
+	public Text ballTypes;
+	public GridPane box;
+	public Text directionKeys;
+	public ComboBox<String> cbCPU;
+	public ComboBox<String> cbBall;
+	
+	// Constants
+	public final int screenButtonCol = 2;
 	
 	public PlayOffline(Main app) {
-		this.app = app;
-	}
-	
-	@Override
-	public Scene getScene() {
-		Button back, start, temp;
-		ScreenFactory screenFactory = new ScreenFactory(app);
-		int screenButtonCol = 2;
-		GridPane gridpane = new GridPane();
+		super(new GridPane(), 800, 600);
+		
+		gridpane = (GridPane) getRoot();
 		ColumnConstraints cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
@@ -53,7 +63,7 @@ public class PlayOffline implements CustomScreen {
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		 
 		// BounceBlast text
-		Text gameTitle = new Text();
+		gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Play Offline");
@@ -64,7 +74,7 @@ public class PlayOffline implements CustomScreen {
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
-        GridPane box = new GridPane();
+        box = new GridPane();
         box.setPadding(new Insets(20,20,20,20));
         box.setMaxWidth(650);
         box.setMaxHeight(250);
@@ -77,7 +87,7 @@ public class PlayOffline implements CustomScreen {
 				 "-fx-border-color: white;-fx-border-width: 3;");
         
         
-		Text directionKeys = new Text();
+		directionKeys = new Text();
 		directionKeys.setFont(new Font(20));
 		directionKeys.setFill(Color.WHITE);
 		directionKeys.setText("CPUs");
@@ -87,14 +97,14 @@ public class PlayOffline implements CustomScreen {
 		box.add(directionKeys, 0, 0);
 		GridPane.setMargin(directionKeys, new Insets(5, 10, 5, 200));	
 		
-		ComboBox<String> cbCPU = new ComboBox<String>();
+		cbCPU = new ComboBox<String>();
         cbCPU.getItems().add("0");
         cbCPU.getItems().add("1");
         cbCPU.getItems().add("2");
         cbCPU.getItems().add("3");
 	    box.add(cbCPU, 1, 0);
 	    
-	    Text ballTypes = new Text();
+	    ballTypes = new Text();
 	    ballTypes.setFont(new Font(20));
 	    ballTypes.setFill(Color.WHITE);
 	    ballTypes.setText("Balls");
@@ -104,7 +114,7 @@ public class PlayOffline implements CustomScreen {
 		box.add(ballTypes, 0, 1);
 		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 200));	
 		
-		ComboBox<String> cbBall = new ComboBox<String>();
+		cbBall = new ComboBox<String>();
         cbBall.getItems().add("Basketball");
         cbBall.getItems().add("Bowling Ball");
         cbBall.getItems().add("Tennis Ball");
@@ -128,8 +138,7 @@ public class PlayOffline implements CustomScreen {
 		// Return to Main Menu when back is pressed
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				CustomScreen ingame = screenFactory.newScreen(ScreenFactory.ScreenType.IN_GAME);
-				app.updateScene(ingame.getScene());
+				app.updateScene(new InGame().getScene());
 			}
 		});
 		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -173,8 +182,7 @@ public class PlayOffline implements CustomScreen {
 		// Return to Main Menu when back is pressed
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				CustomScreen games = screenFactory.newScreen(ScreenFactory.ScreenType.GAME_SCENE);
-				app.updateScene(games.getScene());
+				app.updateScene(new GameScene());
 			}
 		});
 		temp.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -198,11 +206,5 @@ public class PlayOffline implements CustomScreen {
 	        				"-fx-text-fill: white;");
 	        }
 	    });
-		
-		
-		Scene scene = new Scene(gridpane, 800, 600);
-		return scene;
-		
 	}
-
 }

@@ -13,6 +13,7 @@ import layout.Settings;
 public class TestSettings {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
+	/*
 	@Test
 	public void TestSettingsGetScreen() {
 		Main main = new Main();
@@ -20,4 +21,5 @@ public class TestSettings {
 		Scene scene = settings.getScene();
 		assertTrue(scene instanceof Scene);
 	}
+	*/
 }

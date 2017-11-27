@@ -15,13 +15,6 @@ public class TestMainMenu {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	@Test
-	public void TestMainMenuGetScreen() {
-		Main main = new Main();
-		MainMenu mainMenu = new MainMenu(main);
-		Scene scene = mainMenu.getScene();
-		assertTrue(scene instanceof Scene);
-	}
-	@Test
 	public void TestMainMenuLogIn() {
 		Main main = new Main();
 		MainMenu mainMenu = new MainMenu(main);

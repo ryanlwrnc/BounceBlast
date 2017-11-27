@@ -3,19 +3,16 @@ package layout.components;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import layout.CustomScreen;
 import layout.Main;
-import layout.ScreenFactory;
+import layout.MainMenu;
 
 public class BackToMainMenuButton extends BaseButton {
 
 	private Main app;
-	private ScreenFactory screenFactory;
 	
 	public BackToMainMenuButton(Main app, String label) {
 		super(label);
 		this.app = app;
-		this.screenFactory = new ScreenFactory(app);
 		
 		setPrefHeight(25);
 		setPrefWidth(65);
@@ -27,8 +24,7 @@ public class BackToMainMenuButton extends BaseButton {
 		
 		setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				app.updateScene(mainmenu.getScene());
+				app.updateScene(new MainMenu(app));
 			}
 		});
 		setOnMouseEntered(new EventHandler<MouseEvent>() {

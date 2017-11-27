@@ -2,19 +2,18 @@ package layout.components;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import layout.CustomScreen;
+import javafx.scene.Scene;
 import layout.Main;
-import layout.ScreenFactory;
+
 
 public class MainMenuButton extends BaseButton {
 
 	protected Main app;
-	private ScreenFactory screenFactory; 
 	
-	public MainMenuButton(Main app, String label, ScreenFactory.ScreenType type) {
+	public MainMenuButton(Main app, String label, Scene scene) {
 		super(label);
 		this.app = app;
-		screenFactory = new ScreenFactory(app);
+
 		this.setPrefHeight(50);
 		this.setPrefWidth(200);
 		
@@ -23,8 +22,7 @@ public class MainMenuButton extends BaseButton {
 			@Override
 			public void handle(ActionEvent event)
 			{
-				CustomScreen loginScreen = screenFactory.newScreen(type);
-				app.updateScene(loginScreen.getScene());
+				app.updateScene(scene);
 			}
 		});
 	}

@@ -34,42 +34,45 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
 
-public class Leaderboard implements CustomScreen{
+public class Leaderboard extends Scene {
+	
+	//JavaFX
+	private GridPane gridpane;
+	
+	// Components
+	public Button back;
+	public Text gameTitle;
+	public ColumnConstraints cons1;
+	public ColumnConstraints cons2;
+	public RowConstraints rcons1;
+	public RowConstraints rcons2;
 	private TableView<PlayerName> table;
-	private Main app;
+		
+	// Constants
+	private final int screenButtonCol = 2;
 	
 	public Leaderboard(Main app) {
-		this.app = app;
-	}
-	
-	public Scene getScene() {
-		Button back;
-		ScreenFactory screenFactory = new ScreenFactory(app);
-		int screenButtonCol = 2;
-
-		GridPane gridpane = new GridPane();
-		ColumnConstraints cons1 = new ColumnConstraints();
+		super(new GridPane(), 800, 600);
+		gridpane = (GridPane) getRoot();
+		
+		// Setup gridpane
+		cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
-
-        ColumnConstraints cons2 = new ColumnConstraints();
+        cons2 = new ColumnConstraints();
         cons2.setHgrow(Priority.ALWAYS);
-        
         gridpane.getColumnConstraints().addAll(cons1, cons2);
-        
-        RowConstraints rcons1 = new RowConstraints();
+        rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
-        
-        RowConstraints rcons2 = new RowConstraints();
+        rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
-        
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		 
 		// Leader Board text
-		Text gameTitle = new Text();
+		gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Leaderboard");
@@ -95,9 +98,7 @@ public class Leaderboard implements CustomScreen{
  		gridpane.add(back, 0, 10);
  		GridPane.setHalignment(back, HPos.CENTER);
  		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-        
-		Scene scene = new Scene(gridpane, 800, 600);
-		return scene;
+		
 	}
 		
 	public static ObservableList<PlayerName> getPlayerDummy() {

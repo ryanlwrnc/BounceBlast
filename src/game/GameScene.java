@@ -16,26 +16,41 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import layout.CustomScreen;
 
-public class GameScene extends Scene implements CustomScreen {
+public class GameScene extends Scene {
 
+	// JavaFx
 	private Group root;
-	Scene scene;
 	
-	// Pieces
+	// Components
+	Button  exit;
 	GameBoard board;
 	Ball mainPlayer;
 	Ball playerOne;
 	Ball playerTwo;
 	Ball playerThree;
-	public final List<Ball> ALL_POSSIBLE_PLAYERS;
-	
 	Line h;
 	Line v;
 	
+	// Constants
+	public final List<Ball> ALL_POSSIBLE_PLAYERS;
+	int screenButtonCol = 2;
+	String buttonStyle = "-fx-border-width: 3;" + 
+			"-fx-border-color: white;" + 
+			"-fx-background-color: #24618F;" +
+			"-fx-font-size: 24;" + 
+			"-fx-text-fill: white;";
+	String buttonHoverStyle = "-fx-border-width: 3;" + 
+			"-fx-border-color: white;" + 
+			"-fx-background-color: #003399;" +
+			"-fx-font-size: 24;" + 
+			"-fx-text-fill: white;";
+	
+	
 	public GameScene() {
 		super(new Group(), 800, 600);
+		
+		
 		root = (Group) getRoot();
 		// Create players
 		mainPlayer = new BowlingBall(400, 400);
@@ -88,11 +103,6 @@ public class GameScene extends Scene implements CustomScreen {
 				}
 			}
 		});
-	}
-	
-	@Override
-	public Scene getScene() {
-		return this;
 	}
 	
 	public List<Ball> getAllPlayers() {

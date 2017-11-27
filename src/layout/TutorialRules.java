@@ -1,6 +1,4 @@
 package layout;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -17,23 +15,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import layout.components.BackToMainMenuButton;
 
-public class TutorialRules implements CustomScreen {
+public class TutorialRules extends Scene {
 
-	private Main app;
+	// JavaFX
+	private GridPane gridpane;
+	
+	// Components
+	Button back;
+	
+	// Constants
+	final int numCols = 5 ;
+    final int numRows = 5 ;
 	
 	public TutorialRules(Main app) {
-		this.app = app;
-	}
-	
-	@Override
-	public Scene getScene() {
-		ScreenFactory screenFactory = new ScreenFactory(app);
-		Button back;
-		GridPane gridpane = new GridPane();
+		super(new GridPane(), 800, 600);
+		gridpane = (GridPane) getRoot();
 		
-		final int numCols = 5 ;
-        final int numRows = 5 ;
         for (int i = 0; i < numCols; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
             colConst.setPercentWidth(100.0 / numCols);
@@ -141,8 +140,7 @@ public class TutorialRules implements CustomScreen {
         gridpane.add(controls, 2, 1, 1, 1);
         controls.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				CustomScreen tutorialControls = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_CONTROLS);
-				app.updateScene(tutorialControls.getScene());
+				app.updateScene(new TutorialControls(app));
 			}
 		});
         controls.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -181,8 +179,7 @@ public class TutorialRules implements CustomScreen {
         gridpane.add(strategy, 3, 1, 1, 1);
         strategy.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				CustomScreen tutorialStrategy = screenFactory.newScreen(ScreenFactory.ScreenType.TUTORIAL_STRATEGY);
-				app.updateScene(tutorialStrategy.getScene());
+				app.updateScene(new TutorialStrategy(app));
 			}
 		});
         strategy.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -209,48 +206,10 @@ public class TutorialRules implements CustomScreen {
 		
 
 		// Back button
-		back = new Button("Back");
-		back.setPrefHeight(25);
-		back.setPrefWidth(65);
-		back.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
+		back = new BackToMainMenuButton(app, "Back");
 		gridpane.add(back, 0, 4);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Exit the application when exit pressed
-		back.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				CustomScreen mainMenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				app.updateScene(mainMenu.getScene());
-			}
-		});
-		back.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		back.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
 
-		back.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		back.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-		 
-		Scene scene = new Scene(gridpane, 800, 600);
-		return scene;
 	}
-
 }

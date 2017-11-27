@@ -18,15 +18,14 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.MainMenuButton;
 
-public class MainMenu implements CustomScreen{
+public class MainMenu extends Scene{
+	
+	// JavaFX
+	public GridPane gridpane;
 	
 	// Log in
 	private boolean loggedIn = false;
 	private String username = null;
-	
-	// JavaFX
-	private Main app;
-	private Scene scene;
 	
 	// Components
 	private Button login;
@@ -37,13 +36,14 @@ public class MainMenu implements CustomScreen{
 	private Button tutorial;
 	private Button exit;
 	
+	// Constants
+	private final int screenButtonCol = 2;
+	
 	public MainMenu(Main app) {
-		this.app = app;
+		super(new GridPane(), 800, 600);
 		
 		// GridPane
-		GridPane gridpane = new GridPane();
-		int screenButtonCol = 2;
-		
+		gridpane = (GridPane) getRoot();
 		ColumnConstraints cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
@@ -55,7 +55,8 @@ public class MainMenu implements CustomScreen{
         rcons1.setVgrow(Priority.NEVER);
         RowConstraints rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
+        gridpane.getRowConstraints(
+        		).addAll(rcons1, rcons2);
 		
         gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
@@ -97,37 +98,37 @@ public class MainMenu implements CustomScreen{
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
 		// Login button
-		login = new MainMenuButton(app, "Log In", ScreenFactory.ScreenType.LOGIN);	// CHANGED
+		login = new MainMenuButton(app, "Log In", new Login(app));	// CHANGED
 		gridpane.add(login, screenButtonCol, 2);
 		GridPane.setHalignment(login, HPos.CENTER);
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
 		
 		// Play online button
-		playOnline = new MainMenuButton(app, "Play Online", ScreenFactory.ScreenType.PLAY_ONLINE);
+		playOnline = new MainMenuButton(app, "Play Online", new PlayOnline(app));
 		gridpane.add(playOnline, screenButtonCol, 3);
 		GridPane.setHalignment(playOnline, HPos.CENTER);
 		GridPane.setMargin(playOnline, new Insets(5, 10, 5, 10));
 		
 		// Play offline button
-		playOffline = new MainMenuButton(app, "Play Offline", ScreenFactory.ScreenType.PLAY_OFFLINE);
+		playOffline = new MainMenuButton(app, "Play Offline", new PlayOffline(app));
 		gridpane.add(playOffline, screenButtonCol, 4);
 		GridPane.setHalignment(playOffline, HPos.CENTER);
 		GridPane.setMargin(playOffline, new Insets(5, 10, 5, 10));
 		
 		// Settings button
-		settings = new MainMenuButton(app, "Settings", ScreenFactory.ScreenType.SETTINGS);
+		settings = new MainMenuButton(app, "Settings", new Settings(app));
 		gridpane.add(settings, screenButtonCol, 5);
 		GridPane.setHalignment(settings, HPos.CENTER);
 		GridPane.setMargin(settings, new Insets(5, 10, 5, 10));
 		
 		// Leaderboard button
-		leaderboard = new MainMenuButton(app, "Leaderboard", ScreenFactory.ScreenType.LEADERBOARD);
+		leaderboard = new MainMenuButton(app, "Leaderboard", new Leaderboard(app));
 		gridpane.add(leaderboard, screenButtonCol, 6);
 		GridPane.setHalignment(leaderboard, HPos.CENTER);
 		GridPane.setMargin(leaderboard, new Insets(5, 10, 5, 10));
 		
 		// Tutorial button
-		tutorial = new MainMenuButton(app, "Tutorial", ScreenFactory.ScreenType.TUTORIAL_RULES);
+		tutorial = new MainMenuButton(app, "Tutorial", new TutorialRules(app));
 		gridpane.add(tutorial, screenButtonCol, 7);
 		GridPane.setHalignment(tutorial, HPos.CENTER);
 		GridPane.setMargin(tutorial, new Insets(5, 10, 5, 10));
@@ -171,12 +172,6 @@ public class MainMenu implements CustomScreen{
 	        				"-fx-text-fill: white;");
 	        }
 	    });
-		 
-		scene = new Scene(gridpane, 800, 600);
-	}
-	
-	public Scene getScene() {
-		return scene;
 	}
 	
 	public void logIn(String username) {

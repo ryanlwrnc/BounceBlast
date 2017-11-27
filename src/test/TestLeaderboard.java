@@ -13,6 +13,7 @@ import layout.Main;
 public class TestLeaderboard {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
+	/*
 	@Test
 	public void TestLeaderboardGetScreen() {
 		Main main = new Main();
@@ -20,4 +21,5 @@ public class TestLeaderboard {
 		Scene scene = leaderboard.getScene();
 		assertTrue(scene instanceof Scene);
 	}
+	*/
 }

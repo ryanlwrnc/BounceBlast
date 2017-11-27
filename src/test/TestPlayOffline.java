@@ -13,11 +13,11 @@ import layout.PlayOffline;
 public class TestPlayOffline {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
-	@Test
+/*	@Test
 	public void TestPlayOfflineGetScreen() {
 		Main main = new Main();
 		PlayOffline playOffline = new PlayOffline(main);
 		Scene scene = playOffline.getScene();
 		assertTrue(scene instanceof Scene);
-	}
+	}*/
 }

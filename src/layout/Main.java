@@ -80,8 +80,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		myStage = stage;
-		CustomScreen mainMenu = new MainMenu(this);
-		myScene = mainMenu.getScene();
+		myScene = new MainMenu(this);
 		myStage.setScene(myScene);
 		myStage.setResizable(false);
 		// --- Maximized screen resolution

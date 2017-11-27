@@ -13,6 +13,7 @@ import layout.Main;
 public class TestCreateAccount {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
+	/*
 	@Test
 	public void TestCreateAccountGetScreen() {
 		Main main = new Main();
@@ -20,4 +21,5 @@ public class TestCreateAccount {
 		Scene scene = account.getScene();
 		assertTrue(scene instanceof Scene);
 	}
+	*/
 }

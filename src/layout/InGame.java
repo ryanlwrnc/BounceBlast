@@ -24,7 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class InGame  extends Main implements CustomScreen{
+public class InGame  extends Main{
 	public Scene getScene() {
 		Button  exit;
 		int screenButtonCol = 2;

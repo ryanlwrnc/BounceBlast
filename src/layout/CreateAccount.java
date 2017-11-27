@@ -1,10 +1,5 @@
 package layout;
 
-import javafx.scene.control.TextField;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,6 +10,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -23,36 +20,48 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.control.PasswordField;
+import layout.components.BackToMainMenuButton;
 
-public class CreateAccount implements CustomScreen {
+public class CreateAccount extends Scene {
 	
-	Main app;
+	// JavaFX
+	private GridPane gridpane;
+	
+	// Components
+	public Button back;
+	public Button createAccount;
+	public Text gameTitle;
+	public Text username;
+	public Text password;
+	public final TextField usernameField;
+	public final PasswordField passwordField;
+	public final PasswordField confirmPasswordField;
+	public ColumnConstraints cons1;
+	public ColumnConstraints cons2;
+	public RowConstraints rcons1;
+	public RowConstraints rcons2;
+	public GridPane box;
+	
+	// Constants
+	private final int screenButtonCol = 2;
 	
 	public CreateAccount(Main app) {
-		this.app = app;
-	}
-
-	@Override
-	public Scene getScene() {
-		Button back;
-		ScreenFactory screenFactory = new ScreenFactory(app);
-		int screenButtonCol = 2;
-		GridPane gridpane = new GridPane();
+		super(new GridPane(), 800, 600);
+		gridpane = (GridPane) getRoot();
 		
-		ColumnConstraints cons1 = new ColumnConstraints();
+		cons1 = new ColumnConstraints();
 		cons1.setHgrow(Priority.NEVER);
 		gridpane.getColumnConstraints().add(cons1);
 		
-		ColumnConstraints cons2 = new ColumnConstraints();
+		cons2 = new ColumnConstraints();
 		cons2.setHgrow(Priority.ALWAYS);
 		
 		gridpane.getColumnConstraints().addAll(cons1, cons2);
 		
-		RowConstraints rcons1 = new RowConstraints();
+		rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
         
-        RowConstraints rcons2 = new RowConstraints();
+        rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
         
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
@@ -61,7 +70,7 @@ public class CreateAccount implements CustomScreen {
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		 
 		// BounceBlast text
-		Text gameTitle = new Text();
+		gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Create Account");
@@ -72,7 +81,7 @@ public class CreateAccount implements CustomScreen {
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
-        GridPane box = new GridPane();
+        box = new GridPane();
         box.setPadding(new Insets(20,20,20,20));
         box.setMaxWidth(650);	
         box.setMaxHeight(250);
@@ -85,7 +94,7 @@ public class CreateAccount implements CustomScreen {
 				 "-fx-border-color: white;-fx-border-width: 3;");
         
         // User name text
-        Text username = new Text();
+        username = new Text();
         username.setFont(new Font(20));
         username.setFill(Color.WHITE);
         username.setText("Username");
@@ -94,7 +103,7 @@ public class CreateAccount implements CustomScreen {
         GridPane.setHalignment(username, HPos.RIGHT);
         
         // Password text
-        Text password = new Text();
+        password = new Text();
         password.setFont(new Font(20));
         password.setFill(Color.WHITE);
         password.setText("Password");
@@ -109,22 +118,22 @@ public class CreateAccount implements CustomScreen {
         GridPane.setMargin(password, new Insets(5, 10, 5, 10));
         
         // User name field
-        final TextField usernameField = new TextField();
+        usernameField = new TextField();
         usernameField.setPromptText("Enter your username");
         box.add(usernameField, 1, 0);
         
         // Password field
-        final PasswordField passwordField = new PasswordField();
+        passwordField = new PasswordField();
         passwordField.setPromptText("Enter your password");
         box.add(passwordField, 1, 1);
         
         // Confirm Password field
-        final PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Confirm password");
         box.add(confirmPasswordField, 1, 2);
         
         // Create Account button
-        Button createAccount = new Button("Create Account");
+        createAccount = new Button("Create Account");
         createAccount.setPrefHeight(40);
         createAccount.setPrefWidth(150);
         createAccount.setStyle("-fx-border-width: 3;" + 
@@ -161,9 +170,8 @@ public class CreateAccount implements CustomScreen {
 							database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
 							
 							// Go back to the main menu
-							CustomScreen profile = screenFactory.newScreen(ScreenFactory.ScreenType.PROFILE);
 							//	mainmenu.logIn(usernameField.getText());
-							app.updateScene(profile.getScene());
+							app.updateScene(new Profile(app));
 						}
 				}
 			}
@@ -173,28 +181,10 @@ public class CreateAccount implements CustomScreen {
 		gridpane.add(box, screenButtonCol, 1);
 		
 		// Back button
-		back = new Button("Back");
-		back.setPrefHeight(25);
-		back.setPrefWidth(65);
-		back.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
+		back = new BackToMainMenuButton(app, "Back");
+		
 		gridpane.add(back, 0, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Return to Main Menu when back is pressed
-		back.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				//	mainmenu.logIn(usernameField.getText());
-				app.updateScene(mainmenu.getScene());
-			}
-		});
-		
-        Scene scene = new Scene(gridpane,800,600);
-		return scene;
 	}
-
 }

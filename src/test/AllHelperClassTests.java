@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestPlayerName.class, TestVector2d.class })
+@SuiteClasses({ TestPlayerName.class })
 public class AllHelperClassTests {
 
 }

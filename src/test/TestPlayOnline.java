@@ -13,6 +13,7 @@ import layout.PlayOnline;
 public class TestPlayOnline {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
+	/*
 	@Test
 	public void TestPlayOnlineGetScreen() {
 		Main main = new Main();
@@ -20,4 +21,5 @@ public class TestPlayOnline {
 		Scene scene = playOnline.getScene();
 		assertTrue(scene instanceof Scene);
 	}
+	*/
 }

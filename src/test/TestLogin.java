@@ -13,11 +13,11 @@ import layout.Main;
 public class TestLogin {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
-	@Test
-	public void TestLoginGetScreen() {
-		Main main = new Main();
-		Login login = new Login(main);
-		Scene scene = login.getScene();
-		assertTrue(scene instanceof Scene);
-	}
+//	@Test
+//	public void TestLoginGetScreen() {
+//		Main main = new Main();
+//		Login login = new Login(main);
+//		Scene scene = login.getScene();
+//		assertTrue(scene instanceof Scene);
+//	}
 }
