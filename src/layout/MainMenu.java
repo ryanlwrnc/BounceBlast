@@ -97,7 +97,7 @@ public class MainMenu implements CustomScreen{
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
 		// Login button
-		login = new MainMenuButton(app, "Login", ScreenFactory.ScreenType.LOGIN);
+		login = new MainMenuButton(app, "Log In", ScreenFactory.ScreenType.LOGIN);	// CHANGED
 		gridpane.add(login, screenButtonCol, 2);
 		GridPane.setHalignment(login, HPos.CENTER);
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));

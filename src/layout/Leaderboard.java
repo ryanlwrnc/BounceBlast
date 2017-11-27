@@ -109,27 +109,31 @@ public class Leaderboard implements CustomScreen{
 		database.addValueEventListener(new ValueEventListener() {
 		@Override
 		public void onDataChange(DataSnapshot snapshot) {
-			HashMap<String,Integer> leaderboard = new HashMap<String, Integer>();
+			HashMap<String,User> leaderboard = new HashMap<String, User>();
 			
 			for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 				User post = postSnapshot.getValue(User.class);
 				System.out.println(post.score);
-				leaderboard.put(post.username, post.score);
+				System.out.println(post.win);
+				System.out.println(post.loss);
+				leaderboard.put(post.username, post);
 		   }
 			
-			Set<Entry<String, Integer>> set = leaderboard.entrySet();
-	        List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
-	        Collections.sort( list, new Comparator<Map.Entry<String, Integer>>()
+			Set<Entry<String, User>> set = leaderboard.entrySet();
+	        List<Entry<String, User>> list = new ArrayList<Entry<String, User>>(set);
+	        Collections.sort( list, new Comparator<Map.Entry<String, User>>()
 	        {
-	            public int compare( Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2 )
+	            public int compare( Map.Entry<String, User> o1, Map.Entry<String, User> o2 )
 	            {
-	                return (o2.getValue()).compareTo( o1.getValue() );
+	                return (((User) o2).getScore()).compareTo( ((User) o1).getScore() );
 	            }
 	        } );
 	        
 	        int rank = 1;
-	        for(Map.Entry<String, Integer> entry:list){
-	            data.addAll(new PlayerName(rank++, entry.getKey(), entry.getValue()));
+	        for(Map.Entry<String, User> entry:list){
+	      	  		System.out.println( "Num Losses" );
+	      	  		System.out.println(entry.getValue().getLoss());
+	            data.addAll(new PlayerName(rank++, entry.getKey(), entry.getValue().getScore(), entry.getValue().getWin(), entry.getValue().getLoss()));
 	        }
 		}
 
