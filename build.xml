@@ -6,16 +6,169 @@
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="BounceBlast">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../Applications/Eclipse.app/Contents/Eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.8"/>
-    <property name="source" value="1.8"/>
-    <path id="BounceBlast.classpath">
-        <pathelement location="bin"/>
+    <property name="target" value="9"/>
+    <property name="source" value="9"/>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
+    <path id="Maven Dependencies.libraryclasspath">
+        <pathelement location="../../.m2/repository/com/google/firebase/firebase-admin/5.5.0/firebase-admin-5.5.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api-client/google-api-client/1.22.0/google-api-client-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/oauth-client/google-oauth-client/1.22.0/google-oauth-client-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/http-client/google-http-client-jackson2/1.22.0/google-http-client-jackson2-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/fasterxml/jackson/core/jackson-core/2.1.3/jackson-core-2.1.3.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api-client/google-api-client-gson/1.22.0/google-api-client-gson-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/http-client/google-http-client-gson/1.22.0/google-http-client-gson-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/code/gson/gson/2.1/gson-2.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/http-client/google-http-client/1.22.0/google-http-client-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/httpcomponents/httpclient/4.0.1/httpclient-4.0.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/httpcomponents/httpcore/4.0.1/httpcore-4.0.1.jar"/>
+        <pathelement location="../../.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+        <pathelement location="../../.m2/repository/commons-codec/commons-codec/1.3/commons-codec-1.3.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api/api-common/1.1.0/api-common-1.1.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/auth/google-auth-library-oauth2-http/0.8.0/google-auth-library-oauth2-http-0.8.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/auth/google-auth-library-credentials/0.8.0/google-auth-library-credentials-0.8.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/cloud/google-cloud-storage/1.7.0/google-cloud-storage-1.7.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/cloud/google-cloud-core/1.7.0/google-cloud-core-1.7.0.jar"/>
+        <pathelement location="../../.m2/repository/joda-time/joda-time/2.9.2/joda-time-2.9.2.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api/gax/1.8.1/gax-1.8.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java-util/3.3.1/protobuf-java-util-3.3.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api/grpc/proto-google-common-protos/0.1.20/proto-google-common-protos-0.1.20.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api/grpc/proto-google-iam-v1/0.1.20/proto-google-iam-v1-0.1.20.jar"/>
+        <pathelement location="../../.m2/repository/com/google/cloud/google-cloud-core-http/1.7.0/google-cloud-core-http-1.7.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/http-client/google-http-client-appengine/1.22.0/google-http-client-appengine-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/http-client/google-http-client-jackson/1.22.0/google-http-client-jackson-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.11/jackson-core-asl-1.9.11.jar"/>
+        <pathelement location="../../.m2/repository/com/google/apis/google-api-services-storage/v1-rev108-1.22.0/google-api-services-storage-v1-rev108-1.22.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/cloud/google-cloud-firestore/0.25.0-beta/google-cloud-firestore-0.25.0-beta.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.3.Final/netty-tcnative-boringssl-static-2.0.3.Final.jar"/>
+        <pathelement location="../../.m2/repository/com/google/cloud/google-cloud-core-grpc/1.7.0/google-cloud-core-grpc-1.7.0.jar"/>
+        <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java/3.3.1/protobuf-java-3.3.1.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-protobuf/1.6.1/grpc-protobuf-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-protobuf-lite/1.6.1/grpc-protobuf-lite-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-context/1.6.1/grpc-context-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api/gax-grpc/0.25.1/gax-grpc-0.25.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/auto/value/auto-value/1.2/auto-value-1.2.jar"/>
+        <pathelement location="../../.m2/repository/org/threeten/threetenbp/1.3.3/threetenbp-1.3.3.jar"/>
+        <pathelement location="../../.m2/repository/com/google/api/grpc/proto-google-cloud-firestore-v1beta1/0.1.20/proto-google-cloud-firestore-v1beta1-0.1.20.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-netty/1.6.1/grpc-netty-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-core/1.6.1/grpc-core-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/errorprone/error_prone_annotations/2.0.19/error_prone_annotations-2.0.19.jar"/>
+        <pathelement location="../../.m2/repository/com/google/instrumentation/instrumentation-api/0.4.3/instrumentation-api-0.4.3.jar"/>
+        <pathelement location="../../.m2/repository/io/opencensus/opencensus-api/0.5.1/opencensus-api-0.5.1.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-codec-http2/4.1.14.Final/netty-codec-http2-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-codec-http/4.1.14.Final/netty-codec-http-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-codec/4.1.14.Final/netty-codec-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-handler/4.1.14.Final/netty-handler-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-buffer/4.1.14.Final/netty-buffer-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-common/4.1.14.Final/netty-common-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-handler-proxy/4.1.14.Final/netty-handler-proxy-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-transport/4.1.14.Final/netty-transport-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-resolver/4.1.14.Final/netty-resolver-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/netty/netty-codec-socks/4.1.14.Final/netty-codec-socks-4.1.14.Final.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-stub/1.6.1/grpc-stub-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/io/grpc/grpc-auth/1.6.1/grpc-auth-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/com/google/guava/guava/20.0/guava-20.0.jar"/>
+        <pathelement location="../../.m2/repository/org/json/json/20160810/json-20160810.jar"/>
+        <pathelement location="../../.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"/>
+        <pathelement location="../../.m2/repository/org/slf4j/slf4j-simple/1.6.1/slf4j-simple-1.6.1.jar"/>
+    </path>
+    <path id="BounceBlast.classpath">
+        <pathelement location="target/classes"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestGameBoard.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestGameBoard.bootclasspath"/>
+    <path id="run.TestSettingsScreen.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestSettingsScreen.bootclasspath"/>
+    <path id="run.TestTutorialControls.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestTutorialControls.bootclasspath"/>
+    <path id="run.LeaderBoard.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.LeaderBoard.bootclasspath"/>
+    <path id="run.AllGameTests.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.AllGameTests.bootclasspath"/>
+    <path id="run.TestGameScene.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestGameScene.bootclasspath"/>
+    <path id="run.BallAndVector2d.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BallAndVector2d.bootclasspath"/>
+    <path id="run.TestMainMenuScreen.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestMainMenuScreen.bootclasspath"/>
+    <path id="run.Game.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.Game.bootclasspath"/>
+    <path id="run.TestTutorialStrategy.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestTutorialStrategy.bootclasspath"/>
+    <path id="run.Main (1).classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.Main (1).bootclasspath"/>
+    <path id="run.TestBall.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestBall.bootclasspath"/>
+    <path id="run.Main.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.Main.bootclasspath"/>
+    <path id="run.MainMenu.classpath">
+        <path refid="BounceBlast.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.MainMenu.bootclasspath"/>
     <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
+        <mkdir dir="target/classes"/>
+        <copy includeemptydirs="false" todir="target/classes">
             <fileset dir="src">
+                <include name="**/*.java"/>
                 <exclude name="**/*.ucls"/>
                 <exclude name="**/*.useq"/>
                 <exclude name="**/*.java"/>
@@ -23,15 +176,16 @@
         </copy>
     </target>
     <target name="clean">
-        <delete dir="bin"/>
+        <delete dir="target/classes"/>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
+            <include name="**/*.java"/>
             <classpath refid="BounceBlast.classpath"/>
         </javac>
     </target>
@@ -49,19 +203,160 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="MainMenu">
-        <java classname="MainMenu" failonerror="true" fork="yes">
-            <classpath refid="BounceBlast.classpath"/>
+    <target name="TestGameBoard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestGameBoard" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestGameBoard.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestGameBoard.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="TestSettingsScreen">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestSettingsScreen" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestSettingsScreen.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestSettingsScreen.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="TestTutorialControls">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestTutorialControls" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestTutorialControls.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestTutorialControls.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="LeaderBoard">
+        <java classname="layout.LeaderBoard" failonerror="true" fork="yes">
+            <classpath refid="run.LeaderBoard.classpath"/>
+            <bootclasspath>
+                <path refid="run.LeaderBoard.bootclasspath"/>
+            </bootclasspath>
         </java>
+    </target>
+    <target name="AllGameTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AllGameTests" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AllGameTests.classpath"/>
+            <bootclasspath>
+                <path refid="run.AllGameTests.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="TestGameScene">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestGameScene" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestGameScene.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestGameScene.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="BallAndVector2d">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.BallAndVector2d" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BallAndVector2d.classpath"/>
+            <bootclasspath>
+                <path refid="run.BallAndVector2d.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="TestMainMenuScreen">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestMainMenuScreen" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestMainMenuScreen.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestMainMenuScreen.bootclasspath"/>
+            </bootclasspath>
+        </junit>
     </target>
     <target name="Game">
-        <java classname="Game" failonerror="true" fork="yes">
-            <classpath refid="BounceBlast.classpath"/>
+        <java classname="logic.Game" failonerror="true" fork="yes">
+            <classpath refid="run.Game.classpath"/>
+            <bootclasspath>
+                <path refid="run.Game.bootclasspath"/>
+            </bootclasspath>
         </java>
     </target>
-    <target name="Main">
-        <java classname="Main" failonerror="true" fork="yes">
-            <classpath refid="BounceBlast.classpath"/>
+    <target name="TestTutorialStrategy">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestTutorialStrategy" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestTutorialStrategy.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestTutorialStrategy.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="Main (1)">
+        <java classname="layout.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main (1).classpath"/>
+            <bootclasspath>
+                <path refid="run.Main (1).bootclasspath"/>
+            </bootclasspath>
         </java>
+    </target>
+    <target name="TestBall">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestBall" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestBall.classpath"/>
+            <bootclasspath>
+                <path refid="run.TestBall.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="Main">
+        <java classname="logic.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main.classpath"/>
+            <bootclasspath>
+                <path refid="run.Main.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="MainMenu">
+        <java classname="logic.MainMenu" failonerror="true" fork="yes">
+            <classpath refid="run.MainMenu.classpath"/>
+            <bootclasspath>
+                <path refid="run.MainMenu.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>
