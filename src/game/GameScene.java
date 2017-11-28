@@ -55,7 +55,6 @@ public class GameScene extends Scene {
 		// Create players
 		mainPlayer = new BowlingBall(400, 400);
 		playerOne = new TennisBall(300, 300);
-		playerOne.setAI(true, getAllPlayers());
 		
 		ALL_POSSIBLE_PLAYERS = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
 		// Create board
@@ -69,6 +68,9 @@ public class GameScene extends Scene {
 		
 		root.getChildren().addAll(board, h, v);
 		root.getChildren().addAll(getAllPlayers());
+		List<Ball> playerOnePlayers = getAllPlayers();
+		playerOnePlayers.remove(playerOne);
+		playerOne.setAI(true, playerOnePlayers);
 		
 		setOnKeyPressed(new EventHandler<KeyEvent>() 
 		{

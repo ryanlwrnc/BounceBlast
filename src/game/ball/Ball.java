@@ -47,42 +47,109 @@ public class Ball extends Circle {
 	public void updatePosition() {
 		// if the ball is controlled by an AI
 		if (ai) {
-			this.updatePositionAI();
+			updatePositionAI();
 		}
 		// else if the ball is player-controlled
 		else {
-			// set acceleration
-			ax = 0;
-			ay = 0;
-			
-			if (pressed.get(Button.UP)) {
-				ay = -F / m;
-			}
-			if (pressed.get(Button.DOWN)) {
-				ay = ay + F / m;
-			}
-			if (pressed.get(Button.LEFT)) {
-				ax = -F / m;
-			}
-			if (pressed.get(Button.RIGHT)) {
-				ax += F/m;
-			}
-			
-			setCenterX(getNewX(getCenterX(), vx, t, ax));
-			setCenterY(getNewY(getCenterY(), vy, t, ay));
-			
-			setVx(getVx(vx, ax, t));
-			setVy(getVy(vy, ay, t));
+			updatePositionPlayer();
 		}
+	}
+	
+	public void updatePositionPlayer() {
+		ax = 0;
+		ay = 0;
+		
+		if (pressed.get(Button.UP)) {
+			ay = -F / m;
+		}
+		if (pressed.get(Button.DOWN)) {
+			ay = ay + F / m;
+		}
+		if (pressed.get(Button.LEFT)) {
+			ax = -F / m;
+		}
+		if (pressed.get(Button.RIGHT)) {
+			ax = F/m;
+		}
+		
+		setCenterX(getNewX(getCenterX(), vx, t, ax));
+		setCenterY(getNewY(getCenterY(), vy, t, ay));
+		
+		setVx(getVx(vx, ax, t));
+		setVy(getVy(vy, ay, t));
 	}
 	
 	public void updatePositionAI() {
 		Ball target = AIgetTarget();
+		ax = 0;
+		ay = 0;
 		
+		// somewhat random movement
+		// move towards target
+		if (Math.random() > 0.33) {
+			if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
+				// move right
+				ax = F/m;
+				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+					// move down
+					ay = ay + F / m;
+				}
+				else {
+					// move up
+					ay = -F / m;
+				}
+			}
+			if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
+				// move left
+				ax = -F / m;
+				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+					// move down
+					ay = ay + F / m;
+				}
+				else {
+					// move up
+					ay = -F / m;
+				}
+			}
+		}
+		// move away from target
+		else {
+			if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
+				// move left
+				ax = -F / m;
+				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+					// move up
+					ay = -F / m;
+				}
+				else {
+					// move down
+					ay = ay + F / m;
+				}
+			}
+			if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
+				// move right
+				ax = F/m;
+				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+					// move up
+					ay = -F / m;
+				}
+				else {
+					// move down
+					ay = ay + F / m;
+				}
+			}
+		}
+		
+		
+		setCenterX(getNewX(getCenterX(), vx, t, ax));
+		setCenterY(getNewY(getCenterY(), vy, t, ay));
+		
+		setVx(getVx(vx, ax, t));
+		setVy(getVy(vy, ay, t));
 	}
 	
 	public Ball AIgetTarget() {
-		double minDistance = Integer.MAX_VALUE;
+		double minDistance = (double)(Integer.MAX_VALUE);
 		Ball target = this.players.get(0); 
 		
 		for (Ball player : this.players) {

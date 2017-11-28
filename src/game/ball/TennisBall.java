@@ -11,6 +11,7 @@ public class TennisBall extends Ball
 	
 	public TennisBall(double centerX, double centerY){
 		super(centerX, centerY, radius, new ImagePattern(ballImg));
+		setF(3);
 		setM(mass);
 	}
 }

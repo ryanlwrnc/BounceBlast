@@ -109,9 +109,8 @@ public class GameEngine implements Runnable {
 							mainPlayerHorizWallExiting = false;
 						}
 						
-						scene.mainPlayer.updatePosition();
-						scene.playerOne.setF(0);
 						scene.playerOne.updatePosition();
+						scene.mainPlayer.updatePosition();
 						
 						// Move Platform Clockwise
 						movePlatform();
