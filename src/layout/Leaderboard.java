@@ -1,5 +1,6 @@
 package layout;
 import java.util.ArrayList;
+import java.util.Arrays;
 //
 import java.util.Collections;
 import java.util.Comparator;
@@ -108,34 +109,37 @@ public class Leaderboard extends Scene {
 		final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 		
 		database.addValueEventListener(new ValueEventListener() {
+			
 		@Override
 		public void onDataChange(DataSnapshot snapshot) {
+			// Create a new hashmap to place leaderboard data from Firebase
 			HashMap<String,User> leaderboard = new HashMap<String, User>();
 			
+			// For each data entry in Firebase
 			for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+				// Obtain the individual data
 				User post = postSnapshot.getValue(User.class);
-				System.out.println(post.score);
-				System.out.println(post.win);
-				System.out.println(post.loss);
+				// Place the data into hashmap
 				leaderboard.put(post.username, post);
 		   }
 			
-			Set<Entry<String, User>> set = leaderboard.entrySet();
-	        List<Entry<String, User>> list = new ArrayList<Entry<String, User>>(set);
-	        Collections.sort( list, new Comparator<Map.Entry<String, User>>()
-	        {
-	            public int compare( Map.Entry<String, User> o1, Map.Entry<String, User> o2 )
-	            {
-	                return (((User) o2).getScore()).compareTo( ((User) o1).getScore() );
-	            }
-	        } );
-	        
-	        int rank = 1;
-	        for(Map.Entry<String, User> entry:list){
-	      	  		System.out.println( "Num Losses" );
-	      	  		System.out.println(entry.getValue().getLoss());
-	            data.addAll(new PlayerName(rank++, entry.getKey(), entry.getValue().getScore(), entry.getValue().getWin(), entry.getValue().getLoss()));
-	        }
+			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
+	      Set<Entry<String, User>> set = leaderboard.entrySet();
+	      List<Entry<String, User>> list = new ArrayList<Entry<String, User>>(set);
+	      Collections.sort( list, new Comparator<Map.Entry<String, User>>()
+	      {
+	      		public int compare( Map.Entry<String,User> o1, Map.Entry<String,User> o2 )
+	      		{
+	      			return o2.getValue().getScore().compareTo(o1.getValue().getScore());
+	      		}
+	      } );
+	      // -----
+	      
+	      // Now that the data from Firebase is sorted, now place each entry into the leaderboard.
+	      	int rank = 1;
+	      	for(Map.Entry<String, User> entry:list){
+	      		data.addAll(new PlayerName(rank++, entry.getKey(), entry.getValue().getScore(), entry.getValue().getWin(), entry.getValue().getLoss()));
+	      	}
 		}
 
 		@Override
@@ -146,12 +150,7 @@ public class Leaderboard extends Scene {
 		}
 
 		});
-		//
-		/*
-		data.addAll(new PlayerName(1, "DFalessi", 30));
-		data.addAll(new PlayerName(2, "Mark", 24));
-		data.addAll(new PlayerName(3, "Ryan", 23));
-		*/
+
 		return data;
 	}
 }
