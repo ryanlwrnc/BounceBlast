@@ -1,0 +1,6 @@
+projectKey=bounceblast
+serverUrl=http://localhost:9000
+serverVersion=6.5.0.27846
+dashboardUrl=http://localhost:9000/dashboard/index/bounceblast
+ceTaskId=AWALc6LyPP4XTv326D9Y
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWALc6LyPP4XTv326D9Y
