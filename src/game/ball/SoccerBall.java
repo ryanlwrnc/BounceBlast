@@ -7,8 +7,8 @@ import javafx.scene.paint.Paint;
 public class SoccerBall extends Ball
 {
 	private static final Image ballImg = new Image("file:soccerball.jpg");
-	private static final double radius = 20;
-	private static final double mass = 5;
+	private static final double radius = 27;
+	private static final double mass = 15;
 	
 	public SoccerBall(double centerX, double centerY){
 		super(centerX, centerY, radius, new ImagePattern(ballImg));
