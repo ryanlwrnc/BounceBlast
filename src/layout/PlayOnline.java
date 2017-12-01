@@ -21,14 +21,13 @@ import layout.components.BackToMainMenuButton;
 import layout.components.PlayOnlineButton;
 
 public class PlayOnline extends Scene {
-
 	// JavaFX
 	private GridPane gridpane;
 	
 	// Components
 	public Button back;
 	public Button start;
-	public Button temp;
+	public Button temp;		// Game Scene
 	public Button lobby;
 	public Text directionKeys;
 	public Text gameTitle;
@@ -50,16 +49,21 @@ public class PlayOnline extends Scene {
 		
 		// Gridpane
 		cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-        gridpane.getColumnConstraints().add(cons1);
-        cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        gridpane.getColumnConstraints().addAll(cons1, cons2);
-        rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
-        rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);    
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
+      cons1.setHgrow(Priority.NEVER);
+      gridpane.getColumnConstraints().add(cons1);
+
+      cons2 = new ColumnConstraints();
+      cons2.setHgrow(Priority.ALWAYS);
+      
+      gridpane.getColumnConstraints().addAll(cons1, cons2);
+      
+      rcons1 = new RowConstraints();
+      rcons1.setVgrow(Priority.NEVER);
+      
+      rcons2 = new RowConstraints();
+      rcons2.setVgrow(Priority.ALWAYS);    
+      
+      gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
@@ -87,7 +91,6 @@ public class PlayOnline extends Scene {
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");
-        
         
 		directionKeys = new Text();
 		directionKeys.setFont(new Font(20));
@@ -126,7 +129,7 @@ public class PlayOnline extends Scene {
 		gridpane.add(box, screenButtonCol, 1);
 
 		// Start Button
-		start = new PlayOnlineButton(app, "Start", new InGame().getScene());
+		start = new PlayOnlineButton(app, "Start", new InGame(app));
 		start.setPrefHeight(25);
 		start.setPrefWidth(65);
 		start.setStyle("-fx-border-width: 3;" + 
@@ -157,7 +160,7 @@ public class PlayOnline extends Scene {
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 		// Return to Main Menu when back is pressed
-		 
+		
 		//Temporary GameScene Button
 		temp = new PlayOnlineButton(app, "Game Scene", new GameScene());
 		temp.setPrefHeight(25);
@@ -165,7 +168,8 @@ public class PlayOnline extends Scene {
 		gridpane.add(temp, 2, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Return to Main Menu when back is pressed
+		
+		// Go to the temporary game scene when the button is pressed.
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				GameScene scene = new GameScene();

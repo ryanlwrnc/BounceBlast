@@ -23,11 +23,28 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import layout.components.BackToMainMenuButton;
 
-public class InGame  extends Main{
-	public Scene getScene() {
-		Button  exit;
+public class InGame extends Scene {
+	// JavaFX
+	private GridPane gridpane;
+	
+	// Components
+	public Button quitGame;
+	public Text gameTitle;
+	public Rectangle namesRect;
+	public GridPane nameGrid;
+	public ColumnConstraints cons1;
+	public ColumnConstraints cons2;
+	public RowConstraints rcons1;
+	public RowConstraints rcons2;
+	
+	public InGame(Main app) {
+		super(new GridPane(), 800, 600);
+		this.gridpane =  (GridPane) getRoot();
+		
 		int screenButtonCol = 2;
+		/*
 		String buttonStyle = "-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
@@ -38,23 +55,22 @@ public class InGame  extends Main{
 				"-fx-background-color: #003399;" +
 				"-fx-font-size: 24;" + 
 				"-fx-text-fill: white;";
+		*/
 		
-		
-		  
-		GridPane gridpane = new GridPane();
-		ColumnConstraints cons1 = new ColumnConstraints();
+		// Gridpane
+		  cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
 
-        ColumnConstraints cons2 = new ColumnConstraints();
+        cons2 = new ColumnConstraints();
         cons2.setHgrow(Priority.ALWAYS);
-        
+    
         gridpane.getColumnConstraints().addAll(cons1, cons2);
         
-        RowConstraints rcons1 = new RowConstraints();
+        rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
         
-        RowConstraints rcons2 = new RowConstraints();
+        rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
         
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
@@ -63,7 +79,7 @@ public class InGame  extends Main{
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		
 		// BounceBlast text
-		Text gameTitle = new Text();
+		gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("BounceBlast");
@@ -73,10 +89,8 @@ public class InGame  extends Main{
 		gridpane.add(gameTitle, screenButtonCol, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
-		
-		
 		// Names Gridpane
-		Rectangle namesRect = new Rectangle();
+		namesRect = new Rectangle();
 		namesRect.setWidth(160);
 		namesRect.setHeight(115);
 		namesRect.setFill(Color.WHITE);
@@ -84,7 +98,7 @@ public class InGame  extends Main{
 		gridpane.add(namesRect, 0,0);
 		GridPane.setMargin(namesRect, new Insets(10,0,0,50));
 		
-		GridPane nameGrid = new GridPane();
+		nameGrid = new GridPane();
 		ColumnConstraints cons3 = new ColumnConstraints();
 		cons3.setHgrow(Priority.NEVER);
         nameGrid.getColumnConstraints().add(cons3);
@@ -106,7 +120,7 @@ public class InGame  extends Main{
         gridpane.add(nameGrid, 0, 0);
         GridPane.setMargin(nameGrid, new Insets(10, 0, 0, 0));
 		
-		//names
+		// Start of Names
 		Text name0 = new Text();
 		name0.setFont(new Font(20));
 		name0.setFill(Color.WHITE);
@@ -116,9 +130,7 @@ public class InGame  extends Main{
 		GridPane.setHalignment(name0, HPos.LEFT);
 		nameGrid.add(name0, 0, 0);
 		GridPane.setMargin(name0, new Insets(5, 10, 5, 50));
-		
-
-		
+	
 		Text name1 = new Text();
 		name1.setFont(new Font(20));
 		name1.setFill(Color.WHITE);
@@ -148,6 +160,7 @@ public class InGame  extends Main{
 		GridPane.setHalignment(name3, HPos.LEFT);
 		nameGrid.add(name3, 0, 3);
 		GridPane.setMargin(name3, new Insets(5, 10, 5, 50));
+		// End of Names
 		
 		// scores
 		Text score0 = new Text();
@@ -217,48 +230,13 @@ public class InGame  extends Main{
 		gridpane.add(ellipse, 2, 3);
 		GridPane.setMargin(ellipse,  new Insets(50, 5, 10, 5));
 		
-		
-		// Exit button
-		exit = new Button("Exit");
-		exit.setPrefHeight(25);
-		exit.setPrefWidth(60);
-		exit.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
-		gridpane.add(exit, 0, 10);
-		GridPane.setHalignment(exit, HPos.CENTER);
-		GridPane.setMargin(exit, new Insets(5, 45, 5, 10));
-		// Exit the application when exit pressed
-		exit.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				Platform.exit();
-			}
-		});
-		exit.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		exit.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-
-		exit.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		exit.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
+		// Quit Button - When pressed, goes back to the main menu.
+		quitGame = new BackToMainMenuButton(app, "Quit");
+		gridpane.add(quitGame, 0, 10);
+		GridPane.setHalignment(quitGame, HPos.CENTER);
+		GridPane.setMargin(quitGame, new Insets(5, 45, 5, 10));
 		 
-		Scene scene = new Scene(gridpane, 800, 600);
-		return scene;
+		//Scene scene = new Scene(gridpane, 800, 600);
+		//return scene;
 	}
 }

@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 public class GameScene extends Scene {
-
+	
 	// JavaFx
 	private Group root;
 	
@@ -49,8 +49,7 @@ public class GameScene extends Scene {
 	
 	public GameScene() {
 		super(new Group(), 800, 600);
-		
-		
+
 		root = (Group) getRoot();
 		// Create players
 		mainPlayer = new BowlingBall(400, 400);

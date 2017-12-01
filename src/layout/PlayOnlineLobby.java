@@ -86,7 +86,7 @@ public class PlayOnlineLobby extends Scene {
 			gridpane.add(box, screenButtonCol, 1);
 
 			// Start Button
-			start = new PlayOnlineButton(app, "Start", new InGame().getScene());
+			start = new PlayOnlineButton(app, "Start", new InGame(app));
 			start.setPrefHeight(25);
 			start.setPrefWidth(65);
 			start.setStyle("-fx-border-width: 3;" + 
