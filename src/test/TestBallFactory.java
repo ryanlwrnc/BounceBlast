@@ -15,7 +15,7 @@ public class TestBallFactory {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	@Test
-	public void TestBallFactoryNewGameBall() {
+	public void testBallFactoryNewGameBall() {
 		 
 		BallFactory factory = new BallFactory();
 		Ball ball = factory.newGameBall(BallType.BASKETBALL);

@@ -41,12 +41,12 @@ public class Leaderboard extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	public Button back;
-	public Text gameTitle;
-	public ColumnConstraints cons1;
-	public ColumnConstraints cons2;
-	public RowConstraints rcons1;
-	public RowConstraints rcons2;
+	private Button back;
+	private Text gameTitle;
+	private ColumnConstraints cons1;
+	private ColumnConstraints cons2;
+	private RowConstraints rcons1;
+	private RowConstraints rcons2;
 	private TableView<PlayerName> table;
 		
 	// Constants
@@ -120,7 +120,7 @@ public class Leaderboard extends Scene {
 				// Obtain the individual data
 				User post = postSnapshot.getValue(User.class);
 				// Place the data into hashmap
-				leaderboard.put(post.username, post);
+				leaderboard.put(post.getPassword(), post);
 		   }
 			
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.

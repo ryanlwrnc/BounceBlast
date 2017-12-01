@@ -8,23 +8,23 @@ import layout.User;
 
 public class TestUser {
 	@Test
-	public void TestUserConstructorWithPassword() {
+	public void testUserConstructorWithPassword() {
 		User user = new User("password");
-		assertEquals(user.password, "password");
+		assertEquals(user.getPassword(), "password");
 	}
 	@Test
-	public void TestUserConstructorWithPasswordAndUsername() {
+	public void testUserConstructorWithPasswordAndUsername() {
 		User user = new User("username", "password");
-		assertEquals(user.username, "username");
+		assertEquals(user.getUsername(), "username");
 	}
 	@Test
-	public void TestUserConstructorWithPasswordAndScore() {
+	public void testUserConstructorWithPasswordAndScore() {
 		User user = new User("password", 100);
-		assertEquals((int)user.score, 100);
+		assertEquals((int)user.getScore(), 100);
 	}
 	@Test
-	public void TestUserConstructorWithAll() {
+	public void testUserConstructorWithAll() {
 		User user = new User("username", "password", 100);
-		assertEquals((int)user.score, 100);
+		assertEquals((int)user.getScore(), 100);
 	}
 }

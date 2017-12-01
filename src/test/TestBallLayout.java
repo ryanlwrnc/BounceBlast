@@ -15,17 +15,17 @@ public class TestBallLayout {
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	
 	@Test
-	public void TestBallLayoutConstructor() {
+	public void testBallLayoutConstructor() {
 		Ball ball = new Ball(10.0, 10.0, 10.0, Color.BLACK);
 		assertEquals(ball.getCenterX(), 10.0, 0.0);
 	}
 	@Test
-	public void TestBallLayoutGetBallColor() {
+	public void testBallLayoutGetBallColor() {
 		Ball ball = new Ball(10.0, 10.0, 10.0, Color.BLACK);
 		assertEquals(ball.getFill(), Color.BLACK);
 	}
 	@Test
-	public void TestBallLayoutRadius() {
+	public void testBallLayoutRadius() {
 		Ball ball = new Ball(10.0, 10.0, 10.0, Color.BLACK);
 		ball.setRadius((float)47);
 		assertEquals(ball.getRadius(), (float)47, 0.0);

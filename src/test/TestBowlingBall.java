@@ -13,25 +13,25 @@ public class TestBowlingBall {
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	
 	@Test
-	public void TestBowlingBallConstructor() {
+	public void testBowlingBallConstructor() {
 		BowlingBall ball = new BowlingBall(80, 80);
 		assertEquals(ball.getCenterX(), 80, 0.0);
 	}
 
 	@Test
-	public void TestBowlingBallSetBallX() {
+	public void testBowlingBallSetBallX() {
 		BowlingBall ball = new BowlingBall(80, 80);
 		ball.setCenterX(200.0);
 		assertEquals(ball.getCenterX(), 200, 0.0);
 	}
 	@Test
-	public void TestBowlingBallSetBallY() {
+	public void testBowlingBallSetBallY() {
 		BowlingBall ball = new BowlingBall(80, 80);
 		ball.setCenterY(200.0);
 		assertEquals(ball.getCenterY(), 200, 0.0);
 	}
 	@Test
-	public void TestBowlingBallGetBallRadius() {
+	public void testBowlingBallGetBallRadius() {
 		BowlingBall ball = new BowlingBall(80, 80);
 		assertEquals(ball.getRadius(), 20, 0.0);
 	}

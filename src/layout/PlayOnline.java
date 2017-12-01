@@ -25,20 +25,20 @@ public class PlayOnline extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	public Button back;
-	public Button start;
-	public Button temp;		// Game Scene
-	public Button lobby;
-	public Text directionKeys;
-	public Text gameTitle;
-	public Text ballTypes;
-	public GridPane box;
-	public ComboBox<String> cbBall;
-	public ComboBox<String> cbCPU;
-	public ColumnConstraints cons1;
-	public ColumnConstraints cons2;
-	public RowConstraints rcons1;
-	public RowConstraints rcons2;
+	private Button back;
+	private Button start;
+	private Button temp;
+	private Button lobby;
+	private Text directionKeys;
+	private Text gameTitle;
+	private Text ballTypes;
+	private GridPane box;
+	private ComboBox<String> cbBall;
+	private ComboBox<String> cbCPU;
+	private ColumnConstraints cons1;
+	private ColumnConstraints cons2;
+	private RowConstraints rcons1;
+	private RowConstraints rcons2;
 	
 	// Constants
 	private final int screenButtonCol = 2;

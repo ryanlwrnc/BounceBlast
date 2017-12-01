@@ -21,7 +21,7 @@ import layout.components.MainMenuButton;
 public class MainMenu extends Scene{
 	
 	// JavaFX
-	public GridPane gridpane;
+	private GridPane gridpane;
 	
 	// Log in
 	private boolean loggedIn = false;

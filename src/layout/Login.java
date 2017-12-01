@@ -156,7 +156,7 @@ public class Login extends Scene {
 						public void onDataChange(DataSnapshot dataSnapshot) {
 						        User note = dataSnapshot.getValue(User.class);
 						        // If password matches
-						        if(passwordField.getText().equals(note.password)) {
+						        if(passwordField.getText().equals(note.getPassword())) {
 					   					app.updateScene(new Profile(app));
 						      	  		System.out.println("SUCCESSFUL LOG IN");
 						        }

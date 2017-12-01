@@ -2,11 +2,11 @@ package layout;
 
 public class User
 {
-	public String username;
-	public String password;
-	public Integer score;
-	public Integer win;
-	public Integer loss;
+	private String username;
+	private String password;
+	private Integer score;
+	private Integer win;
+	private Integer loss;
 	
 	public User() {};
 	
@@ -57,5 +57,11 @@ public class User
 	public Integer getLoss()
 	{
 		return loss;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public String getUsername() {
+		return username;
 	}
 }

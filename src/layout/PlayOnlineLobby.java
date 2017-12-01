@@ -24,16 +24,16 @@ public class PlayOnlineLobby extends Scene {
 		private GridPane gridpane;
 		
 		// Components
-		public Button back;
-		public Button start;
-		public Button temp;
-		public Button settings;
-		public Text gameTitle;
-		public GridPane box;
-		public ColumnConstraints cons1;
-		public ColumnConstraints cons2;
-		public RowConstraints rcons1;
-		public RowConstraints rcons2;
+		private Button back;
+		private Button start;
+		private Button temp;
+		private Button settings;
+		private Text gameTitle;
+		private GridPane box;
+		private ColumnConstraints cons1;
+		private ColumnConstraints cons2;
+		private RowConstraints rcons1;
+		private RowConstraints rcons2;
 		
 		// Constants
 		private final int screenButtonCol = 2;

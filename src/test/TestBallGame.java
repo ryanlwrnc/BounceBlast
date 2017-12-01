@@ -14,52 +14,52 @@ public class TestBallGame {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	@Test
-	public void TestBallGameConstructor() {
+	public void testBallGameConstructor() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getCenterX(), 10, 0.0);
 	}
 	@Test
-	public void TestBallGameUp() {
+	public void testBallGameUp() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.press(Button.UP, true);
 		assertEquals(ball.isPressed(Button.UP), true);
 	}
 	@Test
-	public void TestBallGameDown() {
+	public void testBallGameDown() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.press(Button.DOWN, true);
 		assertEquals(ball.isPressed(Button.DOWN), true);
 	}
 	@Test
-	public void TestBallGameLeft() {
+	public void testBallGameLeft() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.press(Button.LEFT, true);
 		assertEquals(ball.isPressed(Button.LEFT), true);
 	}
 	@Test
-	public void TestBallGameRight() {
+	public void testBallGameRight() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.press(Button.RIGHT, true);
 		assertEquals(ball.isPressed(Button.RIGHT), true);
 	}
 	@Test
-	public void TestBallGameShift() {
+	public void testBallGameShift() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.press(Button.SPACE, true);
 		assertEquals(ball.isPressed(Button.SPACE), true);
 	}
 	@Test
-	public void TestBallGameGetVx() {
+	public void testBallGameGetVx() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getVx(), 0, 0.0);
 	}
 	@Test
-	public void TestBallGameGetVy() {
+	public void testBallGameGetVy() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getVy(), 0, 0.0);
 	}
 	@Test
-	public void TestBallGameUpdatePosition() {
+	public void testBallGameUpdatePosition() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.press(Ball.Button.UP, true);
 		ball.press(Button.DOWN, true);
@@ -68,66 +68,61 @@ public class TestBallGame {
 		assertEquals(ball.getCenterX(), 10.0, 0.0);
 	}
 	@Test
-	public void TestBallGameReflectVertical() {
+	public void testBallGameReflectVertical() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.reflectVertical();
 		assertEquals(ball.getVy(), 0, 0.0);
 	}
 	@Test
-	public void TestBallGameReflectHorizontal() {
+	public void testBallGameReflectHorizontal() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.reflectHorizontal();
 		assertEquals(ball.getVx(), 0, 0.0);
 	}
 	@Test
-	public void TestBallGameGetNewX() {
+	public void testBallGameGetNewX() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getNewX(1.0, 1.0, 2.0, 5.0), 13.0, 0.0);
 	}
 	@Test
-	public void TestBallGameGetNewY() {
+	public void testBallGameGetNewY() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getNewY(1.0, 1.0, 2.0, 5.0), 13.0, 0.0);
 	}
 	@Test
-	public void TestBallGameGetVxOverride() {
+	public void testBallGameGetVxOverride() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getVx(1.0, 2.0, 3.0), 7.0, 0.0);
 	}
 	@Test
-	public void TestBallGameGetVyOverride() {
+	public void testBallGameGetVyOverride() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getVy(1.0, 2.0, 3.0), 7.0, 0.0);
 	}
-	/*@Test
-	public void TestBallGameHandleCollison() {
-		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
-		assertEquals(ball.getVy(1.0, 2.0, 3.0), 7.0, 0.0);
-	}*/
 	@Test
-	public void TestBallGameF() {
+	public void testBallGameF() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.setF(47.0);
 		assertEquals(ball.getF(), 47.0, 0.0);
 	}
 	@Test
-	public void TestBallGameM() {
+	public void testBallGameM() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.setM(47.0);
 		assertEquals(ball.getM(), 47.0, 0.0);
 	}
 	@Test
-	public void TestBallGameAx() {
+	public void testBallGameAx() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getAx(), 0.0, 0.0);
 	}
 	@Test
-	public void TestBallGameAy() {
+	public void testBallGameAy() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		assertEquals(ball.getAy(), 0.0, 0.0);
 	}
 	@Test
-	public void TestBallGameT() {
+	public void testBallGameT() {
 		Ball ball = new Ball(10, 10, 20, Paint.valueOf("white"));
 		ball.setT(10.0);
 		assertEquals(ball.getT(), 10.0, 0.0);

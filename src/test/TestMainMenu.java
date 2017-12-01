@@ -15,7 +15,7 @@ public class TestMainMenu {
 	@Rule
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	@Test
-	public void TestMainMenuLogIn() {
+	public void testMainMenuLogIn() {
 		Main main = new Main();
 		MainMenu mainMenu = new MainMenu(main);
 		mainMenu.logIn("username");

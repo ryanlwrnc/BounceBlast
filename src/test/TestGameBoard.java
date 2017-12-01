@@ -7,22 +7,22 @@ import game.GameBoard;
 
 public class TestGameBoard {
 	@Test
-	public void TestGameBoardWidth() {
+	public void testGameBoardWidth() {
 		GameBoard board = new GameBoard(1, 1, 2, 2);
 		assertEquals(board.getWidth(), (double)2, 0.0);
 	}
 	@Test
-	public void TestGameBoardHeight() {
+	public void testGameBoardHeight() {
 		GameBoard board = new GameBoard(1, 1, 2, 2);
 		assertEquals(board.getHeight(), (double)2, 0.0);
 	}
 	@Test
-	public void TestGameBoardX() {
+	public void testGameBoardX() {
 		GameBoard board = new GameBoard(1, 1, 2, 2);
 		assertEquals(board.getX(), (double)1, 0.0);
 	}
 	@Test
-	public void TestGameBoardY() {
+	public void testGameBoardY() {
 		GameBoard board = new GameBoard(1, 1, 2, 2);
 		assertEquals(board.getY(), (double)1, 0.0);
 	}

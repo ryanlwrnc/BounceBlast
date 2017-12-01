@@ -28,19 +28,19 @@ public class CreateAccount extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	public Button back;
-	public Button createAccount;
-	public Text gameTitle;
-	public Text username;
-	public Text password;
+	private Button back;
+	private Button createAccount;
+	private Text gameTitle;
+	private Text username;
+	private Text password;
 	public final TextField usernameField;
 	public final PasswordField passwordField;
 	public final PasswordField confirmPasswordField;
-	public ColumnConstraints cons1;
-	public ColumnConstraints cons2;
-	public RowConstraints rcons1;
-	public RowConstraints rcons2;
-	public GridPane box;
+	private ColumnConstraints cons1;
+	private ColumnConstraints cons2;
+	private RowConstraints rcons1;
+	private RowConstraints rcons2;
+	private GridPane box;
 	
 	// Constants
 	private final int screenButtonCol = 2;

@@ -22,18 +22,18 @@ import layout.components.BackToMainMenuButton;
 public class PlayOffline extends Scene {
 
 	// JavaFX
-	public GridPane gridpane;
+	private GridPane gridpane;
 	
 	// Components
-	public Button back;
-	public Button start;
-	public Button temp;
-	public Text gameTitle;
-	public Text ballTypes;
-	public GridPane box;
-	public Text directionKeys;
-	public ComboBox<String> cbCPU;
-	public ComboBox<String> cbBall;
+	private Button back;
+	private Button start;
+	private Button temp;
+	private Text gameTitle;
+	private Text ballTypes;
+	private GridPane box;
+	private Text directionKeys;
+	private ComboBox<String> cbCPU;
+	private ComboBox<String> cbBall;
 	
 	// Constants
 	public final int screenButtonCol = 2;

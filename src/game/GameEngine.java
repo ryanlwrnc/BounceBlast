@@ -152,12 +152,13 @@ public class GameEngine implements Runnable {
 			}
 			if (scene.h.getStartX() < scene.board.xmax()) {
 				// pod growing in size
-				if (scene.h.getEndX() - scene.board.getX() >= podLength) {
+				/*if (scene.h.getEndX() - scene.board.getX() >= podLength) {
 					scene.h.setStartX(scene.h.getStartX() + delta);
 				}
 				else if (scene.h.getEndX() >= scene.board.xmax()) {
 					scene.h.setStartX(scene.h.getStartX() + delta);
-				}
+				}*/
+				scene.h.setStartX(scene.h.getStartX() + delta);
 			}
 			else {
 				goingRight = false;
@@ -183,12 +184,13 @@ public class GameEngine implements Runnable {
 			
 			if (scene.v.getStartY() < scene.board.ymax()) {
 				// pod growing in size
-				if (scene.v.getEndY() - scene.board.getY() >= podLength) {
+				/*if (scene.v.getEndY() - scene.board.getY() >= podLength) {
 					scene.v.setStartY(scene.v.getStartY() + delta);
 				}
 				else if (scene.v.getEndY() >= scene.board.ymax()) {
 					scene.v.setStartY(scene.v.getStartY() + delta);
-				}
+				}*/
+				scene.v.setStartY(scene.v.getStartY() + delta);
 			}
 			else {
 				goingDown = false;
@@ -214,12 +216,13 @@ public class GameEngine implements Runnable {
 			
 			if (scene.h.getStartX() > scene.board.getX()) {
 				// pod growing in size
-				if (scene.board.xmax() - scene.h.getEndX() >= podLength) {
+				/*if (scene.board.xmax() - scene.h.getEndX() >= podLength) {
 					scene.h.setStartX(scene.h.getStartX() - delta);
 				}
 				else if (scene.h.getEndX() >= scene.board.xmax()) {
 					scene.h.setStartX(scene.h.getStartX() - delta);
-				}
+				}*/
+				scene.h.setStartX(scene.h.getStartX() - delta);
 			}
 			else {
 				goingLeft = false;
@@ -246,12 +249,13 @@ public class GameEngine implements Runnable {
 			
 			if (scene.v.getStartY() > scene.board.getY()) {
 				// pod growing in size
-				if (scene.board.ymax() - scene.v.getEndY() >= podLength) {
+				/*if (scene.board.ymax() - scene.v.getEndY() >= podLength) {
 					scene.v.setStartY(scene.v.getStartY() - delta);
 				}
 				else if (scene.v.getEndY() >= scene.board.ymax()) {
 					scene.v.setStartY(scene.v.getStartY() - delta);
-				}
+				}*/
+				scene.v.setStartY(scene.v.getStartY() - delta);
 			}
 			else {
 				goingUp = false;

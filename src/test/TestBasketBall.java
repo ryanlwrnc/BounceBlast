@@ -14,27 +14,27 @@ public class TestBasketBall {
 	public JavaFXThreadingRule jfxRule = new JavaFXThreadingRule();
 	
 	@Test
-	public void TestBasketBallConstructor() {
+	public void testBasketBallConstructor() {
 		BasketBall ball = new BasketBall(400, 400);
 		assertEquals(ball.getCenterX(), 400, 0.0);
 	}
 	
 	@Test
-	public void TestBasketBallSetBallX() {
+	public void testBasketBallSetBallX() {
 		BasketBall ball = new BasketBall(400, 400);
 		ball.setCenterX(200.0);
 		assertEquals(ball.getCenterX(), 200, 0.0);
 	}
 	
 	@Test
-	public void TestBasketBallSetBallY() {
+	public void testBasketBallSetBallY() {
 		BasketBall ball = new BasketBall(400, 400);
 		ball.setCenterY(200.0);
 		assertEquals(ball.getCenterY(), 200, 0.0);
 	}
 	
 	@Test
-	public void TestBasketBallGetBallRadius() {
+	public void testBasketBallGetBallRadius() {
 		BasketBall ball = new BasketBall(400, 400);
 		assertEquals(ball.getRadius(), 20, 0.0);
 	}
