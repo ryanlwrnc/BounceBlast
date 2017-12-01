@@ -40,6 +40,9 @@ public class Main extends Application {
 	static Scene myScene;
 	static Stage myStage;
 
+	//Player name
+	private String username = null;
+	
 	public static void main(String[] args) throws IOException {
 		// TESTING Firebase, to be removed later
 		FileInputStream serviceAccount = new FileInputStream(
@@ -115,5 +118,15 @@ public class Main extends Application {
 			pod.interrupt();
 		}
 		System.out.println("Stopping application");
+	}
+	
+	public void setUsername(String s)
+	{
+		username = s;
+	}
+	
+	public String getUsername()
+	{
+		return username;
 	}
 }

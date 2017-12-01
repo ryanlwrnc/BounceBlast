@@ -101,8 +101,11 @@ public class MainMenu extends Scene{
 		gridpane.add(screenTitle, SCREENBUTTONCOL, 1);
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
-		// Login button
-		login = new MainMenuButton(app, "Log In", new Login(app));	// CHANGED
+		// Login & Profile button
+		if(app.getUsername()!=null)
+			login = new MainMenuButton(app, "Profile", new Profile(app,app.getUsername()));
+		else
+			login = new MainMenuButton(app, "Log In", new Login(app));	// CHANGED
 		gridpane.add(login, SCREENBUTTONCOL, 2);
 		GridPane.setHalignment(login, HPos.CENTER);
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
