@@ -171,7 +171,7 @@ public class CreateAccount extends Scene {
 							
 							// Go back to the main menu
 							//	mainmenu.logIn(usernameField.getText());
-							app.updateScene(new Profile(app));
+							app.updateScene(new Profile(app, usernameField.getText()));
 						}
 				}
 			}

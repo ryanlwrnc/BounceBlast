@@ -37,7 +37,7 @@ public class Profile extends Scene {
 	//Constants
 	private final int screenButtonCol = 2;
 	
-	public Profile(Main app) {
+	public Profile(Main app, String name) {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
 		
@@ -91,7 +91,7 @@ public class Profile extends Scene {
         String playerName = "Test";
         username.setFont(new Font(20));
         username.setFill(Color.WHITE);
-        username.setText("Username: " + playerName);
+        username.setText("Username: " + name);
         username.setStyle("-fx-font: 30 arial;");
         username.setTextAlignment(TextAlignment.RIGHT);
         GridPane.setHalignment(username, HPos.RIGHT);

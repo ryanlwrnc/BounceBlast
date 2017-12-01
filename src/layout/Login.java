@@ -179,7 +179,7 @@ public class Login extends Scene {
 					}catch(Exception e){}
 					
 					if(verified)
-						app.updateScene(new Profile(app));
+						app.updateScene(new Profile(app,usernameField.getText()));
 				}
 			}
 		});
