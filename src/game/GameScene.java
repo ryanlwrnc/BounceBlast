@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import game.ball.Ball;
 import game.ball.Ball.Button;
+import game.ball.BasketBall;
 import game.ball.BowlingBall;
+import game.ball.SoccerBall;
 import game.ball.TennisBall;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -116,12 +119,160 @@ public class GameScene extends Scene {
 		});
 	}
 	
+	// GameScene Constructor for Play Offline
+	public GameScene(String numCPU, String chosenBall) {
+		super(new Group(), 800, 600);
+		
+		int numberCPUs = Integer.parseInt(numCPU);
+
+		root = (Group) getRoot();
+		
+		// Create Players
+		/*
+		mainPlayer = new BowlingBall(400, 400);
+		playerOne = new TennisBall(300, 300);
+		*/
+		/*
+		  cbBall.getItems().add("Basketball");
+        cbBall.getItems().add("Bowling Ball");
+        cbBall.getItems().add("Tennis Ball");
+        cbBall.getItems().add("Soccer Ball");
+		 */
+		
+		if(numberCPUs == 1) {
+			if(chosenBall.equals("Basketball")) {
+				mainPlayer = new BasketBall(300,300);
+				playerOne = new TennisBall(800, 300);
+			}else if(chosenBall.equals("Bowling Ball")) {
+				mainPlayer = new BowlingBall(300, 300);
+				playerOne = new TennisBall(800, 300);
+			}else if(chosenBall.equals("Tennis Ball")) {
+				mainPlayer = new TennisBall(400, 400);
+				playerOne = new TennisBall(800, 300);
+			}else if(chosenBall.equals("Soccer Ball")) {
+				mainPlayer = new SoccerBall(400, 400);
+				playerOne = new TennisBall(800, 300);
+			}
+		}
+		else if(numberCPUs == 2) {
+			if(chosenBall.equals("Basketball")) {
+				mainPlayer = new BasketBall(300,300);
+				playerOne = new TennisBall(800, 300);
+				playerTwo = new BowlingBall(300, 600); 
+			}else if(chosenBall.equals("Bowling Ball")) {
+				mainPlayer = new BowlingBall(300, 300);
+				playerOne = new TennisBall(800, 300);
+				playerTwo = new BasketBall(300, 600); 
+			}else if(chosenBall.equals("Tennis Ball")) {
+				mainPlayer = new TennisBall(400, 400);
+				playerOne = new SoccerBall(800, 300);
+				playerTwo = new BowlingBall(300, 600); 
+			}else if(chosenBall.equals("Soccer Ball")) {
+				mainPlayer = new SoccerBall(400, 400);
+				playerOne = new TennisBall(800, 300);
+				playerTwo = new BowlingBall(300, 600); 
+			}
+		}
+		else if(numberCPUs == 3) {
+			if(chosenBall.equals("Basketball")) {
+				mainPlayer = new BasketBall(300,300);
+				playerOne = new TennisBall(800, 300);
+				playerTwo = new BowlingBall(300, 600); 
+				playerThree = new SoccerBall(600, 600); 
+			}else if(chosenBall.equals("Bowling Ball")) {
+				mainPlayer = new BowlingBall(300, 300);
+				playerOne = new TennisBall(800, 300);
+				playerTwo = new BasketBall(300, 600);
+				playerThree = new SoccerBall(600, 600); 
+			}else if(chosenBall.equals("Tennis Ball")) {
+				mainPlayer = new TennisBall(400, 400);
+				playerOne = new BasketBall(800, 300);
+				playerTwo = new BowlingBall(300, 600); 
+				playerThree = new SoccerBall(600, 600); 
+			}else if(chosenBall.equals("Soccer Ball")) {
+				mainPlayer = new SoccerBall(400, 400);
+				playerOne = new TennisBall(800, 300);
+				playerTwo = new BowlingBall(300, 600); 
+				playerThree = new BasketBall(600, 600); 
+			}
+		}
+		
+		ALL_POSSIBLE_PLAYERS = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
+		
+		// Create board
+		board = new GameBoard(250, 250, 600, 400);
+		h = new Line();
+		v = new Line();
+		h.setStrokeWidth(6);
+		v.setStrokeWidth(6);
+		h.setStroke(Color.ORANGE);
+		v.setStroke(Color.ORANGE);
+		
+		root.getChildren().addAll(board, h, v);
+		root.getChildren().addAll(getAllPlayers());
+		List<Ball> playerOnePlayers = getAllPlayers();
+		
+		if(numberCPUs == 1) {
+			playerOnePlayers.remove(playerOne);
+			playerOne.setAI(true, playerOnePlayers);
+		}
+		else if(numberCPUs == 2) {
+			playerOnePlayers.remove(playerOne);
+			playerOne.setAI(true, playerOnePlayers);
+			playerOnePlayers.remove(playerTwo);
+			playerTwo.setAI(true, playerOnePlayers);
+		}
+		else if(numberCPUs == 3) {
+			playerOnePlayers.remove(playerOne);
+			playerOne.setAI(true, playerOnePlayers);
+			playerOnePlayers.remove(playerTwo);
+			playerTwo.setAI(true, playerOnePlayers);
+			playerOnePlayers.remove(playerThree);
+			playerThree.setAI(true, playerOnePlayers);
+		}
+		
+		setOnKeyPressed(new EventHandler<KeyEvent>() 
+		{
+			@Override
+			public void handle(KeyEvent e)
+			{
+				switch (e.getCode()) 
+				{
+					case UP: mainPlayer.press(Button.UP, true); break;
+					case DOWN: mainPlayer.press(Button.DOWN, true); break;
+					case LEFT: mainPlayer.press(Button.LEFT, true); break;
+					case RIGHT: mainPlayer.press(Button.RIGHT, true); break;
+					case SHIFT: mainPlayer.press(Button.SPACE, true); break;
+				default:
+					break;
+				}
+			}
+		});
+		
+		setOnKeyReleased(new EventHandler<KeyEvent>() 
+		{
+			@Override
+			public void handle(KeyEvent e)
+			{
+				switch (e.getCode()) 
+				{
+					case UP: mainPlayer.press(Button.UP, false); break;
+					case DOWN: mainPlayer.press(Button.DOWN, false); break;
+					case LEFT: mainPlayer.press(Button.LEFT, false); break;
+					case RIGHT: mainPlayer.press(Button.RIGHT, false); break;
+					case SHIFT: mainPlayer.press(Button.SPACE, false); break;
+				default:
+					break;
+				}
+			}
+		});
+	}
+	//
+	
 	public List<Ball> getAllPlayers() {
 		return new ArrayList<>(ALL_POSSIBLE_PLAYERS).stream()
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
 	}
 	
-	
 }
-

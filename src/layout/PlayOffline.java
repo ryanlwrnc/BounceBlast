@@ -1,4 +1,5 @@
 package layout;
+import game.GameEngine;
 import game.GameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
+import layout.components.PlayOnlineButton;
 
 public class PlayOffline extends Scene {
 
@@ -31,7 +33,7 @@ public class PlayOffline extends Scene {
 	private Text gameTitle;
 	private Text ballTypes;
 	private GridPane box;
-	private Text directionKeys;
+	private Text numCPULabel;
 	private ComboBox<String> cbCPU;
 	private ComboBox<String> cbBall;
 	
@@ -86,38 +88,37 @@ public class PlayOffline extends Scene {
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");
         
-        
-		directionKeys = new Text();
-		directionKeys.setFont(new Font(20));
-		directionKeys.setFill(Color.WHITE);
-		directionKeys.setText("CPUs");
-		directionKeys.setStyle("-fx-font: 30 arial;");
-		directionKeys.setTextAlignment(TextAlignment.LEFT);
-		GridPane.setHalignment(directionKeys, HPos.LEFT);
-		box.add(directionKeys, 0, 0);
-		GridPane.setMargin(directionKeys, new Insets(5, 10, 5, 200));	
+       numCPULabel = new Text();
+       numCPULabel.setFont(new Font(20));
+       numCPULabel.setFill(Color.WHITE);
+       numCPULabel.setText("Number of CPUs");
+       numCPULabel.setStyle("-fx-font: 30 arial;");
+       numCPULabel.setTextAlignment(TextAlignment.LEFT);
+		 GridPane.setHalignment(numCPULabel, HPos.LEFT);
+		 box.add(numCPULabel, 0, 0);
+		 GridPane.setMargin(numCPULabel, new Insets(5, 10, 5, 10));	
 		
-		cbCPU = new ComboBox<String>();
-        cbCPU.getItems().add("0");
-        cbCPU.getItems().add("1");
-        cbCPU.getItems().add("2");
-        cbCPU.getItems().add("3");
+		 cbCPU = new ComboBox<String>();
+       cbCPU.getItems().add("1");
+       cbCPU.getItems().add("2");
+       cbCPU.getItems().add("3");
 	    box.add(cbCPU, 1, 0);
 	    
 	    ballTypes = new Text();
 	    ballTypes.setFont(new Font(20));
 	    ballTypes.setFill(Color.WHITE);
-	    ballTypes.setText("Balls");
+	    ballTypes.setText("Select Your Game Ball");
 	    ballTypes.setStyle("-fx-font: 30 arial;");
 	    ballTypes.setTextAlignment(TextAlignment.LEFT);
 		GridPane.setHalignment(ballTypes, HPos.LEFT);
 		box.add(ballTypes, 0, 1);
-		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 200));	
+		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 10));	
 		
 		cbBall = new ComboBox<String>();
         cbBall.getItems().add("Basketball");
         cbBall.getItems().add("Bowling Ball");
         cbBall.getItems().add("Tennis Ball");
+        cbBall.getItems().add("Soccer Ball");
 	    box.add(cbBall, 1, 1);
 	    
 	    GridPane.setHalignment(box, HPos.CENTER);
@@ -141,6 +142,7 @@ public class PlayOffline extends Scene {
 				app.updateScene(new InGame(app));
 			}
 		});
+		
 		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
@@ -179,32 +181,29 @@ public class PlayOffline extends Scene {
 		gridpane.add(temp, 2, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		// Return to Main Menu when back is pressed
+		
+		//Temporary GameScene Button
+		temp = new PlayOnlineButton(app, "Game Scene", new GameScene());
+		temp.setPrefHeight(25);
+		temp.setPrefWidth(200);
+		
+		gridpane.add(temp, 2, 10);
+		GridPane.setHalignment(back, HPos.CENTER);
+		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
+		
+		// Go to the temporary game scene when the button is pressed.
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				app.updateScene(new GameScene());
+				// Make sure NumberOfCPUs and SelectGameBall are selected
+				if(cbBall.getValue() != null & cbCPU.getValue() != null) {
+
+					GameScene scene = new GameScene(cbCPU.getValue(), cbBall.getValue());
+					app.updateScene(scene);
+			        Main.thread = new Thread(new GameEngine(scene));
+			        Main.thread.start();
+				}
 			}
 		});
-		temp.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        	temp.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
-
-		temp.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		back.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
-	        }
-	    });
+		
 	}
 }

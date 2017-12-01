@@ -194,8 +194,6 @@ public class InGame extends Scene {
 		nameGrid.add(score2, 3, 2);
 		GridPane.setMargin(score2, new Insets(5, 10, 5, 10));
 		
-		
-		
 		Text score3 = new Text();
 		score3.setFont(new Font(20));
 		score3.setFill(Color.WHITE);
