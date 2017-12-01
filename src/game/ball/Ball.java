@@ -33,6 +33,9 @@ public class Ball extends Circle {
 	private double maxSpeed = 50/m;
 	private double t = 0.5;
 	
+	private boolean vertWallExiting = false;
+	private boolean horizWallExiting = false;
+	
 	// AI ball fields
 	private boolean ai = false;
 	private List<Ball> players;
@@ -290,5 +293,21 @@ public class Ball extends Circle {
 	public void setAI(boolean enabled, List<Ball> players) {
 		this.players = players;
 		this.ai = enabled;
+	}
+	
+	public boolean getHorizontalExiting() {
+		return horizWallExiting;
+	}
+	
+	public boolean getVertExiting() {
+		return vertWallExiting;
+	}
+	
+	public void setHorizontalExiting(boolean status) {
+		this.horizWallExiting = status;
+	}
+	
+	public void setVertExiting(boolean status) {
+		this.vertWallExiting = status;
 	}
 }
