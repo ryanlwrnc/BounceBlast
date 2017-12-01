@@ -3,7 +3,6 @@ package game;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import game.ball.Ball;
-import javafx.concurrent.Task;
 
 public class GameBoard extends Rectangle {
 	

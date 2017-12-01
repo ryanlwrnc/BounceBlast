@@ -50,7 +50,7 @@ public class Leaderboard extends Scene {
 	private TableView<PlayerName> table;
 		
 	// Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
 	
 	public Leaderboard(Main app) {
 		super(new GridPane(), 800, 600);
@@ -80,7 +80,7 @@ public class Leaderboard extends Scene {
 		gameTitle.setStyle("-fx-font: 60 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(3, 12, 3, 12));
 		
 		table = new TableView<PlayerName>(); 
@@ -92,7 +92,7 @@ public class Leaderboard extends Scene {
         root.getChildren().addAll(table);
 		
         GridPane.setHalignment(root, HPos.CENTER);
-        gridpane.add(root, screenButtonCol, 1);
+        gridpane.add(root, SCREENBUTTONCOL, 1);
         
         // Back button
  		back = new BackToMainMenuButton(app, "Back");

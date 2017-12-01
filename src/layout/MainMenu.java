@@ -37,7 +37,11 @@ public class MainMenu extends Scene{
 	private Button exit;
 	
 	// Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
+	private static final String  BORDER3 = "-fx-border-width: 3;";
+	private static final String BORDERWHITE = "-fx-border-color: white;";
+	private static final String TEXTFILLWHITE = "-fx-text-fill: white;";
+	private static final String FONT16 = "-fx-font-size: 16;";
 	
 	public MainMenu(Main app) {
 		super(new GridPane(), 800, 600);
@@ -70,7 +74,7 @@ public class MainMenu extends Scene{
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		// User logged-in text
@@ -82,7 +86,7 @@ public class MainMenu extends Scene{
 			user.setStyle("-fx-font: 40 arial;");
 			user.setTextAlignment(TextAlignment.CENTER);
 			GridPane.setHalignment(gameTitle, HPos.CENTER);
-			gridpane.add(user, screenButtonCol, 0);
+			gridpane.add(user, SCREENBUTTONCOL, 0);
 			GridPane.setMargin(user, new Insets(5, 10, 5, 10));
 		}
 		
@@ -94,42 +98,42 @@ public class MainMenu extends Scene{
 		screenTitle.setStyle("-fx-font: 50 arial;");
 		screenTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(screenTitle, HPos.CENTER);
-		gridpane.add(screenTitle, screenButtonCol, 1);
+		gridpane.add(screenTitle, SCREENBUTTONCOL, 1);
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
 		// Login button
 		login = new MainMenuButton(app, "Log In", new Login(app));	// CHANGED
-		gridpane.add(login, screenButtonCol, 2);
+		gridpane.add(login, SCREENBUTTONCOL, 2);
 		GridPane.setHalignment(login, HPos.CENTER);
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
 		
 		// Play online button
 		playOnline = new MainMenuButton(app, "Play Online", new PlayOnline(app));
-		gridpane.add(playOnline, screenButtonCol, 3);
+		gridpane.add(playOnline, SCREENBUTTONCOL, 3);
 		GridPane.setHalignment(playOnline, HPos.CENTER);
 		GridPane.setMargin(playOnline, new Insets(5, 10, 5, 10));
 		
 		// Play offline button
 		playOffline = new MainMenuButton(app, "Play Offline", new PlayOffline(app));
-		gridpane.add(playOffline, screenButtonCol, 4);
+		gridpane.add(playOffline, SCREENBUTTONCOL, 4);
 		GridPane.setHalignment(playOffline, HPos.CENTER);
 		GridPane.setMargin(playOffline, new Insets(5, 10, 5, 10));
 		
 		// Settings button
 		settings = new MainMenuButton(app, "Settings", new Settings(app));
-		gridpane.add(settings, screenButtonCol, 5);
+		gridpane.add(settings, SCREENBUTTONCOL, 5);
 		GridPane.setHalignment(settings, HPos.CENTER);
 		GridPane.setMargin(settings, new Insets(5, 10, 5, 10));
 		
 		// Leaderboard button
 		leaderboard = new MainMenuButton(app, "Leaderboard", new Leaderboard(app));
-		gridpane.add(leaderboard, screenButtonCol, 6);
+		gridpane.add(leaderboard, SCREENBUTTONCOL, 6);
 		GridPane.setHalignment(leaderboard, HPos.CENTER);
 		GridPane.setMargin(leaderboard, new Insets(5, 10, 5, 10));
 		
 		// Tutorial button
 		tutorial = new MainMenuButton(app, "Tutorial", new TutorialRules(app));
-		gridpane.add(tutorial, screenButtonCol, 7);
+		gridpane.add(tutorial, SCREENBUTTONCOL, 7);
 		GridPane.setHalignment(tutorial, HPos.CENTER);
 		GridPane.setMargin(tutorial, new Insets(5, 10, 5, 10));
 		
@@ -137,11 +141,11 @@ public class MainMenu extends Scene{
 		exit = new Button("Exit");
 		exit.setPrefHeight(25);
 		exit.setPrefWidth(60);
-		exit.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
+		exit.setStyle(BORDER3 + 
+				BORDERWHITE + 
 				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
+				FONT16 + 
+				TEXTFILLWHITE);
 		gridpane.add(exit, 0, 10);
 		GridPane.setHalignment(exit, HPos.CENTER);
 		GridPane.setMargin(exit, new Insets(5, 10, 5, 10));
@@ -154,22 +158,22 @@ public class MainMenu extends Scene{
 		exit.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		exit.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
+	        		exit.setStyle(BORDER3 + 
+	        				BORDERWHITE + 
 	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
+	        				FONT16 + 
+	        				TEXTFILLWHITE);
 	        }
 	    });
 
 		exit.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		exit.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
+	        		exit.setStyle(BORDER3 + 
+	        				BORDERWHITE + 
 	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
+	        				FONT16 + 
+	        				TEXTFILLWHITE);
 	        }
 	    });
 	}

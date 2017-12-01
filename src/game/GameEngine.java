@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
 public class GameEngine implements Runnable {
 
-	private final double UPDATE_CAP = 1.0/60.0;
+	private static final double UPDATE_CAP = 1.0/60.0;
 	private GameScene scene;
 	
 	private boolean goingRight = true; //initial direction
