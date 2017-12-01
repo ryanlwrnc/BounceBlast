@@ -44,6 +44,7 @@ public class Login extends Scene {
 	RowConstraints rcons2;
 	final TextField usernameField;
 	final PasswordField passwordField;
+	boolean verified;
 	
 	// Constants
 	private final int screenButtonCol = 2;
@@ -51,6 +52,7 @@ public class Login extends Scene {
 	public Login(Main app) {
 		super(new GridPane(),800,600);
 		this.gridpane = (GridPane) getRoot();
+		verified = false;
 		
 		cons1 = new ColumnConstraints();
 		cons1.setHgrow(Priority.NEVER);
@@ -157,7 +159,7 @@ public class Login extends Scene {
 						        User note = dataSnapshot.getValue(User.class);
 						        // If password matches
 						        if(passwordField.getText().equals(note.getPassword())) {
-					   					app.updateScene(new Profile(app));
+					   					verified = true;
 						      	  		System.out.println("SUCCESSFUL LOG IN");
 						        }
 						}
@@ -169,6 +171,8 @@ public class Login extends Scene {
 							
 						}
 						});
+					if(verified)
+						app.updateScene(new Profile(app));;
 				}
 			}
 		});
