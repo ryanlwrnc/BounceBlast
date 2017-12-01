@@ -138,7 +138,7 @@ public class PlayOffline extends Scene {
 		// Return to Main Menu when back is pressed
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				app.updateScene(new InGame().getScene());
+				app.updateScene(new InGame(app));
 			}
 		});
 		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
