@@ -1,4 +1,4 @@
-// Author: Ryan Lawrence
+// Author: Anand Batjargal
 package test;
 
 import static org.junit.Assert.assertEquals;

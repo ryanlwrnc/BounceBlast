@@ -1,4 +1,4 @@
-// Author: Ryan Lawrence
+// Author: Mark Toujiline
 package test;
 
 import static org.junit.Assert.assertEquals;

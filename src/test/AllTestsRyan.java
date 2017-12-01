@@ -1,4 +1,4 @@
-// Author: Elliot Kirk
+// Author: Ryan Lawrence
 package test;
 
 import org.junit.runner.RunWith;
@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestInGame.class })
-public class AllGameplayScreenTests {
+@SuiteClasses({ TestBallFactory.class, TestBallGame.class })
+public class AllTestsRyan {
 
 }

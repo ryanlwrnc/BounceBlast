@@ -1,4 +1,4 @@
-// Author: Elliot Kirk
+// Author: Won Young Son
 package test;
 
 import static org.junit.Assert.assertTrue;
