@@ -10,7 +10,7 @@ import javafx.scene.shape.Circle;
 public class Ball extends Circle {
 	
 	public static enum Button {
-		UP, DOWN, LEFT, RIGHT, SPACE;
+		UP, DOWN, LEFT, RIGHT, SPACE, W, A, S, D;
 	}
 	
 	private Map<Button, Boolean> pressed = new HashMap<Button, Boolean>();

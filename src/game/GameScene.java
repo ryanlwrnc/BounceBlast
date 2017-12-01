@@ -83,6 +83,10 @@ public class GameScene extends Scene {
 					case LEFT: mainPlayer.press(Button.LEFT, true); break;
 					case RIGHT: mainPlayer.press(Button.RIGHT, true); break;
 					case SHIFT: mainPlayer.press(Button.SPACE, true); break;
+					case W: mainPlayer.press(Button.UP, true); break;
+					case S: mainPlayer.press(Button.DOWN, true); break;
+					case A: mainPlayer.press(Button.LEFT, true); break;
+					case D: mainPlayer.press(Button.RIGHT, true); break;
 				default:
 					break;
 				}
@@ -101,6 +105,10 @@ public class GameScene extends Scene {
 					case LEFT: mainPlayer.press(Button.LEFT, false); break;
 					case RIGHT: mainPlayer.press(Button.RIGHT, false); break;
 					case SHIFT: mainPlayer.press(Button.SPACE, false); break;
+					case W: mainPlayer.press(Button.UP, false); break;
+					case S: mainPlayer.press(Button.DOWN, false); break;
+					case A: mainPlayer.press(Button.LEFT, false); break;
+					case D: mainPlayer.press(Button.RIGHT, false); break;
 				default:
 					break;
 				}
