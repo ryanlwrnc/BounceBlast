@@ -170,9 +170,16 @@ public class Login extends Scene {
 							// TODO Auto-generated method stub
 							
 						}
-						});
+					});
+					
+					//Quarter second buffer to let firebase verify login
+					try 
+					{
+						Thread.sleep(250);
+					}catch(Exception e){}
+					
 					if(verified)
-						app.updateScene(new Profile(app));;
+						app.updateScene(new Profile(app));
 				}
 			}
 		});
