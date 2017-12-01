@@ -26,7 +26,6 @@ public class Settings extends Scene{
 	Text gameTitle;
 	Text sound;
 	Text directionKeys;
-	Text colorScheme;
 	GridPane box;
 	ColumnConstraints cons1;
 	ColumnConstraints cons2;
@@ -34,7 +33,6 @@ public class Settings extends Scene{
 	RowConstraints rcons2;
 	Slider soundSlider;
 	ComboBox<String> cbDirection;
-	ComboBox<String> cbColorScheme;
 	
 	// Constants
 	private final int screenButtonCol = 2;
@@ -119,21 +117,7 @@ public class Settings extends Scene{
         cbDirection.getItems().add("FGHJ");
 	    box.add(cbDirection, 1, 1);
 	    
-	    colorScheme = new Text();
-	    colorScheme.setFont(new Font(20));
-	    colorScheme.setFill(Color.WHITE);
-	    colorScheme.setText("Color Scheme");
-	    colorScheme.setStyle("-fx-font: 30 arial;");
-	    colorScheme.setTextAlignment(TextAlignment.RIGHT);
-		GridPane.setHalignment(colorScheme, HPos.RIGHT);
-		box.add(colorScheme, 0, 2);
-		GridPane.setMargin(colorScheme, new Insets(5, 10, 5, 10));	
-		
-		cbColorScheme = new ComboBox<String>();
-        cbColorScheme.getItems().add("Bounce White");
-        cbColorScheme.getItems().add("Blast Dark");
-        cbColorScheme.getItems().add("Gamer Green");
-	    box.add(cbColorScheme, 1, 2);
+	   
 		
 		/*MenuButton menuButton = new MenuButton();
 		menuButton.getItems().addAll(new MenuItem("Arrow Keys"), new MenuItem("WASD"),
