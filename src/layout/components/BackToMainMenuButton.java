@@ -1,8 +1,11 @@
 package layout.components;
 
+import game.ball.Ball;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import layout.Main;
 import layout.MainMenu;
 
@@ -24,6 +27,12 @@ public class BackToMainMenuButton extends BaseButton {
 		
 		setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				String path = BaseButton.class.getResource("button.mp3").toString();
+				Media sound = new Media(path);
+				MediaPlayer player = new MediaPlayer(sound);
+				player.setVolume(0.5);
+				player.play();
+				
 				app.updateScene(new MainMenu(app));
 			}
 		});

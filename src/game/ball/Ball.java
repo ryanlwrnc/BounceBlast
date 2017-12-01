@@ -2,10 +2,16 @@ package game.ball;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import java.util.List;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import junit.framework.Test;
+import javafx.scene.media.AudioClip;
+
 
 public class Ball extends Circle {
 	
@@ -190,10 +196,21 @@ public class Ball extends Circle {
 	}
 	
 	public static void handleCollision(Ball b1, Ball b2) {
+		String path = Ball.class.getResource("bounce.mp3").toString();
+		Media sound = new Media(path);
+		MediaPlayer player = new MediaPlayer(sound);
+		
 		double v1x = ( (b1.getM() - b2.getM()) / (b1.getM() + b2.getM())) * b1.vx + ( (2.0 * b2.getM()) / (b1.getM() + b2.getM())) * b2.vx; 
 		double v1y = ( (b1.getM() - b2.getM()) / (b1.getM() + b2.getM())) * b1.vy + ( (2.0 * b2.getM()) / (b1.getM() + b2.getM())) * b2.vy;
 		double v2x = ( (2.0 * b1.getM()) / (b1.getM() + b2.getM())) * b1.vx +  ( (b2.getM() - b1.getM()) / (b1.getM() + b2.getM())) * b2.vx;
 		double v2y = ( (2.0 * b1.getM()) / (b1.getM() + b2.getM())) * b1.vy +  ( (b2.getM() - b1.getM()) / (b1.getM() + b2.getM())) * b2.vy;
+		
+		double speed1 =  Math.sqrt((v1x * v1x) + (v1y * v1y));
+		double speed2 =  Math.sqrt((v2x * v2x) + (v2y * v2y));
+		double greater_speed = Math.max(speed1, speed2);
+			
+		player.setVolume(greater_speed / 25);
+		player.play();
 		
 		b1.setVx(v1x);
 		b1.setVy(v1y);
