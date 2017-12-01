@@ -114,7 +114,6 @@ public class Settings extends Scene{
 		cbDirection = new ComboBox<String>();
         cbDirection.getItems().add("Arrow Keys");
         cbDirection.getItems().add("WASD");
-        cbDirection.getItems().add("FGHJ");
 	    box.add(cbDirection, 1, 1);
 	    
 	   
@@ -133,4 +132,5 @@ public class Settings extends Scene{
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 	}
+	
 }
