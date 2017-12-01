@@ -120,7 +120,7 @@ public class Leaderboard extends Scene {
 				// Obtain the individual data
 				User post = postSnapshot.getValue(User.class);
 				// Place the data into hashmap
-				leaderboard.put(post.getPassword(), post);
+				leaderboard.put(post.getUsername(), post);
 		   }
 			
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
