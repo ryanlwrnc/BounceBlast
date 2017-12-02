@@ -2,12 +2,9 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Rule;
 import org.junit.Test;
 
-import javafx.scene.Scene;
 import layout.Main;
 import layout.MainMenu;
 

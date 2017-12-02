@@ -1,6 +1,5 @@
 package layout.components;
 
-import game.ball.Ball;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -11,6 +10,11 @@ import layout.MainMenu;
 
 public class BackToMainMenuButton extends BaseButton {
 
+	public static final String BORDERWIDTH3 = "-fx-border-width: 3;";
+	public static final String BORDERCOLORWHITE = "-fx-border-color: white;";
+	public static final String BACKGROUNDCOLOR24618F = "-fx-background-color: #24618F;";
+	public static final String FONTSIZE16 = "-fx-font-size: 16;";
+	public static final String TEXTFILLWHITE = "-fx-text-fill: white;";
 	private Main app;
 	
 	public BackToMainMenuButton(Main app, String label) {
@@ -19,11 +23,11 @@ public class BackToMainMenuButton extends BaseButton {
 		
 		setPrefHeight(25);
 		setPrefWidth(65);
-		setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
+		setStyle(BORDERWIDTH3 + 
+				BORDERCOLORWHITE + 
+				BACKGROUNDCOLOR24618F +
+				FONTSIZE16 + 
+				TEXTFILLWHITE);
 		
 		setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -39,22 +43,22 @@ public class BackToMainMenuButton extends BaseButton {
 		setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
+	        		setStyle(BORDERWIDTH3 + 
+	        				BORDERCOLORWHITE + 
 	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
+	        				FONTSIZE16 + 
+	        				TEXTFILLWHITE);
 	        }
 	    });
 
 		setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
+	        		setStyle(BORDERWIDTH3 + 
+	        				BORDERCOLORWHITE + 
+	        				BACKGROUNDCOLOR24618F +
+	        				FONTSIZE16 + 
+	        				TEXTFILLWHITE);
 	        }
 	    });
 	}

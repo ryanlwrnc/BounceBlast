@@ -27,9 +27,13 @@ public class GameEngine implements Runnable {
 	public void run() {
 		boolean render = false;
 		
-		double firstTime = 0, passedTime = 0, unprocessedTime = 0;
+		double firstTime = 0; 
+		double passedTime = 0; 
+		double unprocessedTime = 0;
 		double lastTime = System.nanoTime() / 1000000000.0;
-		double frameTime = 0, frames = 0, fps = 0;
+		double frameTime = 0; 
+		//double frames = 0; 
+		//double fps = 0;
 		
 		scene.h.setStartX(scene.board.getX());
 		scene.h.setStartY(scene.board.getY());
@@ -56,14 +60,13 @@ public class GameEngine implements Runnable {
 				// Adjust frame values
 				if (frameTime >= 1.0) {
 					frameTime = 0;
-					fps = frames;
-					frames = 0;
-					System.out.println("FPS: " + fps);
+					//fps = frames;
+					//frames = 0;
+					//System.out.println("FPS: " + fps);
 				}
 			}
 			
 			if (render) {
-				//TODO: Render game
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -80,10 +83,10 @@ public class GameEngine implements Runnable {
 						handleCollisions(scene.getAllPlayers());	
 					}
 				});
-				frames++;
+				//frames++;
 			}
 		}
-		System.out.println("Game is done");
+		//System.out.println("Game is done");
 	}
 	
 	public void updateGame(Ball player) {
@@ -241,10 +244,8 @@ public class GameEngine implements Runnable {
 						exiting = true;
 					}
 					
-					if (exiting) {
-						if (!(intersect.getBoundsInLocal().getWidth() != -1)) {
+					if (exiting && intersect.getBoundsInLocal().getWidth() == -1) {
 							exiting = false;
-						}
 					}
 					
 				}

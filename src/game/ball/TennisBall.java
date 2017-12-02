@@ -6,12 +6,12 @@ import javafx.scene.paint.ImagePattern;
 public class TennisBall extends Ball
 {
 	private static final Image ballImg = new Image("file:tennisball.png");
-	private static final double radius = 10;
-	private static final double mass = 5;
+	private static final double RADIUS = 10;
+	private static final double MASS = 5;
 	
 	public TennisBall(double centerX, double centerY){
-		super(centerX, centerY, radius, new ImagePattern(ballImg));
+		super(centerX, centerY, RADIUS, new ImagePattern(ballImg));
 		setF(3);
-		setM(mass);
+		setM(MASS);
 	}
 }

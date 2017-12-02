@@ -41,7 +41,7 @@ public class PlayOnline extends Scene {
 	private RowConstraints rcons2;
 	
 	// Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
 	
 	public PlayOnline(Main app) {
 		super(new GridPane(), 800, 600);
@@ -76,7 +76,7 @@ public class PlayOnline extends Scene {
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
@@ -102,7 +102,7 @@ public class PlayOnline extends Scene {
 		box.add(directionKeys, 0, 0);
 		GridPane.setMargin(directionKeys, new Insets(5, 10, 5, 200));	
 		
-		cbCPU = new ComboBox<String>();
+		cbCPU = new ComboBox<>();
         cbCPU.getItems().add("0");
         cbCPU.getItems().add("1");
         cbCPU.getItems().add("2");
@@ -119,14 +119,14 @@ public class PlayOnline extends Scene {
 		box.add(ballTypes, 0, 1);
 		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 200));	
 		
-		cbBall = new ComboBox<String>();
+		cbBall = new ComboBox<>();
         cbBall.getItems().add("Basketball");
         cbBall.getItems().add("Bowling Ball");
         cbBall.getItems().add("Tennis Ball");
 	    box.add(cbBall, 1, 1);
 		
 	    GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, screenButtonCol, 1);
+		gridpane.add(box, SCREENBUTTONCOL, 1);
 
 		// Start Button
 		start = new PlayOnlineButton(app, "Start", new InGame(app));

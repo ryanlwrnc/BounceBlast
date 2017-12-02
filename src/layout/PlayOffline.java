@@ -38,7 +38,12 @@ public class PlayOffline extends Scene {
 	private ComboBox<String> cbBall;
 	
 	// Constants
-	public final int screenButtonCol = 2;
+	public static final int SCREENBUTTONCOL = 2;
+	public static final String BORDERWIDTH3 = "-fx-border-width: 3;";
+	public static final String BORDERCOLORWHITE = "-fx-border-color: white;";
+	public static final String BACKGROUNDCOLOR24618F = "-fx-background-color: #24618F;";
+	public static final String FONTSIZE16 = "-fx-font-size: 16;";
+	public static final String TEXTFILLWHITE = "-fx-text-fill: white;";
 	
 	public PlayOffline(Main app) {
 		super(new GridPane(), 800, 600);
@@ -72,7 +77,7 @@ public class PlayOffline extends Scene {
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
@@ -86,7 +91,7 @@ public class PlayOffline extends Scene {
         box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");
+				 BORDERCOLORWHITE + BORDERWIDTH3);
         
        numCPULabel = new Text();
        numCPULabel.setFont(new Font(20));
@@ -98,7 +103,7 @@ public class PlayOffline extends Scene {
 		 box.add(numCPULabel, 0, 0);
 		 GridPane.setMargin(numCPULabel, new Insets(5, 10, 5, 10));	
 		
-		 cbCPU = new ComboBox<String>();
+		 cbCPU = new ComboBox<>();
        cbCPU.getItems().add("1");
        cbCPU.getItems().add("2");
        cbCPU.getItems().add("3");
@@ -114,7 +119,7 @@ public class PlayOffline extends Scene {
 		box.add(ballTypes, 0, 1);
 		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 10));	
 		
-		cbBall = new ComboBox<String>();
+		cbBall = new ComboBox<>();
         cbBall.getItems().add("Basketball");
         cbBall.getItems().add("Bowling Ball");
         cbBall.getItems().add("Tennis Ball");
@@ -122,17 +127,17 @@ public class PlayOffline extends Scene {
 	    box.add(cbBall, 1, 1);
 	    
 	    GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, screenButtonCol, 1);
+		gridpane.add(box, SCREENBUTTONCOL, 1);
 
 		// Start Button
 		start = new Button("Start");
 		start.setPrefHeight(25);
 		start.setPrefWidth(65);
-		start.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
+		start.setStyle(BORDERWIDTH3 + 
+				BORDERCOLORWHITE + 
+				BACKGROUNDCOLOR24618F +
+				FONTSIZE16 + 
+				TEXTFILLWHITE);
 		gridpane.add(start, 2, 5);
 		GridPane.setHalignment(start, HPos.CENTER);
 		GridPane.setMargin(start, new Insets(5, 80, 30, 10));
@@ -146,22 +151,22 @@ public class PlayOffline extends Scene {
 		start.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        	start.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
+	        	start.setStyle(BORDERWIDTH3 + 
+	        			BORDERCOLORWHITE + 
 	        				"-fx-background-color: #003399;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
+	        				FONTSIZE16 + 
+	        				TEXTFILLWHITE);
 	        }
 	    });
 
 		start.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        	start.setStyle("-fx-border-width: 3;" + 
-	        				"-fx-border-color: white;" + 
-	        				"-fx-background-color: #24618F;" +
-	        				"-fx-font-size: 16;" + 
-	        				"-fx-text-fill: white;");
+	        	start.setStyle(BORDERWIDTH3 + 
+	        			BORDERCOLORWHITE + 
+	        				BACKGROUNDCOLOR24618F +
+	        				FONTSIZE16 + 
+	        				TEXTFILLWHITE);
 	        }
 	    });
 		
@@ -173,11 +178,11 @@ public class PlayOffline extends Scene {
 		temp = new Button("Game Scene");
 		temp.setPrefHeight(25);
 		temp.setPrefWidth(200);
-		temp.setStyle("-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 16;" + 
-				"-fx-text-fill: white;");
+		temp.setStyle(BORDERWIDTH3 + 
+				BORDERCOLORWHITE + 
+				BACKGROUNDCOLOR24618F +
+				FONTSIZE16 + 
+				TEXTFILLWHITE);
 		gridpane.add(temp, 2, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));

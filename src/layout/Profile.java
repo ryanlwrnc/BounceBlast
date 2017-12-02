@@ -35,7 +35,7 @@ public class Profile extends Scene {
 	final PasswordField confirmPasswordField;
 	
 	//Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
 	
 	public Profile(Main app, String name) {
 		super(new GridPane(), 800, 600);
@@ -69,7 +69,7 @@ public class Profile extends Scene {
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);		// ADDEd
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);		// ADDEd
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
@@ -88,7 +88,7 @@ public class Profile extends Scene {
         // User name text
         username = new Text();
         // Will get the current user's name from the database
-        String playerName = "Test";
+        //String playerName = "Test";
         username.setFont(new Font(20));
         username.setFill(Color.WHITE);
         username.setText("Username: " + name);
@@ -121,7 +121,7 @@ public class Profile extends Scene {
         confirmPasswordField.setPromptText("Confirm new password");
         box.add(confirmPasswordField, 1, 2);
         GridPane.setHalignment(box, HPos.CENTER);
-        gridpane.add(box, screenButtonCol, 1);
+        gridpane.add(box, SCREENBUTTONCOL, 1);
         
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");

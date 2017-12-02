@@ -2,16 +2,15 @@ package game.ball;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 
 public class SoccerBall extends Ball
 {
 	private static final Image ballImg = new Image("file:soccerball.jpg");
-	private static final double radius = 27;
-	private static final double mass = 15;
+	private static final double RADIUS = 27;
+	private static final double MASS = 15;
 	
 	public SoccerBall(double centerX, double centerY){
-		super(centerX, centerY, radius, new ImagePattern(ballImg));
-		setM(mass);
+		super(centerX, centerY, RADIUS, new ImagePattern(ballImg));
+		setM(MASS);
 	}
 }

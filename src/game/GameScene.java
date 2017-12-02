@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import game.ball.Ball;
@@ -36,7 +35,11 @@ public class GameScene extends Scene {
 	Line v;
 	
 	// Constants
-	public final List<Ball> ALL_POSSIBLE_PLAYERS;
+	public final List<Ball> allPossiblePlayers;
+	private static final String BASKETBALL = "Basketball";
+	private static final String BOWLINGBALL = "Bowling Ball";
+	private static final String TENNISBALL = "Tennis Ball";
+	private static final String SOCCERBALL = "Soccer Ball";
 	int screenButtonCol = 2;
 	String buttonStyle = "-fx-border-width: 3;" + 
 			"-fx-border-color: white;" + 
@@ -58,7 +61,7 @@ public class GameScene extends Scene {
 		mainPlayer = new BowlingBall(400, 400);
 		playerOne = new TennisBall(300, 300);
 		
-		ALL_POSSIBLE_PLAYERS = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
+		allPossiblePlayers = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
 		h = new Line();
@@ -140,56 +143,56 @@ public class GameScene extends Scene {
 		 */
 		
 		if(numberCPUs == 1) {
-			if(chosenBall.equals("Basketball")) {
+			if(chosenBall.equals(BASKETBALL)) {
 				mainPlayer = new BasketBall(300,300);
 				playerOne = new TennisBall(800, 300);
-			}else if(chosenBall.equals("Bowling Ball")) {
+			}else if(chosenBall.equals(BOWLINGBALL)) {
 				mainPlayer = new BowlingBall(300, 300);
 				playerOne = new TennisBall(800, 300);
-			}else if(chosenBall.equals("Tennis Ball")) {
+			}else if(chosenBall.equals(TENNISBALL)) {
 				mainPlayer = new TennisBall(400, 400);
 				playerOne = new TennisBall(800, 300);
-			}else if(chosenBall.equals("Soccer Ball")) {
+			}else if(chosenBall.equals(SOCCERBALL)) {
 				mainPlayer = new SoccerBall(400, 400);
 				playerOne = new TennisBall(800, 300);
 			}
 		}
 		else if(numberCPUs == 2) {
-			if(chosenBall.equals("Basketball")) {
+			if(chosenBall.equals(BASKETBALL)) {
 				mainPlayer = new BasketBall(300,300);
 				playerOne = new TennisBall(800, 300);
 				playerTwo = new BowlingBall(300, 600); 
-			}else if(chosenBall.equals("Bowling Ball")) {
+			}else if(chosenBall.equals(BOWLINGBALL)) {
 				mainPlayer = new BowlingBall(300, 300);
 				playerOne = new TennisBall(800, 300);
 				playerTwo = new BasketBall(300, 600); 
-			}else if(chosenBall.equals("Tennis Ball")) {
+			}else if(chosenBall.equals(TENNISBALL)) {
 				mainPlayer = new TennisBall(400, 400);
 				playerOne = new SoccerBall(800, 300);
 				playerTwo = new BowlingBall(300, 600); 
-			}else if(chosenBall.equals("Soccer Ball")) {
+			}else if(chosenBall.equals(SOCCERBALL)) {
 				mainPlayer = new SoccerBall(400, 400);
 				playerOne = new TennisBall(800, 300);
 				playerTwo = new BowlingBall(300, 600); 
 			}
 		}
 		else if(numberCPUs == 3) {
-			if(chosenBall.equals("Basketball")) {
+			if(chosenBall.equals(BASKETBALL)) {
 				mainPlayer = new BasketBall(300,300);
 				playerOne = new TennisBall(800, 300);
 				playerTwo = new BowlingBall(300, 600); 
 				playerThree = new SoccerBall(600, 600); 
-			}else if(chosenBall.equals("Bowling Ball")) {
+			}else if(chosenBall.equals(BOWLINGBALL)) {
 				mainPlayer = new BowlingBall(300, 300);
 				playerOne = new TennisBall(800, 300);
 				playerTwo = new BasketBall(300, 600);
 				playerThree = new SoccerBall(600, 600); 
-			}else if(chosenBall.equals("Tennis Ball")) {
+			}else if(chosenBall.equals(TENNISBALL)) {
 				mainPlayer = new TennisBall(400, 400);
 				playerOne = new BasketBall(800, 300);
 				playerTwo = new BowlingBall(300, 600); 
 				playerThree = new SoccerBall(600, 600); 
-			}else if(chosenBall.equals("Soccer Ball")) {
+			}else if(chosenBall.equals(SOCCERBALL)) {
 				mainPlayer = new SoccerBall(400, 400);
 				playerOne = new TennisBall(800, 300);
 				playerTwo = new BowlingBall(300, 600); 
@@ -197,7 +200,7 @@ public class GameScene extends Scene {
 			}
 		}
 		
-		ALL_POSSIBLE_PLAYERS = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
+		allPossiblePlayers = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
 		
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
@@ -270,7 +273,7 @@ public class GameScene extends Scene {
 	//
 	
 	public List<Ball> getAllPlayers() {
-		return new ArrayList<>(ALL_POSSIBLE_PLAYERS).stream()
+		return new ArrayList<>(allPossiblePlayers).stream()
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
 	}

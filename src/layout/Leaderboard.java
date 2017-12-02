@@ -1,6 +1,5 @@
 package layout;
 import java.util.ArrayList;
-import java.util.Arrays;
 //
 import java.util.Collections;
 import java.util.Comparator;
@@ -83,7 +82,7 @@ public class Leaderboard extends Scene {
 		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(3, 12, 3, 12));
 		
-		table = new TableView<PlayerName>(); 
+		table = new TableView<>(); 
 		table.setPrefWidth(400);
 		table.getColumns().addAll(PlayerName.getColumn(table));
 		table.setItems(getPlayerDummy());
@@ -113,7 +112,7 @@ public class Leaderboard extends Scene {
 		@Override
 		public void onDataChange(DataSnapshot snapshot) {
 			// Create a new hashmap to place leaderboard data from Firebase
-			HashMap<String,User> leaderboard = new HashMap<String, User>();
+			HashMap<String,User> leaderboard = new HashMap<>();
 			
 			// For each data entry in Firebase
 			for (DataSnapshot postSnapshot: snapshot.getChildren()) {
@@ -125,7 +124,7 @@ public class Leaderboard extends Scene {
 			
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
 	      Set<Entry<String, User>> set = leaderboard.entrySet();
-	      List<Entry<String, User>> list = new ArrayList<Entry<String, User>>(set);
+	      List<Entry<String, User>> list = new ArrayList<>(set);
 	      Collections.sort( list, new Comparator<Map.Entry<String, User>>()
 	      {
 	      		public int compare( Map.Entry<String,User> o1, Map.Entry<String,User> o2 )
@@ -145,7 +144,6 @@ public class Leaderboard extends Scene {
 		@Override
 		public void onCancelled(DatabaseError error)
 		{
-			// TODO Auto-generated method stub
 			
 		}
 

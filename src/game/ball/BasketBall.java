@@ -6,11 +6,11 @@ import javafx.scene.paint.ImagePattern;
 public class BasketBall extends Ball
 {
 	private static final Image ballImg = new Image("file:basketball.jpg");
-	private static final double radius = 30;
-	private static final double mass = 20;
+	private static final double RADIUS = 30;
+	private static final double MASS = 20;
 	
 	public BasketBall(double centerX, double centerY){
-		super(centerX, centerY, radius, new ImagePattern(ballImg));
-		setM(mass);
+		super(centerX, centerY, RADIUS, new ImagePattern(ballImg));
+		setM(MASS);
 	}
 }

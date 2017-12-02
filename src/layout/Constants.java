@@ -1,6 +1,9 @@
 package layout;
 
 public class Constants {
+	private Constants() {
+	    throw new IllegalStateException("Constant class");
+	  }
 
 	// Environment Constants
 

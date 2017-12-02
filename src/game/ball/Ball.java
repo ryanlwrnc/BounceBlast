@@ -9,20 +9,18 @@ import java.util.List;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import junit.framework.Test;
-import javafx.scene.media.AudioClip;
 
 
 public class Ball extends Circle {
 	
-	public static enum Button {
+	public enum Button {
 		UP, DOWN, LEFT, RIGHT, SPACE, W, A, S, D;
 	}
 	
-	private Map<Button, Boolean> pressed = new HashMap<Button, Boolean>();
+	private Map<Button, Boolean> pressed = new HashMap<>();
 	
 	// Have public setters
-	private double F = 5;
+	private double f = 5;
 	private double m = 10;
 	
 	// Don't have public setters
@@ -69,16 +67,16 @@ public class Ball extends Circle {
 		ay = 0;
 		
 		if (pressed.get(Button.UP)) {
-			ay = -F / m;
+			ay = -f / m;
 		}
 		if (pressed.get(Button.DOWN)) {
-			ay = ay + F / m;
+			ay = ay + f / m;
 		}
 		if (pressed.get(Button.LEFT)) {
-			ax = -F / m;
+			ax = -f / m;
 		}
 		if (pressed.get(Button.RIGHT)) {
-			ax = F/m;
+			ax = f/m;
 		}
 		
 		setCenterX(getNewX(getCenterX(), vx, t, ax));
@@ -98,26 +96,26 @@ public class Ball extends Circle {
 		if (Math.random() > 0.33) {
 			if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
 				// move right
-				ax = F/m;
+				ax = f/m;
 				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
 					// move down
-					ay = ay + F / m;
+					ay = ay + f / m;
 				}
 				else {
 					// move up
-					ay = -F / m;
+					ay = -f / m;
 				}
 			}
 			if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
 				// move left
-				ax = -F / m;
+				ax = -f / m;
 				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
 					// move down
-					ay = ay + F / m;
+					ay = ay + f / m;
 				}
 				else {
 					// move up
-					ay = -F / m;
+					ay = -f / m;
 				}
 			}
 		}
@@ -125,26 +123,26 @@ public class Ball extends Circle {
 		else {
 			if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
 				// move left
-				ax = -F / m;
+				ax = -f / m;
 				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
 					// move up
-					ay = -F / m;
+					ay = -f / m;
 				}
 				else {
 					// move down
-					ay = ay + F / m;
+					ay = ay + f / m;
 				}
 			}
 			if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
 				// move right
-				ax = F/m;
+				ax = f/m;
 				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
 					// move up
-					ay = -F / m;
+					ay = -f / m;
 				}
 				else {
 					// move down
-					ay = ay + F / m;
+					ay = ay + f / m;
 				}
 			}
 		}
@@ -210,9 +208,9 @@ public class Ball extends Circle {
 		
 		double speed1 =  Math.sqrt((v1x * v1x) + (v1y * v1y));
 		double speed2 =  Math.sqrt((v2x * v2x) + (v2y * v2y));
-		double greater_speed = Math.max(speed1, speed2);
+		double greaterSpeed = Math.max(speed1, speed2);
 			
-		player.setVolume(greater_speed / 25);
+		player.setVolume(greaterSpeed / 25);
 		player.play();
 		
 		b1.setVx(v1x);
@@ -230,24 +228,26 @@ public class Ball extends Circle {
 	}
 
 	private void setVx(double vx) {
+		double newVx = vx;
 		// Set limit to speed
 		if (vx > maxSpeed) {
-			vx = maxSpeed;
+			newVx = maxSpeed;
 		}
 		if (vx < -maxSpeed) {
-			vx = -maxSpeed;
+			newVx = -maxSpeed;
 		}
-		this.vx = vx;
+		this.vx = newVx;
 	}
 
 	private void setVy(double vy) {
+		double newVy = vy;
 		if (vy > maxSpeed) {
-			vy = maxSpeed;
+			newVy = maxSpeed;
 		}
 		if (vy < -maxSpeed) {
-			vy = -maxSpeed;
+			newVy = -maxSpeed;
 		}
-		this.vy = vy;
+		this.vy = newVy;
 	}
 
 	public double getT() {
@@ -275,11 +275,11 @@ public class Ball extends Circle {
 	}
 	
 	public double getF() {
-		return F;
+		return f;
 	}
 
 	public void setF(double f) {
-		F = f;
+		this.f = f;
 	}
 
 	public double getM() {

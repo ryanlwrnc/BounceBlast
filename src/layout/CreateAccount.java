@@ -29,7 +29,7 @@ public class CreateAccount extends Scene {
 	
 	// Components
 	private Button back;
-	private Button createAccount;
+	private Button makeAccount;
 	private Text gameTitle;
 	private Text username;
 	private Text password;
@@ -43,7 +43,7 @@ public class CreateAccount extends Scene {
 	private GridPane box;
 	
 	// Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
 	
 	public CreateAccount(Main app) {
 		super(new GridPane(), 800, 600);
@@ -77,7 +77,7 @@ public class CreateAccount extends Scene {
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);		// ADDEd
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);		// ADDEd
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
@@ -133,20 +133,20 @@ public class CreateAccount extends Scene {
         box.add(confirmPasswordField, 1, 2);
         
         // Create Account button
-        createAccount = new Button("Create Account");
-        createAccount.setPrefHeight(40);
-        createAccount.setPrefWidth(150);
-        createAccount.setStyle("-fx-border-width: 3;" + 
+        makeAccount = new Button("Create Account");
+        makeAccount.setPrefHeight(40);
+        makeAccount.setPrefWidth(150);
+        makeAccount.setStyle("-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
 				"-fx-font-size: 16;" + 
 				"-fx-text-fill: white;");
-		box.add(createAccount, 0, 10);
-		GridPane.setHalignment(createAccount, HPos.CENTER);
-		GridPane.setMargin(createAccount, new Insets(5, 10, 5, 10));
+		box.add(makeAccount, 0, 10);
+		GridPane.setHalignment(makeAccount, HPos.CENTER);
+		GridPane.setMargin(makeAccount, new Insets(5, 10, 5, 10));
 		
 		// Create Account Pressed
-		createAccount.setOnAction(new EventHandler<ActionEvent>() {
+		makeAccount.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				/*
 				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
@@ -161,7 +161,7 @@ public class CreateAccount extends Scene {
 						// Make sure the two password fields match
 						if(passwordField.getText().equals(confirmPasswordField.getText()))
 						{
-							System.out.println("Passwords match!");
+							//System.out.println("Passwords match!");
 							// Write to database
 							final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
 
@@ -178,7 +178,7 @@ public class CreateAccount extends Scene {
 		});
 		     
 		GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, screenButtonCol, 1);
+		gridpane.add(box, SCREENBUTTONCOL, 1);
 		
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");

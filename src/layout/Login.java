@@ -32,7 +32,7 @@ public class Login extends Scene {
 	
 	// Components
 	Button back;
-	Button login;
+	Button doLogin;
 	Button createAccount;
 	Text gameTitle;
 	Text username;
@@ -47,7 +47,7 @@ public class Login extends Scene {
 	boolean verified;
 	
 	// Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
 	
 	public Login(Main app) {
 		super(new GridPane(),800,600);
@@ -82,7 +82,7 @@ public class Login extends Scene {
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
@@ -133,20 +133,20 @@ public class Login extends Scene {
         box.add(passwordField, 1, 1);
         
         // Login button
-        login = new Button("Login");
-        login.setPrefHeight(40);
-		login.setPrefWidth(100);
-		login.setStyle("-fx-border-width: 3;" + 
+        doLogin = new Button("Login");
+        doLogin.setPrefHeight(40);
+        doLogin.setPrefWidth(100);
+        doLogin.setStyle("-fx-border-width: 3;" + 
 				"-fx-border-color: white;" + 
 				"-fx-background-color: #24618F;" +
 				"-fx-font-size: 16;" + 
 				"-fx-text-fill: white;");
-		box.add(login, 0, 10);
-		GridPane.setHalignment(login, HPos.CENTER);
-		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
+		box.add(doLogin, 0, 10);
+		GridPane.setHalignment(doLogin, HPos.CENTER);
+		GridPane.setMargin(doLogin, new Insets(5, 10, 5, 10));
 		
 		// Login is pressed
-		login.setOnAction(new EventHandler<ActionEvent>() {
+		doLogin.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				// If username and password fields are filled.
 				if (!usernameField.getText().trim().isEmpty() && !passwordField.getText().trim().isEmpty()) {
@@ -160,14 +160,13 @@ public class Login extends Scene {
 						        // If password matches
 						        if(passwordField.getText().equals(note.getPassword())) {
 					   					verified = true;
-						      	  		System.out.println("SUCCESSFUL LOG IN");
+						      	  		//System.out.println("SUCCESSFUL LOG IN");
 						        }
 						}
 
 						@Override
 						public void onCancelled(DatabaseError arg0)
 						{
-							// TODO Auto-generated method stub
 							
 						}
 					});
@@ -176,7 +175,10 @@ public class Login extends Scene {
 					try 
 					{
 						Thread.sleep(250);
-					}catch(Exception e){}
+					}
+					catch(Exception e){
+						Thread.currentThread().interrupt();
+					}
 					
 					if(verified)
 						app.updateScene(new Profile(app,usernameField.getText()));
@@ -205,7 +207,7 @@ public class Login extends Scene {
 			});
         
 		GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, screenButtonCol, 1);
+		gridpane.add(box, SCREENBUTTONCOL, 1);
 		
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");

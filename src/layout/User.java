@@ -8,7 +8,7 @@ public class User
 	private Integer win;
 	private Integer loss;
 	
-	public User() {};
+	//public User() {};
 	
 	public User(String p)
 	{

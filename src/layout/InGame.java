@@ -1,22 +1,13 @@
 package layout;
-import java.awt.Label;
-import java.awt.TextField;
-
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
@@ -38,7 +29,7 @@ public class InGame extends Scene {
 	private ColumnConstraints cons2;
 	private RowConstraints rcons1;
 	private RowConstraints rcons2;
-	static final String font16 = "-fx-font: 16 arial;";
+	static final String FONT16 = "-fx-font: 16 arial;";
 	
 	public InGame(Main app) {
 		super(new GridPane(), 800, 600);
@@ -59,7 +50,7 @@ public class InGame extends Scene {
 		*/
 		
 		// Gridpane
-		  cons1 = new ColumnConstraints();
+		cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
 
@@ -126,7 +117,7 @@ public class InGame extends Scene {
 		name0.setFont(new Font(20));
 		name0.setFill(Color.WHITE);
 		name0.setText("DFalessi");
-		name0.setStyle(font16);
+		name0.setStyle(FONT16);
 		name0.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(name0, HPos.LEFT);
 		nameGrid.add(name0, 0, 0);
@@ -136,7 +127,7 @@ public class InGame extends Scene {
 		name1.setFont(new Font(20));
 		name1.setFill(Color.WHITE);
 		name1.setText("meatwadsprite");
-		name1.setStyle(font16);
+		name1.setStyle(FONT16);
 		name1.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(name1, HPos.LEFT);
 		nameGrid.add(name1, 0, 1);
@@ -146,7 +137,7 @@ public class InGame extends Scene {
 		name2.setFont(new Font(20));
 		name2.setFill(Color.WHITE);
 		name2.setText("liftlift");
-		name2.setStyle(font16);
+		name2.setStyle(FONT16);
 		name2.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(name2, HPos.LEFT);
 		nameGrid.add(name2, 0, 2);
@@ -168,7 +159,7 @@ public class InGame extends Scene {
 		score0.setFont(new Font(20));
 		score0.setFill(Color.WHITE);
 		score0.setText("7");
-		score0.setStyle(font16);
+		score0.setStyle(FONT16);
 		score0.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(score0, HPos.RIGHT);
 		nameGrid.add(score0, 3, 0);
@@ -178,7 +169,7 @@ public class InGame extends Scene {
 		score1.setFont(new Font(20));
 		score1.setFill(Color.WHITE);
 		score1.setText("5");
-		score1.setStyle(font16);
+		score1.setStyle(FONT16);
 		score1.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(score1, HPos.RIGHT);
 		nameGrid.add(score1, 3, 1);
@@ -188,7 +179,7 @@ public class InGame extends Scene {
 		score2.setFont(new Font(20));
 		score2.setFill(Color.WHITE);
 		score2.setText("2");
-		score2.setStyle(font16);
+		score2.setStyle(FONT16);
 		score2.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(score2, HPos.RIGHT);
 		nameGrid.add(score2, 3, 2);
@@ -198,7 +189,7 @@ public class InGame extends Scene {
 		score3.setFont(new Font(20));
 		score3.setFill(Color.WHITE);
 		score3.setText("0");
-		score3.setStyle(font16);
+		score3.setStyle(FONT16);
 		score3.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(score3, HPos.RIGHT);
 		nameGrid.add(score3, 3, 3);
@@ -216,7 +207,7 @@ public class InGame extends Scene {
 		round.setFont(new Font(20));
 		round.setFill(Color.WHITE);
 		round.setText("Round: 1");
-		round.setStyle(font16);
+		round.setStyle(FONT16);
 		round.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(round, HPos.CENTER);
 		gridpane.add(round, 3, 0);

@@ -36,7 +36,7 @@ public class PlayOnlineLobby extends Scene {
 		private RowConstraints rcons2;
 		
 		// Constants
-		private final int screenButtonCol = 2;
+		private static final int SCREENBUTTONCOL = 2;
 		
 		public PlayOnlineLobby(Main app) {
 			super(new GridPane(), 800, 600);
@@ -66,7 +66,7 @@ public class PlayOnlineLobby extends Scene {
 			gameTitle.setStyle("-fx-font: 75 arial;");
 			gameTitle.setTextAlignment(TextAlignment.CENTER);
 			GridPane.setHalignment(gameTitle, HPos.CENTER);
-			gridpane.add(gameTitle, screenButtonCol, 0);
+			gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 			GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 			
 			 //Adding GridPane
@@ -83,7 +83,7 @@ public class PlayOnlineLobby extends Scene {
 					 "-fx-border-color: white;-fx-border-width: 3;");
 			
 		    GridPane.setHalignment(box, HPos.CENTER);
-			gridpane.add(box, screenButtonCol, 1);
+			gridpane.add(box, SCREENBUTTONCOL, 1);
 
 			// Start Button
 			start = new PlayOnlineButton(app, "Start", new InGame(app));

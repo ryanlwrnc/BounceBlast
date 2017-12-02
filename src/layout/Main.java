@@ -1,26 +1,10 @@
 package layout;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.logging.Log;
-
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import game.GameEngine;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -70,7 +54,7 @@ public class Main extends Application {
 		 * dataSnapshot.getValue(User.class); System.out.println(note.password);
 		 * System.out.println(note.score); }
 		 * 
-		 * @Override public void onCancelled(DatabaseError arg0) { // TODO
+		 * @Override public void onCancelled(DatabaseError arg0) { 
 		 * Auto-generated method stub
 		 * 
 		 * } }); //
@@ -117,7 +101,7 @@ public class Main extends Application {
 		if (pod != null) {
 			pod.interrupt();
 		}
-		System.out.println("Stopping application");
+		//System.out.println("Stopping application");
 	}
 	
 	public void setUsername(String s)

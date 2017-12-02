@@ -7,7 +7,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import game.ball.BasketBall;
-import javafx.scene.paint.Color;
 
 public class TestBasketBall {
 	@Rule

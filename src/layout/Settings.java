@@ -35,7 +35,7 @@ public class Settings extends Scene{
 	ComboBox<String> cbDirection;
 	
 	// Constants
-	private final int screenButtonCol = 2;
+	private static final int SCREENBUTTONCOL = 2;
 	
 	
 	public Settings(Main app) {
@@ -71,7 +71,7 @@ public class Settings extends Scene{
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, screenButtonCol, 0);
+		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		
 		 //Adding GridPane
@@ -111,7 +111,7 @@ public class Settings extends Scene{
 		box.add(directionKeys, 0, 1);
 		GridPane.setMargin(directionKeys, new Insets(5, 10, 5, 10));	
 		
-		cbDirection = new ComboBox<String>();
+		cbDirection = new ComboBox<>();
         cbDirection.getItems().add("Arrow Keys");
         cbDirection.getItems().add("WASD");
 	    box.add(cbDirection, 1, 1);
@@ -124,7 +124,7 @@ public class Settings extends Scene{
 		box.add(menuButton, 1, 1);*/
 		
 	    GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, screenButtonCol, 1);
+		gridpane.add(box, SCREENBUTTONCOL, 1);
 
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");

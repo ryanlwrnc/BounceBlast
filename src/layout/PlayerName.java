@@ -1,5 +1,6 @@
 package layout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,34 +64,34 @@ public class PlayerName {
 	}
 
 
-	public static ArrayList<TableColumn<PlayerName,?>> getColumn(TableView table) {
+	public static List<TableColumn<PlayerName,?>> getColumn(TableView table) {
 		int i;
-		ArrayList<TableColumn<PlayerName,?>> columns = new ArrayList<TableColumn<PlayerName,?>>();
+		ArrayList<TableColumn<PlayerName,?>> columns = new ArrayList<>();
 		
 		String[] columnNames = {"Rank", "Player", "Score","Wins", "Losses"};
 		String[] variableNames = {"rank", "name", "score", "win", "loss"};
-		Integer[] column_width = {10, 50, 15, 15, 15};
+		Integer[] columnWidth = {10, 50, 15, 15, 15};
 		
 		i = 0;
 		TableColumn<PlayerName, Integer> rankCol = new TableColumn<>(columnNames[i++]);
 		TableColumn<PlayerName, String> nameCol = new TableColumn<>(columnNames[i++]);
 		TableColumn<PlayerName, Integer> scoreCol = new TableColumn<>(columnNames[i++]);
 		TableColumn<PlayerName, Integer> winsCol = new TableColumn<>(columnNames[i++]);
-		TableColumn<PlayerName, Integer> lossesCol = new TableColumn<>(columnNames[i++]);
+		TableColumn<PlayerName, Integer> lossesCol = new TableColumn<>(columnNames[i]);
 		
 		i = 0;
-		rankCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
-		nameCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
-		scoreCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
-		winsCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
-		lossesCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
+		rankCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i++]));
+		nameCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i++]));
+		scoreCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i++]));
+		winsCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i++]));
+		lossesCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i]));
 
 		i = 0;
 		rankCol.setCellValueFactory(new PropertyValueFactory<PlayerName, Integer>(variableNames[i++]));
 		nameCol.setCellValueFactory(new PropertyValueFactory<PlayerName, String>(variableNames[i++]));
 		scoreCol.setCellValueFactory(new PropertyValueFactory<PlayerName, Integer>(variableNames[i++]));
 		winsCol.setCellValueFactory(new PropertyValueFactory<PlayerName, Integer>(variableNames[i++]));
-		lossesCol.setCellValueFactory(new PropertyValueFactory<PlayerName, Integer>(variableNames[i++]));
+		lossesCol.setCellValueFactory(new PropertyValueFactory<PlayerName, Integer>(variableNames[i]));
 		
 		columns.add(rankCol);
 		columns.add(nameCol);

@@ -83,7 +83,7 @@ public class JavaFXThreadingRule implements TestRule {
 
         protected void setupJavaFX() throws InterruptedException {
             
-            long timeMillis = System.currentTimeMillis();
+            //long timeMillis = System.currentTimeMillis();
             
             final CountDownLatch latch = new CountDownLatch(1);
             
@@ -96,9 +96,9 @@ public class JavaFXThreadingRule implements TestRule {
                 }
             });
             
-            System.out.println("javafx initialising...");
+            //System.out.println("javafx initialising...");
             latch.await();
-            System.out.println("javafx is initialised in " + (System.currentTimeMillis() - timeMillis) + "ms");
+            //System.out.println("javafx is initialised in " + (System.currentTimeMillis() - timeMillis) + "ms");
         }
         
     }

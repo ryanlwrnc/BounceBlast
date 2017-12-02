@@ -7,7 +7,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import game.ball.Ball;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 public class TestBallLayout {
 	

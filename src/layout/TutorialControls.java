@@ -27,6 +27,14 @@ public class TutorialControls extends Scene {
 	// Components
 	
 	// Constants
+	private static final String BACKGROUNDPOSITIONCENTERTOP = "-fx-background-position:center top;";
+	private static final String BORDERWIDTH3 = "-fx-border-width: 3;";
+	private static final String FONT20 = "-fx-font: 20 arial;";
+	private static final String BACKGROUNDCOLORWHITE = "-fx-background-color: white;";
+	private static final String BACKGROUNDCOLOR003399 ="-fx-background-color: #003399;";
+	private static final String BORDERCOLORGRAY = "-fx-border-color: gray;";
+	private static final String FILL000000 ="-fx-fill: #000000;";
+	private static final String FILLFFFFFF ="-fx-fill: #FFFFFF;";
 	
 	
 	public TutorialControls(Main app) {
@@ -73,8 +81,9 @@ public class TutorialControls extends Scene {
         box.setHgap(5);
         box.setVgap(5);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
-				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");
+        		BACKGROUNDPOSITIONCENTERTOP +
+			"-fx-border-color: white;" +
+			BORDERWIDTH3);
         
         Image moveImg = new Image("file:arrowKeys.png");
         ImageView moveView = new ImageView(moveImg);
@@ -86,7 +95,7 @@ public class TutorialControls extends Scene {
         move.setFont(new Font(20));
         move.setFill(Color.WHITE);
         move.setText("Move");
-        move.setStyle("-fx-font: 20 arial;");
+        move.setStyle(FONT20);
         move.setTextAlignment(TextAlignment.RIGHT);
 		GridPane.setHalignment(move, HPos.RIGHT);
 		box.add(move, 1, 0);
@@ -96,7 +105,7 @@ public class TutorialControls extends Scene {
 		accelerate.setFont(new Font(20));
 		accelerate.setFill(Color.WHITE);
 		accelerate.setText("Accelerate");
-		accelerate.setStyle("-fx-font: 20 arial;");
+		accelerate.setStyle(FONT20);
 		accelerate.setTextAlignment(TextAlignment.RIGHT);
 		GridPane.setHalignment(accelerate, HPos.RIGHT);
 		box.add(accelerate, 1, 1);
@@ -113,12 +122,14 @@ public class TutorialControls extends Scene {
         rules.setMinHeight(50);
 		rules.setMaxWidth(200);
         rules.setMaxHeight(50);
-        rules.setStyle("-fx-background-color: white;" +
-				 "-fx-background-position:center top;" +
-				 "-fx-border-color: gray;-fx-border-width: 3;");
+        rules.setStyle(BACKGROUNDCOLORWHITE +
+        		BACKGROUNDPOSITIONCENTERTOP +
+				 BORDERCOLORGRAY +
+				 BORDERWIDTH3);
         Text rulesTitle = new Text();
         rulesTitle.setText("Rules");
-        rulesTitle.setStyle("-fx-fill: #000000; -fx-font: 20 arial;");
+        rulesTitle.setStyle(FILL000000 +
+        		FONT20);
         rulesTitle.setTextAlignment(TextAlignment.CENTER);
         rules.getChildren().add(rulesTitle);
         StackPane.setAlignment(rulesTitle, Pos.CENTER);
@@ -131,19 +142,23 @@ public class TutorialControls extends Scene {
         rules.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		rules.setStyle("-fx-background-color: #003399;" +
-	       				 "-fx-background-position:center top;" +
-	       				 "-fx-border-color: gray;-fx-border-width: 3;");
-	        		rulesTitle.setStyle("-fx-fill: #FFFFFF; -fx-font: 20 arial;");
+	        		rules.setStyle(BACKGROUNDCOLOR003399 +
+	        				BACKGROUNDPOSITIONCENTERTOP +
+	       				 BORDERCOLORGRAY +
+	       				BORDERWIDTH3);
+	        		rulesTitle.setStyle(FILLFFFFFF
+	        				+ FONT20);
 	        }
 	    });
         rules.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		rules.setStyle("-fx-background-color: white;" +
-	       				 "-fx-background-position:center top;" +
-	       				 "-fx-border-color: gray;-fx-border-width: 3;");
-	        		rulesTitle.setStyle("-fx-fill: #000000; -fx-font: 20 arial;");
+	        		rules.setStyle(BACKGROUNDCOLORWHITE +
+	        				BACKGROUNDPOSITIONCENTERTOP +
+	       				 BORDERCOLORGRAY +
+	       				BORDERWIDTH3);
+	        		rulesTitle.setStyle(FILL000000
+	        				+ FONT20);
 	        }
 	    });
         
@@ -152,12 +167,14 @@ public class TutorialControls extends Scene {
         controls.setMinHeight(50);
         controls.setMaxWidth(200);
         controls.setMaxHeight(50);
-        controls.setStyle("-fx-background-color: #003399;" +
-				 "-fx-background-position:center top;" +
-				 "-fx-border-color: gray;-fx-border-width: 3;");
+        controls.setStyle(BACKGROUNDCOLOR003399 +
+        		BACKGROUNDPOSITIONCENTERTOP +
+				 BORDERCOLORGRAY +
+				 BORDERWIDTH3);
         Text controlsTitle = new Text();
         controlsTitle.setText("Controls");
-        controlsTitle.setStyle("-fx-fill: #FFFFFF; -fx-font: 20 arial;");
+        controlsTitle.setStyle(FILLFFFFFF
+        		+ FONT20);
         controlsTitle.setTextAlignment(TextAlignment.CENTER);
         controls.getChildren().add(controlsTitle);
         StackPane.setAlignment(controlsTitle, Pos.CENTER);
@@ -168,12 +185,14 @@ public class TutorialControls extends Scene {
 		strategy.setMinHeight(50);
         strategy.setMaxWidth(200);
         strategy.setMaxHeight(50);
-        strategy.setStyle("-fx-background-color: white;" +
-				 "-fx-background-position:center top;" +
-				 "-fx-border-color: gray;-fx-border-width: 3;");
+        strategy.setStyle(BACKGROUNDCOLORWHITE +
+        		BACKGROUNDPOSITIONCENTERTOP +
+				 BORDERCOLORGRAY +
+				 BORDERWIDTH3);
         Text strategyTitle = new Text();
         strategyTitle.setText("Strategy");
-        strategyTitle.setStyle("-fx-fill: #000000; -fx-font: 20 arial;");
+        strategyTitle.setStyle(FILL000000
+        		+ FONT20);
         strategyTitle.setTextAlignment(TextAlignment.CENTER);
         strategy.getChildren().add(strategyTitle);
         StackPane.setAlignment(strategyTitle, Pos.CENTER);
@@ -186,19 +205,23 @@ public class TutorialControls extends Scene {
         strategy.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		strategy.setStyle("-fx-background-color: #003399;" +
-	       				 "-fx-background-position:center top;" +
-	       				 "-fx-border-color: gray;-fx-border-width: 3;");
-	        		strategyTitle.setStyle("-fx-fill: #FFFFFF; -fx-font: 20 arial;");
+	        		strategy.setStyle(BACKGROUNDCOLOR003399 +
+	        				BACKGROUNDPOSITIONCENTERTOP +
+	       				 BORDERCOLORGRAY +
+	       				BORDERWIDTH3);
+	        		strategyTitle.setStyle(FILLFFFFFF
+	        				+ FONT20);
 	        }
 	    });
         strategy.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
-	        		strategy.setStyle("-fx-background-color: white;" +
-	       				 "-fx-background-position:center top;" +
-	       				 "-fx-border-color: gray;-fx-border-width: 3;");
-	        		strategyTitle.setStyle("-fx-fill: #000000; -fx-font: 20 arial;");
+	        		strategy.setStyle(BACKGROUNDCOLORWHITE +
+	        				BACKGROUNDPOSITIONCENTERTOP +
+	       				 BORDERCOLORGRAY
+	       				 + BORDERWIDTH3);
+	        		strategyTitle.setStyle(FILL000000
+	        				+ FONT20);
 	        }
 	    });
         
