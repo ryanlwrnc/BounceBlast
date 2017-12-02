@@ -13,16 +13,16 @@ import javafx.stage.Screen;
 
 public class Main extends Application {
 
-	protected static Thread thread = null;
-	protected static Thread pod = null; //platform of death
+	protected Thread thread = null;
+	protected Thread pod = null; //platform of death
 
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
 	Rectangle2D bounds = screen.getVisualBounds();
 	// ---
 
-	static Scene myScene;
-	static Stage myStage;
+	protected Scene myScene;
+	protected Stage myStage;
 
 	//Player name
 	private String username = null;

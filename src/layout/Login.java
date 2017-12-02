@@ -167,7 +167,7 @@ public class Login extends Scene {
 						@Override
 						public void onCancelled(DatabaseError arg0)
 						{
-							
+							// still need to implement
 						}
 					});
 					

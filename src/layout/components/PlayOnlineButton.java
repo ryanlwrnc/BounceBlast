@@ -1,6 +1,5 @@
 package layout.components;
 
-import game.ball.Ball;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

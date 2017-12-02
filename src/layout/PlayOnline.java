@@ -174,8 +174,9 @@ public class PlayOnline extends Scene {
 			public void handle(ActionEvent event) {
 				GameScene scene = new GameScene();
 				app.updateScene(scene);
-		        Main.thread = new Thread(new GameEngine(scene));
-		        Main.thread.start();
+				Main main = new Main();
+		        main.thread = new Thread(new GameEngine(scene));
+		        main.thread.start();
 			}
 		});
 	}

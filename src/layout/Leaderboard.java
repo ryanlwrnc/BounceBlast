@@ -144,7 +144,7 @@ public class Leaderboard extends Scene {
 		@Override
 		public void onCancelled(DatabaseError error)
 		{
-			
+			// still need to implement
 		}
 
 		});

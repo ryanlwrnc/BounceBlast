@@ -1,7 +1,7 @@
 package game.ball;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -17,7 +17,8 @@ public class Ball extends Circle {
 		UP, DOWN, LEFT, RIGHT, SPACE, W, A, S, D;
 	}
 	
-	private Map<Button, Boolean> pressed = new HashMap<>();
+	//private Map<Button, Boolean> pressed = new HashMap<>();
+	private EnumMap<Button, Boolean> pressed = new EnumMap<>(Button.class);
 	
 	// Have public setters
 	private double f = 5;
