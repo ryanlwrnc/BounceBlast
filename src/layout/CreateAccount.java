@@ -155,24 +155,26 @@ public class CreateAccount extends Scene {
 				
 				// Verify users input
 				// If username field is not empty:
-				if (!usernameField.getText().trim().isEmpty()) {
+				if ((!usernameField.getText().trim().isEmpty()) && 
+						(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty()) &&
+						(passwordField.getText().equals(confirmPasswordField.getText()))) {
 					// Verify if the two password fields are not empty
-					if(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty())
+					//if(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty())
 						// Make sure the two password fields match
-						if(passwordField.getText().equals(confirmPasswordField.getText()))
-						{
+						//if(passwordField.getText().equals(confirmPasswordField.getText()))
+						//{
 							//System.out.println("Passwords match!");
 							// Write to database
-							final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
+					final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
 
-							//Map<String,User> user = new HashMap<>();
-							//user.put(usernameField.getText(), new User(passwordField.getText()));
-							database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
-							
-							// Go back to the main menu
-							//	mainmenu.logIn(usernameField.getText());
-							app.updateScene(new Profile(app, usernameField.getText()));
-						}
+					//Map<String,User> user = new HashMap<>();
+					//user.put(usernameField.getText(), new User(passwordField.getText()));
+					database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
+					
+					// Go back to the main menu
+					//	mainmenu.logIn(usernameField.getText());
+					app.updateScene(new Profile(app, usernameField.getText()));
+						//}
 				}
 			}
 		});
