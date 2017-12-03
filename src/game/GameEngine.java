@@ -25,15 +25,9 @@ public class GameEngine implements Runnable {
 	private double podLength = 50;
 	private int alertCount = 0;
 	
-<<<<<<< .mine
 	boolean[][] isExiting;
 	
-	public GameEngine(GameScene scene) {
-||||||| .r122
-	public GameEngine(GameScene scene) {
-=======
 	public GameEngine(Main a, GameScene scene) {
->>>>>>> .r124
 		this.scene = scene;
 		this.app = a;
 	}
@@ -102,7 +96,7 @@ public class GameEngine implements Runnable {
 				//frames++;
 			}
 		}
-		//System.out.println("Game is done");
+		System.out.println("Game is done");
 	}
 	
 	public void updateGame(Ball player) {
@@ -250,6 +244,7 @@ public class GameEngine implements Runnable {
 			if(alertCount==0)
 			{
 				alertCount++;
+				app.thread.interrupt();
 				JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
 				
 				app.updateScene(new MainMenu(app));
@@ -258,7 +253,6 @@ public class GameEngine implements Runnable {
 	}
 	
 	public void handleCollisions(List<Ball> players) {
-		System.out.println("Handling collision");
 		boolean[][] collisionsHandled = new boolean[players.size()][players.size()];
 		for (int i = 0; i < players.size(); i++) {
 			for (int j = 0; j < players.size(); j++) {
@@ -266,7 +260,6 @@ public class GameEngine implements Runnable {
 				if (i != j) {
 					Shape intersect = Shape.intersect(players.get(i), players.get(j));
 					boolean isTouching = intersect.getBoundsInLocal().getWidth() != -1;
-					System.out.println("Is touching : " + isTouching);
 					if (isTouching && !isExiting[i][j]) {
 						Ball.handleCollision(players.get(i), players.get(j));
 						isExiting[i][j] = true;

@@ -13,8 +13,8 @@ import javafx.stage.Screen;
 
 public class Main extends Application {
 	
-	protected Thread thread = null;
-	protected Thread pod = null; //platform of death
+	public Thread thread = null;
+	public Thread pod = null; //platform of death
 
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
