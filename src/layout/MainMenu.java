@@ -8,7 +8,9 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -48,8 +50,8 @@ public class MainMenu extends Scene{
 	public MainMenu(Main app) {
 		super(new GridPane(), 800, 600);
 		
-		if (app.currentUser != null) {
-			username = app.currentUser;
+		if (app.getCurrentUser() != null) {
+			username = app.getCurrentUser();
 			loggedIn = true;
 		}
 		
@@ -132,7 +134,11 @@ public class MainMenu extends Scene{
 	        		app.updateScene(new PlayOnline(app));
 	        	}
 	        	else {
-	        		JOptionPane.showMessageDialog(null, "Must be logged in to play online", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setContentText("Must be logged in to play online.");
+				alert.showAndWait();
+	        		//JOptionPane.showMessageDialog(null, "Must be logged in to play online", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
 	        	}
 	        }
 	    });

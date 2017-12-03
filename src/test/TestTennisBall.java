@@ -34,6 +34,6 @@ public class TestTennisBall {
 	@Test
 	public void testTennisBallGetBallRadius() {
 		TennisBall ball = new TennisBall(80, 80);
-		assertEquals(ball.getRadius(), 20, 0.0);
+		assertEquals(ball.getRadius(), 10, 0.0);
 	}
 }

@@ -31,7 +31,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -146,8 +145,13 @@ public class PlayOnline extends Scene {
 							GameScene scene = new GameScene(app, "3", cbBall.getValue());
 
 							app.updateScene(scene);
-					        app.thread = new Thread(new GameEngine(app, scene));
-					        app.thread.start();
+							
+							app.setThread(new Thread(new GameEngine(app, scene)));
+							Thread mainThread = app.getThread();
+							mainThread.start();
+							
+					        //app.thread = new Thread(new GameEngine(app, scene));
+					        //app.thread.start();
 						}
 					}
 				});
@@ -208,17 +212,18 @@ public class PlayOnline extends Scene {
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
 	      Set<Entry<String, Username>> set = leaderboard.entrySet();
 	      List<Entry<String, Username>> list = new ArrayList<>(set);
-	      Collections.sort( list, new Comparator<Map.Entry<String, Username>>()
+	      /*Collections.sort( list, new Comparator<Map.Entry<String, Username>>()
 	      {
 	      		public int compare( Map.Entry<String,Username> o1, Map.Entry<String,Username> o2 )
 	      		{
 	      			return o2.getValue().getUsername().compareTo(o1.getValue().getUsername());
 	      		}
-	      } );
+	      } );*/
+	      Collections.sort(list, (Map.Entry<String,Username> o1, Map.Entry<String,Username> o2) -> o2.getValue().getUsername().compareTo(o1.getValue().getUsername()));
 	      // -----
 	      
 	      // Now that the data from Firebase is sorted, now place each entry into the leaderboard.
-	      	int rank = 1;
+	      	//int rank = 1;
 	      	for(Map.Entry<String, Username> entry : list) {
 	      		data.addAll(entry.getValue());
 	      	}

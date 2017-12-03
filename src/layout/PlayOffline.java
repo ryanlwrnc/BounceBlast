@@ -19,7 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
-import layout.components.PlayOnlineButton;
 
 public class PlayOffline extends Scene {
 	// JavaFX
@@ -149,8 +148,12 @@ public class PlayOffline extends Scene {
 					GameScene scene = new GameScene(app, cbCPU.getValue(), cbBall.getValue());
 
 					app.updateScene(scene);
-			        app.thread = new Thread(new GameEngine(app, scene));
-			        app.thread.start();
+					
+					app.setThread(new Thread(new GameEngine(app, scene)));
+					Thread mainThread = app.getThread();
+					mainThread.start();
+			        //app.thread = new Thread(new GameEngine(app, scene));
+			        //app.thread.start();
 				}
 			}
 		});

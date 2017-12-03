@@ -130,8 +130,13 @@ public class PlayOnlineLobby extends Scene {
 			public void handle(ActionEvent event) {
 				GameScene scene = new GameScene();
 				app.updateScene(scene);
-		        app.thread = new Thread(new GameEngine(app, scene));
-		        app.thread.start();
+				
+				app.setThread(new Thread(new GameEngine(app, scene)));
+				Thread mainThread = app.getThread();
+				mainThread.start();
+				
+		        //app.thread = new Thread(new GameEngine(app, scene));
+		        //app.thread.start();
 			}
 		});
 	}

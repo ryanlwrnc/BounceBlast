@@ -96,7 +96,10 @@ public class Ball extends Circle {
 		// somewhat random movement
 		// move towards target
 		if (Math.random() > 0.33) {
-			if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
+			double[] newAccelerations = moveTowardTarget(target, ax, ay);
+			ax = newAccelerations[0];
+			ay = newAccelerations[1];
+			/*if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
 				// move right
 				ax = f/m;
 				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
@@ -119,11 +122,14 @@ public class Ball extends Circle {
 					// move up
 					ay = -f / m;
 				}
-			}
+			}*/
 		}
 		// move away from target
 		else {
-			if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
+			double[] newAccelerations = moveAwayFromTarget(target, ax, ay);
+			ax = newAccelerations[0];
+			ay = newAccelerations[1];
+			/*if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
 				// move left
 				ax = -f / m;
 				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
@@ -146,7 +152,7 @@ public class Ball extends Circle {
 					// move down
 					ay = ay + f / m;
 				}
-			}
+			}*/
 		}
 		
 		
@@ -155,6 +161,72 @@ public class Ball extends Circle {
 		
 		setVx(getVx(vx, ax, t));
 		setVy(getVy(vy, ay, t));
+	}
+	
+	public double[] moveTowardTarget(Ball target, double ax, double ay) {
+		double[] accelerations = new double[2];
+		double newAx = ax;
+		double newAy = ay;
+		if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
+			// move right
+			newAx = f/m;
+			if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+				// move down
+				newAy = newAy + f / m;
+			}
+			else {
+				// move up
+				newAy = -f / m;
+			}
+		}
+		if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
+			// move left
+			newAx = -f / m;
+			if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+				// move down
+				newAy = newAy + f / m;
+			}
+			else {
+				// move up
+				newAy = -f / m;
+			}
+		}
+		accelerations[0] = newAx;
+		accelerations[1] = newAy;
+		return accelerations;
+	}
+	
+	public double[] moveAwayFromTarget(Ball target, double ax, double ay) {
+		double[] accelerations = new double[2];
+		double newAx = ax;
+		double newAy = ay;
+		if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
+			// move left
+			newAx = -f / m;
+			if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+				// move up
+				newAy = -f / m;
+			}
+			else {
+				// move down
+				newAy = newAy + f / m;
+			}
+		}
+		if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
+			// move right
+			newAx = f/m;
+			if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
+				// move up
+				newAy = -f / m;
+			}
+			else {
+				// move down
+				newAy = newAy + f / m;
+			}
+		}
+		accelerations[0] = newAx;
+		accelerations[1] = newAy;
+		return accelerations;
 	}
 	
 	public Ball AIgetTarget() {

@@ -33,6 +33,6 @@ public class TestBowlingBall {
 	@Test
 	public void testBowlingBallGetBallRadius() {
 		BowlingBall ball = new BowlingBall(80, 80);
-		assertEquals(ball.getRadius(), 20, 0.0);
+		assertEquals(ball.getRadius(), 25, 0.0);
 	}
 }

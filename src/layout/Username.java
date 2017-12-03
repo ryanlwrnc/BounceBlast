@@ -8,21 +8,21 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Username {
-	private String username;
+	private String myUsername;
 	
 	public Username() {
 	}
 	
 	public Username(String username) {
-		this.username = username;
+		this.myUsername = username;
 	}
 
 	public String getUsername() {
-		return username;
+		return myUsername;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.myUsername = username;
 	}
 	
 	public static List<TableColumn<Username,Object>> getColumn(TableView table) {
@@ -36,15 +36,15 @@ public class Username {
 		
 		i = 0;
 		
-		TableColumn<Username, Object> nameCol = new TableColumn<>(columnNames[i++]);
+		TableColumn<Username, Object> nameCol = new TableColumn<>(columnNames[i]);
 		
 		i = 0;
 		
-		nameCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i++]));
+		nameCol.prefWidthProperty().bind(table.widthProperty().divide(100 / columnWidth[i]));
 
 		i = 0;
 		
-		nameCol.setCellValueFactory(new PropertyValueFactory<Username, Object>(variableNames[i++]));
+		nameCol.setCellValueFactory(new PropertyValueFactory<Username, Object>(variableNames[i]));
 		
 		columns.add(nameCol);
 		

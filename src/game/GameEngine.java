@@ -3,9 +3,10 @@ package game;
 import game.ball.Ball;
 import javafx.application.Platform;
 import javafx.scene.shape.Shape;
-import layout.CreateAccount;
 import layout.Main;
 import layout.MainMenu;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 public class GameEngine implements Runnable {
 
 	private static final double UPDATE_CAP = 1.0/60.0;
-	private static final int HANDLED = 1;
+	//private static final int HANDLED = 1;
 	private GameScene scene;
 	private Main app;
 	
@@ -55,7 +56,8 @@ public class GameEngine implements Runnable {
 		scene.v.setEndX(-100);
 		scene.v.setEndY(-100);
 		
-		while(!Thread.currentThread().interrupted()) {
+		//while(!Thread.currentThread().interrupted()) {
+		while(!Thread.interrupted()) {
 			render = false;
 			firstTime = System.nanoTime() / 1000000000.0;
 			passedTime = firstTime - lastTime;
@@ -77,7 +79,7 @@ public class GameEngine implements Runnable {
 			}
 			
 			if (render) {
-				Platform.runLater(new Runnable() {
+				/*Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
 						
@@ -92,7 +94,17 @@ public class GameEngine implements Runnable {
 						
 						handleCollisions(scene.getAllPlayers());	
 					}
-				});
+				});*/
+				Platform.runLater(() -> {for (Ball player : scene.getAllPlayers()) {
+							updateGame(player);
+							player.updatePosition();
+						}
+						
+						// Move Platform Clockwise
+						movePlatform();
+						ballHitsPlatform();
+						
+						handleCollisions(scene.getAllPlayers());	});
 				//frames++;
 			}
 		}
@@ -244,8 +256,16 @@ public class GameEngine implements Runnable {
 			if(alertCount==0)
 			{
 				alertCount++;
-				app.thread.interrupt();
-				JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
+				
+				Thread mainThread = app.getThread();
+				mainThread.interrupt();
+				
+				//app.thread.interrupt();
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("BounceBlast");
+				alert.setContentText("Game Over!");
+				alert.showAndWait();
+				//JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
 				
 				app.updateScene(new MainMenu(app));
 			}

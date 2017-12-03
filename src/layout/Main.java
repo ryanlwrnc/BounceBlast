@@ -13,9 +13,9 @@ import javafx.stage.Screen;
 
 public class Main extends Application {
 	
-	public Thread thread = null;
-	public Thread pod = null; //platform of death
-	public String currentUser = null;
+	private Thread thread = null;
+	private Thread pod = null; //platform of death
+	private String currentUser = null;
 
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
@@ -95,5 +95,23 @@ public class Main extends Application {
 	}
 	public void setStage(Stage stage) {
 		this.myStage = stage;
+	}
+	public String getCurrentUser() {
+		return this.currentUser;
+	}
+	public void setCurrentUser(String user) {
+		this.currentUser = user;
+	}
+	public Thread getThread() {
+		return this.thread;
+	}
+	public void setThread(Thread thread) {
+		this.thread = thread;
+	}
+	public Thread getPod() {
+		return this.pod;
+	}
+	public void setPod(Thread pod) {
+		this.pod = pod;
 	}
 }
