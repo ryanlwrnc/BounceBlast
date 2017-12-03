@@ -27,7 +27,7 @@ import layout.Main;
 public class GameScene extends Scene {
 	
 	// JavaFx
-	private Group root;
+	//private Group root;
 	Pane p;
 	
 	// Components
@@ -59,7 +59,7 @@ public class GameScene extends Scene {
 			"-fx-text-fill: white;";
 	
 	
-	public GameScene() {
+	/*public GameScene() {
 		super(new Group(), 800, 600);
 
 		root = (Group) getRoot();
@@ -126,7 +126,7 @@ public class GameScene extends Scene {
 				}
 			}
 		});
-	}
+	}*/
 	
 	// GameScene Constructor for Play Offline
 	public GameScene(Main app, String numCPU, String chosenBall) {
@@ -153,8 +153,8 @@ public class GameScene extends Scene {
         cbBall.getItems().add("Tennis Ball");
         cbBall.getItems().add("Soccer Ball");
 		 */
-		
-		if(chosenBall.equals(BASKETBALL)) {
+		checkChosenBall(chosenBall, numberCPUs);
+		/*if(chosenBall.equals(BASKETBALL)) {
 			mainPlayer = new BasketBall(300,300);
 			playerOne = new TennisBall(800, 300);
 			if(numberCPUs>1)
@@ -182,7 +182,7 @@ public class GameScene extends Scene {
 				playerTwo = new BasketBall(300, 300);
 			if(numberCPUs>2)
 				playerThree = new BowlingBall(300,600);
-		}
+		}*/
 		
 		/*
 		if(numberCPUs == 1) {
@@ -324,7 +324,66 @@ public class GameScene extends Scene {
 			}
 		});
 	}
-	//
+	
+	public void checkChosenBall(String chosenBall, int numberCPUs) {
+		if(chosenBall.equals(BASKETBALL)) {
+			mainPlayer = new BasketBall(300,300);
+			playerOne = new TennisBall(800, 300);
+			checkNumberCPUsBasketball(numberCPUs);
+			/*if(numberCPUs>1)
+				playerTwo = new BowlingBall(300,600);
+			if(numberCPUs>2)
+				playerThree = new SoccerBall(600,600);*/
+		}else if(chosenBall.equals(BOWLINGBALL)) {
+			mainPlayer = new BowlingBall(300, 300);
+			playerOne = new TennisBall(800, 300);
+			checkNumberCPUsBowlingBall(numberCPUs);
+			/*if(numberCPUs>1)
+				playerTwo = new SoccerBall(600,600);
+			if(numberCPUs>2)
+				playerThree = new BasketBall(300,600);*/
+		}else if(chosenBall.equals(TENNISBALL)) {
+			mainPlayer = new TennisBall(400, 400);
+			playerOne = new BasketBall(300, 300);
+			checkNumberCPUsTennisBall(numberCPUs);
+			/*if(numberCPUs>1)
+				playerTwo = new SoccerBall(600,600);
+			if(numberCPUs>2)
+				playerThree = new BowlingBall(800,300);*/
+		}else if(chosenBall.equals(SOCCERBALL)) {
+			mainPlayer = new SoccerBall(400, 400);
+			playerOne = new TennisBall(800, 300);
+			checkNumberCPUsSoccerBall(numberCPUs);
+			/*if(numberCPUs>1)
+				playerTwo = new BasketBall(300, 300);
+			if(numberCPUs>2)
+				playerThree = new BowlingBall(300,600);*/
+		}
+	}
+	public void checkNumberCPUsBasketball(int numberCPUs) {
+		if(numberCPUs>1)
+			playerTwo = new BowlingBall(300,600);
+		if(numberCPUs>2)
+			playerThree = new SoccerBall(600,600);
+	}
+	public void checkNumberCPUsBowlingBall(int numberCPUs) {
+		if(numberCPUs>1)
+			playerTwo = new SoccerBall(600,600);
+		if(numberCPUs>2)
+			playerThree = new BasketBall(300,600);
+	}
+	public void checkNumberCPUsTennisBall(int numberCPUs) {
+		if(numberCPUs>1)
+			playerTwo = new SoccerBall(600,600);
+		if(numberCPUs>2)
+			playerThree = new BowlingBall(800,300);
+	}
+	public void checkNumberCPUsSoccerBall(int numberCPUs) {
+		if(numberCPUs>1)
+			playerTwo = new BasketBall(300, 300);
+		if(numberCPUs>2)
+			playerThree = new BowlingBall(300,600);
+	}
 	
 	public List<Ball> getAllPlayers() {
 		return new ArrayList<>(allPossiblePlayers).stream()

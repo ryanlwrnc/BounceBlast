@@ -32,7 +32,7 @@ public class JavaFXThreadingRule implements TestRule {
     /**
      * Flag for setting up the JavaFX, we only need to do this once for all tests.
      */
-    private static boolean jfxIsSetup;
+    //private static boolean jfxIsSetup;
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -53,11 +53,12 @@ public class JavaFXThreadingRule implements TestRule {
         @Override
         public void evaluate() throws Throwable {
             
-            if(!jfxIsSetup) {
+        		setupJavaFX();
+            /*if(!jfxIsSetup) {
                 setupJavaFX();
                 
                 jfxIsSetup = true;
-            }
+            }*/
             
             final CountDownLatch countDownLatch = new CountDownLatch(1);
             
