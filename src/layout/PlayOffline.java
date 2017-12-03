@@ -28,7 +28,6 @@ public class PlayOffline extends Scene {
 	// Components
 	private BackToMainMenuButton back;
 	private Button start;
-	private Button temp;
 	private Text gameTitle;
 	private Text ballTypes;
 	private GridPane box;
@@ -143,7 +142,16 @@ public class PlayOffline extends Scene {
 		// Return to Main Menu when back is pressed
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				app.updateScene(new InGame(app));
+				// Make sure NumberOfCPUs and SelectGameBall are selected
+				if(cbBall.getValue() != null & cbCPU.getValue() != null) {
+
+					// Create a new GameScene, that is created based on what the users ball is as well as the number of CPUs.
+					GameScene scene = new GameScene(app, cbCPU.getValue(), cbBall.getValue());
+
+					app.updateScene(scene);
+			        app.thread = new Thread(new GameEngine(app, scene));
+			        app.thread.start();
+				}
 			}
 		});
 		
@@ -172,44 +180,13 @@ public class PlayOffline extends Scene {
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");
 		gridpane.add(back, 1, 10);
-		 
-		//Temporary GameScene Button
-		temp = new Button("Game Scene");
-		temp.setPrefHeight(25);
-		temp.setPrefWidth(200);
-		temp.setStyle(BORDERWIDTH3 + 
-				BORDERCOLORWHITE + 
-				BACKGROUNDCOLOR24618F +
-				FONTSIZE16 + 
-				TEXTFILLWHITE);
-		gridpane.add(temp, 2, 10);
+		 	
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-		
-		//Temporary GameScene Button
-		temp = new PlayOnlineButton(app, "Game Scene", new GameScene());
-		temp.setPrefHeight(25);
-		temp.setPrefWidth(200);
-		
-		gridpane.add(temp, 2, 10);
-		GridPane.setHalignment(back, HPos.CENTER);
-		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
+
 		
 		// Go to the temporary game scene when the button is pressed.
-		temp.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				// Make sure NumberOfCPUs and SelectGameBall are selected
-				if(cbBall.getValue() != null & cbCPU.getValue() != null) {
-
-					// Create a new GameScene, that is created based on what the users ball is as well as the number of CPUs.
-					GameScene scene = new GameScene(app, cbCPU.getValue(), cbBall.getValue());
-
-					app.updateScene(scene);
-			        app.thread = new Thread(new GameEngine(app, scene));
-			        app.thread.start();
-				}
-			}
-		});
+		
 	}
 	public BackToMainMenuButton getBackButton() {
 		return this.back;

@@ -1,4 +1,6 @@
 package layout;
+import javax.swing.JOptionPane;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +27,7 @@ public class MainMenu extends Scene{
 	
 	// Log in
 	private boolean loggedIn = false;
-	private String username = null;
+	String username = null;
 	
 	// Components
 	private Button login;
@@ -45,6 +47,11 @@ public class MainMenu extends Scene{
 	
 	public MainMenu(Main app) {
 		super(new GridPane(), 800, 600);
+		
+		if (app.currentUser != null) {
+			username = app.currentUser;
+			loggedIn = true;
+		}
 		
 		// GridPane
 		gridpane = (GridPane) getRoot();
@@ -82,7 +89,7 @@ public class MainMenu extends Scene{
 			Text user = new Text();
 			user.setFont(new Font(20));
 			user.setFill(Color.WHITE);
-			user.setText(this.username);
+			user.setText("Welcome " + this.username);
 			user.setStyle("-fx-font: 40 arial;");
 			user.setTextAlignment(TextAlignment.CENTER);
 			GridPane.setHalignment(gameTitle, HPos.CENTER);
@@ -102,6 +109,12 @@ public class MainMenu extends Scene{
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
 		// Login & Profile button
+		
+		/* Delete 
+		app.setUsername("anand");
+		loggedIn = true;
+		 Delete */
+		
 		if(app.getUsername()!=null)
 			login = new MainMenuButton(app, "Profile", new Profile(app,app.getUsername()));
 		else
@@ -111,7 +124,19 @@ public class MainMenu extends Scene{
 		GridPane.setMargin(login, new Insets(5, 10, 5, 10));
 		
 		// Play online button
-		playOnline = new MainMenuButton(app, "Play Online", new PlayOnline(app));
+		playOnline = new MainMenuButton(app, "Play Online", null);
+		playOnline.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override
+	        public void handle(ActionEvent t) {
+	        	if (loggedIn) {
+	        		app.updateScene(new PlayOnline(app));
+	        	}
+	        	else {
+	        		JOptionPane.showMessageDialog(null, "Must be logged in to play online", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
+	        	}
+	        }
+	    });
+		
 		gridpane.add(playOnline, SCREENBUTTONCOL, 3);
 		GridPane.setHalignment(playOnline, HPos.CENTER);
 		GridPane.setMargin(playOnline, new Insets(5, 10, 5, 10));

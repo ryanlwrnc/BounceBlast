@@ -15,6 +15,7 @@ public class Main extends Application {
 	
 	public Thread thread = null;
 	public Thread pod = null; //platform of death
+	public String currentUser = null;
 
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
