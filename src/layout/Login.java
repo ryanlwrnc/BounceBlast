@@ -155,7 +155,7 @@ public class Login extends Scene {
 				// If username and password fields are filled.
 				if (!usernameField.getText().trim().isEmpty() && !passwordField.getText().trim().isEmpty()) {
 					// Verify that the username exists and the password matches.
-					//final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+					// final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 					final FirebaseDatabase ref = FirebaseDatabase.getInstance();
 					DatabaseReference database = ref.getReference("Users");
 					
