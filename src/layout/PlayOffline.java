@@ -22,7 +22,6 @@ import layout.components.BackToMainMenuButton;
 import layout.components.PlayOnlineButton;
 
 public class PlayOffline extends Scene {
-
 	// JavaFX
 	private GridPane gridpane;
 	
@@ -202,9 +201,11 @@ public class PlayOffline extends Scene {
 				// Make sure NumberOfCPUs and SelectGameBall are selected
 				if(cbBall.getValue() != null & cbCPU.getValue() != null) {
 
-					GameScene scene = new GameScene(cbCPU.getValue(), cbBall.getValue());
+					// Create a new GameScene, that is created based on what the users ball is as well as the number of CPUs.
+					GameScene scene = new GameScene(app, cbCPU.getValue(), cbBall.getValue());
+
 					app.updateScene(scene);
-			        app.thread = new Thread(new GameEngine(scene));
+			        app.thread = new Thread(new GameEngine(app, scene));
 			        app.thread.start();
 				}
 			}

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 
 public class Main extends Application {
-
+	
 	protected Thread thread = null;
 	protected Thread pod = null; //platform of death
 
@@ -91,7 +91,7 @@ public class Main extends Application {
 		// ---
 		myStage.show();
 	}
-
+	
 	@Override
 	public void stop() throws Exception {
 		super.stop();

@@ -5,7 +5,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -69,7 +68,7 @@ public class Login extends Scene {
         rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
         
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
+      gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
@@ -151,7 +150,10 @@ public class Login extends Scene {
 				// If username and password fields are filled.
 				if (!usernameField.getText().trim().isEmpty() && !passwordField.getText().trim().isEmpty()) {
 					// Verify that the username exists and the password matches.
-					final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+					//final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+					final FirebaseDatabase ref = FirebaseDatabase.getInstance();
+					DatabaseReference database = ref.getReference();
+					
 					database.child(usernameField.getText()).addValueEventListener(new ValueEventListener() {
 						
 						@Override
@@ -163,7 +165,7 @@ public class Login extends Scene {
 						      	  		//System.out.println("SUCCESSFUL LOG IN");
 						        }
 						}
-
+						
 						@Override
 						public void onCancelled(DatabaseError arg0)
 						{
