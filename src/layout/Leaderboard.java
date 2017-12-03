@@ -105,7 +105,7 @@ public class Leaderboard extends Scene {
 		ObservableList<PlayerName> data = FXCollections.observableArrayList();
 		
 		// Fill data object with data from Firebase
-		final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+		final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");
 		
 		database.addValueEventListener(new ValueEventListener() {
 			

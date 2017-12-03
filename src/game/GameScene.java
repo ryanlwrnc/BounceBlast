@@ -30,6 +30,7 @@ public class GameScene extends Scene {
 	
 	// JavaFx
 	private Group root;
+	Pane p;
 	
 	// Components
 	Button  exit;
@@ -136,7 +137,7 @@ public class GameScene extends Scene {
 		
 		int numberCPUs = Integer.parseInt(numCPU);
 
-		Pane p = (Pane)getRoot();
+		p = (Pane)getRoot();
 		Group g = new Group();
 		p.setStyle("-fx-background-image: url('file:background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
@@ -231,9 +232,6 @@ public class GameScene extends Scene {
 		v.setStrokeWidth(6);
 		h.setStroke(Color.ORANGE);
 		v.setStroke(Color.ORANGE);
-		
-		
-		 
 		
 		g.getChildren().addAll(board, h, v);
 		g.getChildren().addAll(getAllPlayers());
