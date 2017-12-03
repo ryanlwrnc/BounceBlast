@@ -154,6 +154,37 @@ public class GameScene extends Scene {
         cbBall.getItems().add("Soccer Ball");
 		 */
 		
+		if(chosenBall.equals(BASKETBALL)) {
+			mainPlayer = new BasketBall(300,300);
+			playerOne = new TennisBall(800, 300);
+			if(numberCPUs>1)
+				playerTwo = new BowlingBall(300,600);
+			if(numberCPUs>2)
+				playerThree = new SoccerBall(600,600);
+		}else if(chosenBall.equals(BOWLINGBALL)) {
+			mainPlayer = new BowlingBall(300, 300);
+			playerOne = new TennisBall(800, 300);
+			if(numberCPUs>1)
+				playerTwo = new SoccerBall(600,600);
+			if(numberCPUs>2)
+				playerThree = new BasketBall(300,600);
+		}else if(chosenBall.equals(TENNISBALL)) {
+			mainPlayer = new TennisBall(400, 400);
+			playerOne = new BasketBall(300, 300);
+			if(numberCPUs>1)
+				playerTwo = new SoccerBall(600,600);
+			if(numberCPUs>2)
+				playerThree = new BowlingBall(800,300);
+		}else if(chosenBall.equals(SOCCERBALL)) {
+			mainPlayer = new SoccerBall(400, 400);
+			playerOne = new TennisBall(800, 300);
+			if(numberCPUs>1)
+				playerTwo = new BasketBall(300, 300);
+			if(numberCPUs>2)
+				playerThree = new BowlingBall(300,600);
+		}
+		
+		/*
 		if(numberCPUs == 1) {
 			if(chosenBall.equals(BASKETBALL)) {
 				mainPlayer = new BasketBall(300,300);
@@ -210,7 +241,7 @@ public class GameScene extends Scene {
 				playerTwo = new BowlingBall(300, 600); 
 				playerThree = new BasketBall(600, 600); 
 			}
-		}
+		}*/
 		
 		allPossiblePlayers = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
 		//Create text
