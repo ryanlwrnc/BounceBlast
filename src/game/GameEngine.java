@@ -277,20 +277,18 @@ public class GameEngine implements Runnable {
 		for (int i = 0; i < players.size(); i++) {
 			for (int j = 0; j < players.size(); j++) {
 				// ball doesn't collide with itself
-				if (i != j) {
-					Shape intersect = Shape.intersect(players.get(i), players.get(j));
-					boolean isTouching = intersect.getBoundsInLocal().getWidth() != -1;
-					if (isTouching && !isExiting[i][j]) {
-						Ball.handleCollision(players.get(i), players.get(j));
-						isExiting[i][j] = true;
-						isExiting[j][i] = true;
-						collisionsHandled[i][j] = true;
-						collisionsHandled[j][i] = true;
-					}
-					if (isExiting[i][j] && intersect.getBoundsInLocal().getWidth() == -1) {
-						isExiting[i][j] = false;
-						isExiting[j][i] = false;
-					}
+				Shape intersect = Shape.intersect(players.get(i), players.get(j));
+				boolean isTouching = intersect.getBoundsInLocal().getWidth() != -1;
+				if (isTouching && !isExiting[i][j] && i != j) {
+					Ball.handleCollision(players.get(i), players.get(j));
+					isExiting[i][j] = true;
+					isExiting[j][i] = true;
+					collisionsHandled[i][j] = true;
+					collisionsHandled[j][i] = true;
+				}
+				if (isExiting[i][j] && intersect.getBoundsInLocal().getWidth() == -1 && i!=j) {
+					isExiting[i][j] = false;
+					isExiting[j][i] = false;
 				}
 				
 			}
