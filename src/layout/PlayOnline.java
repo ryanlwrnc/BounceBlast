@@ -25,7 +25,7 @@ public class PlayOnline extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	private Button back;
+	private BackToMainMenuButton back;
 	private Button start;
 	private Button temp;
 	private Button lobby;
@@ -178,5 +178,8 @@ public class PlayOnline extends Scene {
 		        app.thread.start();
 			}
 		});
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }

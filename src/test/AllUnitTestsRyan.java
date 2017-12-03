@@ -7,6 +7,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestBallFactory.class, TestBallGame.class })
-public class AllTestsRyan {
+public class AllUnitTestsRyan {
 
 }

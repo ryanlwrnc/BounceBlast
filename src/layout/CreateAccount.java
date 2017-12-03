@@ -28,7 +28,7 @@ public class CreateAccount extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	private Button back;
+	private BackToMainMenuButton back;
 	private Button makeAccount;
 	private Text gameTitle;
 	private Text username;
@@ -189,5 +189,8 @@ public class CreateAccount extends Scene {
 		gridpane.add(back, 0, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }

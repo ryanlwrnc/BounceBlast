@@ -3,7 +3,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -21,7 +20,7 @@ public class InGame extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	private Button quitGame;
+	private BackToMainMenuButton quitGame;
 	private Text gameTitle;
 	private Rectangle namesRect;
 	private GridPane nameGrid;
@@ -225,5 +224,8 @@ public class InGame extends Scene {
 		gridpane.add(quitGame, 0, 10);
 		GridPane.setHalignment(quitGame, HPos.CENTER);
 		GridPane.setMargin(quitGame, new Insets(5, 45, 5, 10));
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.quitGame;
 	}
 }

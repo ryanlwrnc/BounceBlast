@@ -16,6 +16,7 @@ public class BackToMainMenuButton extends BaseButton {
 	public static final String FONTSIZE16 = "-fx-font-size: 16;";
 	public static final String TEXTFILLWHITE = "-fx-text-fill: white;";
 	//private Main app;
+	private boolean beenClicked = false;
 	
 	public BackToMainMenuButton(Main app, String label) {
 		super(label);
@@ -36,7 +37,7 @@ public class BackToMainMenuButton extends BaseButton {
 				MediaPlayer player = new MediaPlayer(sound);
 				player.setVolume(0.5);
 				player.play();
-				
+				beenClicked = true;
 				app.updateScene(new MainMenu(app));
 			}
 		});
@@ -62,5 +63,7 @@ public class BackToMainMenuButton extends BaseButton {
 	        }
 	    });
 	}
-	
+	public boolean getBeenClicked() {
+		return this.beenClicked;
+	}
 }

@@ -21,7 +21,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -40,7 +39,7 @@ public class Leaderboard extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	private Button back;
+	private BackToMainMenuButton back;
 	private Text gameTitle;
 	private ColumnConstraints cons1;
 	private ColumnConstraints cons2;
@@ -150,5 +149,8 @@ public class Leaderboard extends Scene {
 		});
 
 		return data;
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }

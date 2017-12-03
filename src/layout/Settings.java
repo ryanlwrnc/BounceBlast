@@ -3,7 +3,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.ColumnConstraints;
@@ -22,7 +21,7 @@ public class Settings extends Scene{
 	private GridPane gridpane;
 	
 	// Components
-	Button back;
+	BackToMainMenuButton back;
 	Text gameTitle;
 	Text sound;
 	Text directionKeys;
@@ -132,5 +131,7 @@ public class Settings extends Scene{
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 	}
-	
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
+	}
 }

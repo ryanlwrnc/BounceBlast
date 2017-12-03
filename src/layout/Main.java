@@ -89,4 +89,10 @@ public class Main extends Application {
 	{
 		return username;
 	}
+	public Scene getMyScene() {
+		return this.myScene;
+	}
+	public void setStage(Stage stage) {
+		this.myStage = stage;
+	}
 }

@@ -23,6 +23,7 @@ public class TutorialStrategy extends Scene {
 	private GridPane gridpane;
 	
 	// Components
+	BackToMainMenuButton back;
 	
 	// Constants
 	private static final String BACKGROUNDPOSITIONCENTERTOP = "-fx-background-position:center top;";
@@ -37,8 +38,6 @@ public class TutorialStrategy extends Scene {
 	public TutorialStrategy(Main app) {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
-	
-Button back;
 		
 		final int numCols = 5 ;
         final int numRows = 5 ;
@@ -216,5 +215,11 @@ Button back;
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 
+	}
+	public GridPane getGridpane() {
+		return this.gridpane;
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }

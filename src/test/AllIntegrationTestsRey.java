@@ -1,4 +1,4 @@
-// Author: Anand Batjargal
+// Author: Rey Punao
 package test;
 
 import org.junit.runner.RunWith;
@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestBasketBall.class, TestBallLayout.class })
-public class AllTestsAnand {
+@SuiteClasses({ TestIntegrationLeaderboardButton.class, TestIntegrationLoginButton.class })
+public class AllIntegrationTestsRey {
 
 }

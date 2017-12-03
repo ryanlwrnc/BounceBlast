@@ -1,6 +1,5 @@
 package game.ball;
 
-import java.util.HashMap;
 import java.util.EnumMap;
 
 import javafx.scene.media.Media;
@@ -313,7 +312,9 @@ public class Ball extends Circle {
 	public void setVertExiting(boolean status) {
 		this.vertWallExiting = status;
 	}
-
+	public void setPlayers(List<Ball> players) {
+		this.players = players;
+	}
 	public boolean isExiting() {
 		return exiting;
 	}

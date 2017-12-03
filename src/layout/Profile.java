@@ -4,7 +4,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -22,7 +21,7 @@ public class Profile extends Scene {
 	GridPane gridpane;
 	
 	// Components
-	Button back;
+	BackToMainMenuButton back;
 	Text gameTitle;
 	Text username;
 	Text password;
@@ -129,5 +128,8 @@ public class Profile extends Scene {
 		gridpane.add(back, 0, 10);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }

@@ -63,7 +63,7 @@ public class JavaFXThreadingRule implements TestRule {
             
             Platform.runLater(new Runnable() {
                 @Override
-                public void run() {
+                public void run(){
                     try {
                         statement.evaluate();
                     } catch (Throwable e) {

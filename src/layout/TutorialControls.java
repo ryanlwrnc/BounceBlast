@@ -4,7 +4,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +24,7 @@ public class TutorialControls extends Scene {
 	private GridPane gridpane;
 
 	// Components
+	BackToMainMenuButton back;
 	
 	// Constants
 	private static final String BACKGROUNDPOSITIONCENTERTOP = "-fx-background-position:center top;";
@@ -40,8 +40,6 @@ public class TutorialControls extends Scene {
 	public TutorialControls(Main app) {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
-
-		Button back;
 		
 		final int numCols = 5 ;
         final int numRows = 5 ;
@@ -234,7 +232,8 @@ public class TutorialControls extends Scene {
 		gridpane.add(back, 0, 4);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
-
-	
 	}	
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
+	}
 }

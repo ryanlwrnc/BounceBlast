@@ -1,4 +1,4 @@
-// Author: Won Young Son
+// Author: Anand Batjargal
 package test;
 
 import org.junit.runner.RunWith;
@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestUser.class, TestInGame.class })
-public class AllTestsWon {
+@SuiteClasses({ TestBasketBall.class, TestBallLayout.class })
+public class AllUnitTestsAnand {
 
 }

@@ -26,7 +26,7 @@ public class PlayOffline extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	private Button back;
+	private BackToMainMenuButton back;
 	private Button start;
 	private Button temp;
 	private Text gameTitle;
@@ -210,5 +210,8 @@ public class PlayOffline extends Scene {
 				}
 			}
 		});
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }

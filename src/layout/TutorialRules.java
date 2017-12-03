@@ -23,7 +23,8 @@ public class TutorialRules extends Scene {
 	private GridPane gridpane;
 	
 	// Components
-	Button back;
+	BackToMainMenuButton back;
+	private StackPane controls;
 	
 	// Constants
 	static final int NUMCOLS = 5 ;
@@ -134,7 +135,7 @@ public class TutorialRules extends Scene {
         StackPane.setAlignment(rulesTitle, Pos.CENTER);
         gridpane.add(rules, 1, 1, 1, 1);
         
-        StackPane controls = new StackPane();
+        controls = new StackPane();
 		controls.setMinWidth(200);
         controls.setMinHeight(50);
         controls.setMaxWidth(200);
@@ -234,5 +235,8 @@ public class TutorialRules extends Scene {
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 
+	}
+	public BackToMainMenuButton getBackButton() {
+		return this.back;
 	}
 }
