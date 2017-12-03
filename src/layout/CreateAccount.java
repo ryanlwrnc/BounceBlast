@@ -165,8 +165,9 @@ public class CreateAccount extends Scene {
 						//{
 							//System.out.println("Passwords match!");
 							// Write to database
-					final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
-
+					// final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
+					final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(usernameField.getText());
+					
 					//Map<String,User> user = new HashMap<>();
 					//user.put(usernameField.getText(), new User(passwordField.getText()));
 					database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
