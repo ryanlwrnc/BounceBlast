@@ -16,8 +16,15 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import layout.Main;
 
 public class GameScene extends Scene {
 	
@@ -123,12 +130,17 @@ public class GameScene extends Scene {
 	}
 	
 	// GameScene Constructor for Play Offline
-	public GameScene(String numCPU, String chosenBall) {
-		super(new Group(), 800, 600);
+	public GameScene(Main app, String numCPU, String chosenBall) {
+		super(new Pane(), 800, 600);
+		//VBox box = (VBox)getRoot();
 		
 		int numberCPUs = Integer.parseInt(numCPU);
 
-		root = (Group) getRoot();
+		Pane p = (Pane)getRoot();
+		Group g = new Group();
+		p.setStyle("-fx-background-image: url('file:background.jpg');" +
+				 "-fx-background-size: stretch;-fx-background-position:center top;");
+		
 		
 		// Create Players
 		/*
@@ -201,6 +213,14 @@ public class GameScene extends Scene {
 		}
 		
 		allPossiblePlayers = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
+		//Create text
+		Text gameTitle;
+		gameTitle = new Text();
+		gameTitle.setFont(new Font(20));
+		gameTitle.setFill(Color.WHITE);
+		gameTitle.setText("BounceBlast");
+		gameTitle.setStyle("-fx-font: 75 arial;");
+		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
@@ -211,9 +231,15 @@ public class GameScene extends Scene {
 		h.setStroke(Color.ORANGE);
 		v.setStroke(Color.ORANGE);
 		
-		root.getChildren().addAll(board, h, v);
-		root.getChildren().addAll(getAllPlayers());
+		
+		 
+		
+		g.getChildren().addAll(board, h, v);
+		g.getChildren().addAll(getAllPlayers());
+		p.getChildren().addAll(gameTitle,g);
+		
 		List<Ball> playerOnePlayers = getAllPlayers();
+		//box.getChildren().addAll(g);//added
 		
 		if(numberCPUs == 1) {
 			playerOnePlayers.remove(playerOne);

@@ -3,13 +3,18 @@ package game;
 import game.ball.Ball;
 import javafx.application.Platform;
 import javafx.scene.shape.Shape;
+import layout.CreateAccount;
+import layout.Main;
+import layout.MainMenu;
 import javafx.scene.paint.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class GameEngine implements Runnable {
 
 	private static final double UPDATE_CAP = 1.0/60.0;
 	private GameScene scene;
+	private Main app;
 	
 	private boolean goingRight = true; //initial direction
 	private boolean goingDown = false;
@@ -18,9 +23,11 @@ public class GameEngine implements Runnable {
 	private double delta = 5;
 	private double podLength = 50;
 	private boolean exiting = false;
+	private int alertCount = 0;
 	
-	public GameEngine(GameScene scene) {
+	public GameEngine(Main a, GameScene scene) {
 		this.scene = scene;
+		this.app = a;
 	}
 	
 	@SuppressWarnings("static-access")
@@ -230,6 +237,13 @@ public class GameEngine implements Runnable {
 		if (scene.v.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent()) ||
 				scene.h.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent())) {
 			scene.mainPlayer.setFill(Color.WHITE);
+			if(alertCount==0)
+			{
+				alertCount++;
+				JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
+				
+				app.updateScene(new MainMenu(app));
+			}
 		}
 	}
 	

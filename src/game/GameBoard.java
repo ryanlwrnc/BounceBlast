@@ -22,13 +22,14 @@ public class GameBoard extends Rectangle {
 	
 	public GameBoard(double x, double y, double width, double height) {
 		super(x, y, width, height);
-		setFill(Color.TRANSPARENT);
+		setFill(Color.GREEN);
 		setStroke(Color.BLUE);
 		setStrokeWidth(wallThickness);
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+
 	}
 	
 	public double xmax() {
