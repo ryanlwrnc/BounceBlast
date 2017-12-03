@@ -5,7 +5,7 @@ import javafx.scene.paint.ImagePattern;
 
 public class BasketBall extends Ball
 {
-	private static final Image ballImg = new Image("file:basketball.jpg");
+	private static final Image ballImg = new Image("file:resource/basketball.jpg");
 	private static final double RADIUS = 30;
 	private static final double MASS = 20;
 	

@@ -5,7 +5,7 @@ import javafx.scene.paint.ImagePattern;
 
 public class BowlingBall extends Ball
 {
-	private static final Image ballImg = new Image("file:bowlingball.gif");
+	private static final Image ballImg = new Image("file:resource/bowlingball.gif");
 	private static final double RADIUS = 25;
 	private static final double MASS = 40;
 	

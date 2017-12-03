@@ -67,7 +67,7 @@ public class Leaderboard extends Scene {
         rcons2.setVgrow(Priority.ALWAYS);  
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
+		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		 
 		// Leader Board text
