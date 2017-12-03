@@ -8,7 +8,11 @@ public class User
 	private Integer win;
 	private Integer loss;
 	
-	//public User() {};
+	private Integer dummy;
+	
+	public User() {
+		dummy = 0;
+	};
 	
 	public User(String p)
 	{
@@ -58,6 +62,10 @@ public class User
 	{
 		return loss;
 	}
+	public Integer getDummy() {
+		return dummy;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
