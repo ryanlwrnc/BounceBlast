@@ -12,7 +12,7 @@ public class User
 	
 	public User() {
 		dummy = 0;
-	};
+	}
 	
 	public User(String p)
 	{
