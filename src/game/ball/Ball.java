@@ -23,6 +23,8 @@ public class Ball extends Circle {
 	// Have public setters
 	private double f = 5;
 	private double m = 10;
+	private boolean exiting = false;
+	
 	
 	// Don't have public setters
 	private double ax = 0;
@@ -310,5 +312,13 @@ public class Ball extends Circle {
 	
 	public void setVertExiting(boolean status) {
 		this.vertWallExiting = status;
+	}
+
+	public boolean isExiting() {
+		return exiting;
+	}
+
+	public void setExiting(boolean exiting) {
+		this.exiting = exiting;
 	}
 }

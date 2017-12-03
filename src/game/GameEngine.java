@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class GameEngine implements Runnable {
 
 	private static final double UPDATE_CAP = 1.0/60.0;
+	private static final int HANDLED = 1;
 	private GameScene scene;
 	private Main app;
 	
@@ -22,10 +23,17 @@ public class GameEngine implements Runnable {
 	private boolean goingUp = false;
 	private double delta = 5;
 	private double podLength = 50;
-	private boolean exiting = false;
 	private int alertCount = 0;
 	
+<<<<<<< .mine
+	boolean[][] isExiting;
+	
+	public GameEngine(GameScene scene) {
+||||||| .r122
+	public GameEngine(GameScene scene) {
+=======
 	public GameEngine(Main a, GameScene scene) {
+>>>>>>> .r124
 		this.scene = scene;
 		this.app = a;
 	}
@@ -33,6 +41,7 @@ public class GameEngine implements Runnable {
 	@SuppressWarnings("static-access")
 	public void run() {
 		boolean render = false;
+		isExiting = new boolean[scene.getAllPlayers().size()][scene.getAllPlayers().size()];
 		
 		double firstTime = 0; 
 		double passedTime = 0; 
@@ -237,6 +246,7 @@ public class GameEngine implements Runnable {
 		if (scene.v.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent()) ||
 				scene.h.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent())) {
 			scene.mainPlayer.setFill(Color.WHITE);
+
 			if(alertCount==0)
 			{
 				alertCount++;
@@ -248,21 +258,28 @@ public class GameEngine implements Runnable {
 	}
 	
 	public void handleCollisions(List<Ball> players) {
+		System.out.println("Handling collision");
+		boolean[][] collisionsHandled = new boolean[players.size()][players.size()];
 		for (int i = 0; i < players.size(); i++) {
-			for (int j = i; j < players.size(); j++) {
-				if (!players.get(i).equals(players.get(j))) {
+			for (int j = 0; j < players.size(); j++) {
+				// ball doesn't collide with itself
+				if (i != j) {
 					Shape intersect = Shape.intersect(players.get(i), players.get(j));
-					
-					if (intersect.getBoundsInLocal().getWidth() != -1 && !exiting) {
+					boolean isTouching = intersect.getBoundsInLocal().getWidth() != -1;
+					System.out.println("Is touching : " + isTouching);
+					if (isTouching && !isExiting[i][j]) {
 						Ball.handleCollision(players.get(i), players.get(j));
-						exiting = true;
+						isExiting[i][j] = true;
+						isExiting[j][i] = true;
+						collisionsHandled[i][j] = true;
+						collisionsHandled[j][i] = true;
 					}
-					
-					if (exiting && intersect.getBoundsInLocal().getWidth() == -1) {
-							exiting = false;
+					if (isExiting[i][j] && intersect.getBoundsInLocal().getWidth() == -1) {
+						isExiting[i][j] = false;
+						isExiting[j][i] = false;
 					}
-					
 				}
+				
 			}
 		}
 	}

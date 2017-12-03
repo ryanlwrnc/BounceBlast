@@ -37,30 +37,6 @@ public class Main extends Application {
 				.setDatabaseUrl("https://bounceblast-12d9c.firebaseio.com/").build();
 
 		FirebaseApp.initializeApp(options);
-		/*
-		 * final DatabaseReference database =
-		 * FirebaseDatabase.getInstance().getReference(); //DatabaseReference ref =
-		 * database.getReference("accounts"); //DatabaseReference usersRef =
-		 * database.child("users");
-		 * 
-		 * // Write to database Map<String,User> users = new HashMap<>();
-		 * users.put("dfalessi", new User("123qwe@", 1000));
-		 * database.setValueAsync(users);
-		 * 
-		 * /* // Read from database database.child("dfalessi").addValueEventListener(new
-		 * ValueEventListener() {
-		 * 
-		 * @Override public void onDataChange(DataSnapshot dataSnapshot) { User note =
-		 * dataSnapshot.getValue(User.class); System.out.println(note.password);
-		 * System.out.println(note.score); }
-		 * 
-		 * @Override public void onCancelled(DatabaseError arg0) { 
-		 * Auto-generated method stub
-		 * 
-		 * } }); //
-		 * 
-		 * // TESTING Firebase, to be removed later
-		 */
 		launch(args);
 	}
 
