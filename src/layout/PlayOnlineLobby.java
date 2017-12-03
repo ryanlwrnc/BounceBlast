@@ -119,7 +119,7 @@ public class PlayOnlineLobby extends Scene {
 		// Return to Main Menu when back is pressed
 		 
 		//Temporary GameScene Button
-		temp = new PlayOnlineButton(app, "Game Scene", new GameScene());
+		temp = new PlayOnlineButton(app, "Game Scene", new GameScene(app, "1", "Basketball"));
 		temp.setPrefHeight(25);
 		temp.setPrefWidth(200);
 		gridpane.add(temp, 2, 10);
@@ -128,7 +128,7 @@ public class PlayOnlineLobby extends Scene {
 		// Return to Main Menu when back is pressed
 		temp.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				GameScene scene = new GameScene();
+				GameScene scene = new GameScene(app, "1", "Basketball");
 				app.updateScene(scene);
 				
 				app.setThread(new Thread(new GameEngine(app, scene)));
