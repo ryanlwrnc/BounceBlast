@@ -117,8 +117,8 @@ public class MainMenu extends Scene{
 		loggedIn = true;
 		 Delete */
 		
-		if(app.getUsername()!=null)
-			login = new MainMenuButton(app, "Profile", new Profile(app,app.getUsername()));
+		if(this.loggedIn)
+			login = new MainMenuButton(app, "Profile", new Profile(app,this.username));
 		else
 			login = new MainMenuButton(app, "Log In", new Login(app));	// CHANGED
 		gridpane.add(login, SCREENBUTTONCOL, 2);
