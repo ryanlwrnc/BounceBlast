@@ -137,9 +137,8 @@ public class GameScene extends Scene {
 
 		p = (Pane)getRoot();
 		Group g = new Group();
-		p.setStyle("-fx-background-image: url('file:background.jpg');" +
+		p.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
-		
 		
 		// Create Players
 		/*
@@ -252,6 +251,7 @@ public class GameScene extends Scene {
 		gameTitle.setText("BounceBlast");
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
+		gameTitle.setY(100);
 		
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);

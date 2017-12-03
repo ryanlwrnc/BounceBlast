@@ -117,7 +117,7 @@ public class PlayOnlineLobby extends Scene {
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setMargin(back, new Insets(5, 10, 5, 10));
 		// Return to Main Menu when back is pressed
-		 
+		
 		//Temporary GameScene Button
 		temp = new PlayOnlineButton(app, "Game Scene", new GameScene(app, "1", "Basketball"));
 		temp.setPrefHeight(25);

@@ -206,7 +206,6 @@ public class TutorialStrategy extends Scene {
         
         GridPane.setHalignment(box, HPos.CENTER);
 		gridpane.add(box, 1, 2, 3, 2);
-		
 
 		// Back button
 		back = new BackToMainMenuButton(app, "Back");
