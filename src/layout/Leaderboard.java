@@ -62,15 +62,15 @@ public class Leaderboard extends Scene {
 		GridPane.setMargin(gameTitle, new Insets(3, 12, 3, 12));
 		
 		table = new TableView<>(); 
-		table.setPrefWidth(400);
 		table.getColumns().addAll(PlayerName.getColumn(table));
 		table.setItems(getPlayerDummy());
-		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		VBox root = new VBox();
-        root.getChildren().addAll(table);
+//		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
-        GridPane.setHalignment(root, HPos.CENTER);
-        gridpane.add(root, SCREENBUTTONCOL, 1);
+        GridPane.setHalignment(table, HPos.CENTER);
+        gridpane.add(table, SCREENBUTTONCOL, 1);
+        table.setMaxWidth(800);
+        table.setMaxHeight(500);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         // Back button
  		back = new BackToMainMenuButton(app, "Back");
