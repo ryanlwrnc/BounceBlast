@@ -3,16 +3,43 @@ package game;
 import game.ball.Ball;
 import javafx.application.Platform;
 import javafx.scene.shape.Shape;
+import javafx.scene.shape.Line;
 import layout.Main;
 import layout.MainMenu;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class GameEngine implements Runnable {
+	
+	private boolean goingRight = true; //initial direction
+	private boolean goingDown = false;
+	private boolean goingLeft = false;
+	private boolean goingUp = false;
 
+	public enum Dir{
+		UP, LEFT, RIGHT, DOWN;
+		
+		public Dir nextDirection(Dir dir) {
+			switch (dir) {
+			case UP:
+				return RIGHT;
+			case LEFT:
+				return UP;
+			
+			case RIGHT:
+				return DOWN;
+			
+			case DOWN:
+				return LEFT;
+			default:
+				return UP;
+			}
+		}
+	}
+	
+	
 	private static final double UPDATE_CAP = 1.0/60.0;
 	//private static final int HANDLED = 1;
 	private GameScene scene;
@@ -24,10 +51,7 @@ public class GameEngine implements Runnable {
 	private boolean cpuThreeExists = true;
 	//
 	
-	private boolean goingRight = true; //initial direction
-	private boolean goingDown = false;
-	private boolean goingLeft = false;
-	private boolean goingUp = false;
+	
 	private double delta = 5;
 	private double podLength = 100;
 	private int alertCount = 0;
@@ -90,29 +114,13 @@ public class GameEngine implements Runnable {
 			}
 			
 			if (render) {
-				/*Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						
-						for (Ball player : scene.getAllPlayers()) {
-							updateGame(player);
-							player.updatePosition();
-						}
-						
-						// Move Platform Clockwise
-						movePlatform();
-						ballHitsPlatform();
-						
-						handleCollisions(scene.getAllPlayers());	
-					}
-				});*/
 				Platform.runLater(() -> {for (Ball player : scene.getAllPlayers()) {
 							updateGame(player);
 							player.updatePosition();
 						}
 						
 						// Move Platform Clockwise
-						movePlatform();
+						movePlatforms();
 						ballHitsPlatform();
 						
 						handleCollisions(scene.getAllPlayers());	});
@@ -144,118 +152,49 @@ public class GameEngine implements Runnable {
 		}
 	}
 	
-	public void movePlatform() {
-		if (goingRight) {
-			//end
-			//hasn't reached the end yet
-			if (scene.h.getEndX() < scene.board.xmax()) {
-				scene.h.setEndX(scene.h.getEndX() + delta);
-			}
-			else if (!goingDown){
-				goingDown = true;
-				scene.v.setStartX(scene.board.xmax());
-				scene.v.setStartY(scene.board.getY());
-				scene.v.setEndX(scene.board.xmax());
-				scene.v.setEndY(scene.board.getY());
-			}
-			if (scene.h.getStartX() < scene.board.xmax()) {
-				// pod growing in size
-				if ((scene.h.getEndX() - scene.board.getX() >= podLength) || (scene.h.getEndX() >= scene.board.xmax())) {
-					scene.h.setStartX(scene.h.getStartX() + delta);
-				}
-			}
-			else {
-				goingRight = false;
-				scene.h.setStartX(-100);
-				scene.h.setStartY(-100);
-				scene.h.setEndX(-100);
-				scene.h.setEndY(-100);
+	public void movePlatforms() {
+		for (Dir d : Dir.values()) {
+			if (isDir(d)) {
+				movePlatform(d);
 			}
 		}
-		if (goingDown) {
-			//end
-			//hasn't reached the end yet
-			if (scene.v.getEndY() < scene.board.ymax()) {
-				scene.v.setEndY(scene.v.getEndY() + delta);
-			}
-			else if (!goingLeft){
-				goingLeft = true;
-				scene.h.setStartX(scene.board.xmax());
-				scene.h.setStartY(scene.board.ymax());
-				scene.h.setEndX(scene.board.xmax());
-				scene.h.setEndY(scene.board.ymax());
-			}
-			
-			if (scene.v.getStartY() < scene.board.ymax()) {
-				// pod growing in size
-				if ((scene.v.getEndY() - scene.board.getY() >= podLength) || (scene.v.getEndY() >= scene.board.ymax())) {
-					scene.v.setStartY(scene.v.getStartY() + delta);
-				}
-			}
-			else {
-				goingDown = false;
-				scene.v.setStartX(-100);
-				scene.v.setStartY(-100);
-				scene.v.setEndX(-100);
-				scene.v.setEndY(-100);
-			}
-		}
-		if (goingLeft) {
-			//end
-			//hasn't reached the end yet
-			if (scene.h.getEndX() > scene.board.getX()) {
-				scene.h.setEndX(scene.h.getEndX() - delta);
-			}
-			else if (!goingUp){
-				goingUp = true;
-				scene.v.setStartX(scene.board.getX());
-				scene.v.setStartY(scene.board.ymax());
-				scene.v.setEndX(scene.board.getX());
-				scene.v.setEndY(scene.board.ymax());
-			}
-			
-			if (scene.h.getStartX() > scene.board.getX()) {
-				// pod growing in size
-				if ((scene.board.xmax() - scene.h.getEndX() >= podLength) || (scene.h.getEndX() >= scene.board.xmax())) {
-					scene.h.setStartX(scene.h.getStartX() - delta);
-				}
-			}
-			else {
-				goingLeft = false;
-				scene.h.setStartX(-100);
-				scene.h.setStartY(-100);
-				scene.h.setEndX(-100);
-				scene.h.setEndY(-100);
-			}
-		}
+	}
+	
+	public void movePlatform(Dir dir) {
+		double startX = (goingRight || goingDown ? scene.board.xmax(): scene.board.getX());
+		double startY = (goingLeft || goingDown ? scene.board.ymax(): scene.board.getY());
+		double endX = (goingRight || goingDown ? scene.board.xmax(): scene.board.getX());
+		double endY = (goingLeft || goingDown ? scene.board.ymax(): scene.board.getY());
 		
-		if (goingUp) {
+		Line mainDirection = (dir == Dir.RIGHT || dir == Dir.LEFT ? scene.v : scene.h);
+		Line otherDirection = (dir == Dir.RIGHT || dir == Dir.LEFT ? scene.h : scene.v);
+		
+		if (isDir(dir)) {
 			//end
 			//hasn't reached the end yet
-			if (scene.v.getEndY() > scene.board.getY()) {
-				scene.v.setEndY(scene.v.getEndY() - delta);
+			if (!reachedEnd(dir)) {
+				handleReachedEnd(dir);
 			}
-			else if (!goingRight){
-				goingRight = true;
-				scene.h.setStartX(scene.board.getX());
-				scene.h.setStartY(scene.board.getY());
-				scene.h.setEndX(scene.board.getX());
-				scene.h.setEndY(scene.board.getY());
+			else if (!isDir(dir.nextDirection(dir)) ) {
+				setDir(dir.nextDirection(dir), true);
+				mainDirection.setStartX(startX);
+				mainDirection.setStartY(startY);
+				mainDirection.setEndX(endX);
+				mainDirection.setEndY(endY);
 			}
-			
-			if (scene.v.getStartY() > scene.board.getY()) {
+			//scene.h.getStartX() < scene.board.xmax()
+			if (podNeedsToGrow(dir)) {
 				// pod growing in size
-				if ((scene.board.ymax() - scene.v.getEndY() >= podLength) || (scene.v.getEndY() >= scene.board.ymax())) {
-					scene.v.setStartY(scene.v.getStartY() - delta);
-				}
+				growPodIfNeeded(dir);
+				
 			}
 			else {
-				goingUp = false;
-				scene.v.setStartX(-100);
-				scene.v.setStartY(-100);
-				scene.v.setEndX(-100);
-				scene.v.setEndY(-100);
-			}		
+				setDir(dir, false);
+				otherDirection.setStartX(-100);
+				otherDirection.setStartY(-100);
+				otherDirection.setEndX(-100);
+				otherDirection.setEndY(-100);
+			}
 		}
 	}
 	
@@ -364,6 +303,114 @@ public class GameEngine implements Runnable {
 				}
 				
 			}
+		}
+	}
+	
+	public boolean isDir(Dir dir) {
+		switch (dir) {
+		case UP:
+			return goingUp;
+		
+		case LEFT:
+			return goingLeft;
+		
+		case RIGHT:
+			return goingRight;
+		
+		case DOWN:
+			return goingDown;
+		default:
+			return false;
+		}
+	}
+	
+	public void setDir(Dir dir, boolean b) {
+		switch (dir) {
+		case UP:
+			goingUp = b;
+			break;
+		case LEFT:
+			goingLeft = b;
+			break;
+		case RIGHT:
+			goingRight = b;
+			break;
+		case DOWN:
+			goingDown = b;
+			break;
+		default:
+		}
+	}
+	
+	public boolean reachedEnd(Dir dir) {
+		switch (dir) {
+		case UP:
+			return !(scene.board.getY() < scene.v.getEndY());
+		case LEFT:
+			return !(scene.board.getX() < scene.h.getEndX());
+		case RIGHT:
+			return !(scene.h.getEndX() < scene.board.xmax());
+		case DOWN:
+			return !(scene.v.getEndY() < scene.board.ymax());
+		default:
+			return true;
+		}
+	}
+	
+	public void handleReachedEnd(Dir dir) {
+		switch (dir) {
+		case UP:
+			scene.v.setEndY(scene.v.getEndY() - delta);
+			break;
+		case LEFT:
+			scene.h.setEndX(scene.h.getEndX() - delta);
+			break;
+		case RIGHT:
+			scene.h.setEndX(scene.h.getEndX() + delta);
+			break;
+		case DOWN:
+			scene.v.setEndY(scene.v.getEndY() + delta);
+			break;
+		}
+	}
+	
+	public boolean podNeedsToGrow(Dir dir) {
+		switch (dir) {
+		case UP:
+			return (scene.board.getY() < scene.v.getStartY());
+		case LEFT:
+			return (scene.board.getX() < scene.h.getStartX());
+		case RIGHT:
+			return (scene.h.getStartX() < scene.board.xmax());
+		case DOWN:
+			return (scene.v.getStartY() < scene.board.ymax());
+		default:
+			return true;
+		}
+	}
+	
+	public void growPodIfNeeded(Dir dir) {
+		switch (dir) {
+		case UP:
+			if ((podLength <= scene.board.ymax() - scene.v.getEndY()  ) || (scene.board.ymax() <= scene.v.getEndY())) {
+				scene.v.setStartY(scene.v.getStartY() - delta);
+			}
+			break;
+		case LEFT:
+			if ((podLength <= scene.board.xmax() - scene.h.getEndX() ) || (scene.board.xmax() <= scene.h.getEndX()  )) {
+				scene.h.setStartX(scene.h.getStartX() - delta);
+			}
+			break;
+		case RIGHT:
+			if ((podLength <= scene.h.getEndX() - scene.board.getX()) || (scene.board.xmax() <= scene.h.getEndX())) {
+				scene.h.setStartX(scene.h.getStartX() + delta);
+			}
+			break;
+		case DOWN:
+			if ((podLength <= scene.v.getEndY() - scene.board.getY()) || (scene.board.ymax() <= scene.v.getEndY())) {
+				scene.v.setStartY(scene.v.getStartY() + delta);
+			}
+			break;
 		}
 	}
 	
