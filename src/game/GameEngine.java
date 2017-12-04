@@ -179,15 +179,20 @@ public class GameEngine implements Runnable {
 			mainDirection.setEndX(endX);
 			mainDirection.setEndY(endY);
 		}
+		checkDirGrow(dir,otherDirection);
+	}
+	
+	public void checkDirGrow(Dir dir, Line l)
+	{
 		if (podNeedsToGrow(dir)) {
 			growPodIfNeeded(dir);
 		}
 		else {
 			setDir(dir, false);
-			otherDirection.setStartX(-100);
-			otherDirection.setStartY(-100);
-			otherDirection.setEndX(-100);
-			otherDirection.setEndY(-100);
+			l.setStartX(-100);
+			l.setStartY(-100);
+			l.setEndX(-100);
+			l.setEndY(-100);
 		}
 	}
 	
@@ -232,6 +237,7 @@ public class GameEngine implements Runnable {
 			eliminateBall(scene.playerThree);
 		}
 
+		
 	}
 	
 	public void gameOver(String s)
