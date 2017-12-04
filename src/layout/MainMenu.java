@@ -61,7 +61,6 @@ public class MainMenu extends Scene{
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("BounceBlast");
-		//gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		gameTitle.setFont(titleFont);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);

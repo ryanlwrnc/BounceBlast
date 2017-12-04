@@ -21,7 +21,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -64,7 +63,6 @@ public class Leaderboard extends Scene {
 		table = new TableView<>(); 
 		table.getColumns().addAll(PlayerName.getColumn(table));
 		table.setItems(getPlayerDummy());
-//		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
         GridPane.setHalignment(table, HPos.CENTER);
         gridpane.add(table, SCREENBUTTONCOL, 1);
