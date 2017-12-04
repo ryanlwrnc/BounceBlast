@@ -34,6 +34,8 @@ import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
 
 public class Leaderboard extends Scene {
+	//Leaderboard instance
+	private static Leaderboard instance = null;
 	
 	//JavaFX
 	private GridPane gridpane;
@@ -50,7 +52,7 @@ public class Leaderboard extends Scene {
 	// Constants
 	private static final int SCREENBUTTONCOL = 2;
 	
-	public Leaderboard(Main app) {
+	private Leaderboard(Main app) {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
 		
@@ -152,5 +154,12 @@ public class Leaderboard extends Scene {
 	}
 	public BackToMainMenuButton getBackButton() {
 		return this.back;
+	}
+	
+	public static Leaderboard getInstance(Main m)
+	{
+		if(instance == null)
+			instance = new Leaderboard(m);
+		return instance;
 	}
 }
