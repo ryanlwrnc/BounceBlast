@@ -26,6 +26,7 @@ public class InGame extends Scene {
 	private GridPane nameGrid;
 	private RowConstraints rcons1;
 	private RowConstraints rcons2;
+	private RowConstraints rcons3;
 	static final String FONT16 = "-fx-font: 16 arial;";
 	
 	public InGame(Main app) {
@@ -62,16 +63,17 @@ public class InGame extends Scene {
 		ColumnConstraints cons3 = new ColumnConstraints();
 		cons3.setHgrow(Priority.NEVER);
         nameGrid.getColumnConstraints().add(cons3);
-
+        rcons3 = new RowConstraints();
         ColumnConstraints cons4 = new ColumnConstraints();
         cons4.setHgrow(Priority.NEVER);
         
         nameGrid.getColumnConstraints().addAll(cons3, cons4);
         
-        RowConstraints rcons3 = new RowConstraints();
+        rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
         
         RowConstraints rcons4 = new RowConstraints();
+        rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.NEVER);  
         
         nameGrid.getRowConstraints().addAll(rcons3, rcons4);
