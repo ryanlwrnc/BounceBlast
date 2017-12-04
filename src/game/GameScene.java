@@ -14,6 +14,7 @@ import game.ball.BowlingBall;
 import game.ball.SoccerBall;
 import game.ball.TennisBall;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -81,6 +82,8 @@ public class GameScene extends Scene {
 		gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		gameTitle.setY(100);
+		//gameTitle.setX(400);
+		gameTitle.layoutXProperty().bind(p.widthProperty().subtract(gameTitle.xProperty()).divide(2));
 		
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
