@@ -18,7 +18,7 @@ public class TestBallFactory {
 	public void testBallFactoryNewGameBall() {
 		 
 		BallFactory factory = new BallFactory();
-		Ball ball = factory.newGameBall(BallType.BASKETBALL);
+		Ball ball = factory.newGameBall(BallType.BASKETBALL, 0, 0);
 		assertTrue(ball instanceof BasketBall);
 	}
 }

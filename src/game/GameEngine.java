@@ -196,7 +196,8 @@ public class GameEngine implements Runnable {
 		}
 	}
 	
-	public void eliminateBall(Ball player) {
+	public boolean eliminateBall(Ball player) {
+		System.out.println(player);
 		if (scene.v.getBoundsInParent().intersects(player.getBoundsInParent()) ||
 				scene.h.getBoundsInParent().intersects(player.getBoundsInParent())) {
 			remainingBalls--;
@@ -211,10 +212,13 @@ public class GameEngine implements Runnable {
 				player.setCenterX(1000000);
 				player.setCenterX(1000000);
 			}
+			return true;
 		}
+		return false;
 	}
 	
 	public void ballHitsPlatform() {
+		boolean eliminated;
 		// If the user's ball hits the platform.
 		if (scene.v.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent()) ||
 				scene.h.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent())) {
@@ -223,18 +227,24 @@ public class GameEngine implements Runnable {
 		}
 		
 		if(cpuOneExists) {
-			cpuOneExists = false;
-			eliminateBall(scene.playerOne);
+			eliminated = eliminateBall(scene.playerOne);
+			if (eliminated) {
+				cpuOneExists = false;
+			}
 		}
 		
 		if(cpuTwoExists) {
-			cpuTwoExists = false;
-			eliminateBall(scene.playerTwo);
+			eliminated = eliminateBall(scene.playerTwo);
+			if (eliminated) {
+				cpuTwoExists = false;
+			}
 		}
 		
 		if(cpuThreeExists) {
-			cpuThreeExists = false;
-			eliminateBall(scene.playerThree);
+			eliminated = eliminateBall(scene.playerThree);
+			if (eliminated) {
+				cpuThreeExists = false;
+			}
 		}
 
 		
