@@ -41,7 +41,7 @@ public class Settings extends Scene{
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
 		
-		
+		/*
 		cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
@@ -60,10 +60,23 @@ public class Settings extends Scene{
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");
+				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
+		cons1 = new ColumnConstraints();
+        cons1.setHgrow(Priority.NEVER);
+
+        cons2 = new ColumnConstraints();
+        cons2.setHgrow(Priority.ALWAYS);
+        
+        rcons1 = new RowConstraints();
+        rcons1.setVgrow(Priority.NEVER);
+        
+        rcons2 = new RowConstraints();
+        rcons2.setVgrow(Priority.ALWAYS);  
 		 
 		// BounceBlast text
-		gameTitle = new Text();
+		/*gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Settings");
@@ -84,8 +97,11 @@ public class Settings extends Scene{
         box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");
-        
+				 "-fx-border-color: white;-fx-border-width: 3;");*/
+        GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
+    			cons1, cons2, SCREENBUTTONCOL, "Settings");
+        gridpane = gridpanes[0];
+        box = gridpanes[1];
         sound = new Text();
         sound.setFont(new Font(20));
         sound.setFill(Color.WHITE);

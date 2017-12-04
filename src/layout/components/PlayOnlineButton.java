@@ -1,11 +1,8 @@
 package layout.components;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import layout.Main;
 
 public class PlayOnlineButton extends BaseButton {
@@ -28,8 +25,9 @@ public class PlayOnlineButton extends BaseButton {
 		this.app = app;
 		
 		this.setStyle(style);
-		
-		this.setOnAction(new EventHandler<ActionEvent>()
+		ButtonHelper buttonHelper = new ButtonHelper();
+		buttonHelper.setClickAction(app, this, scene);
+		/*this.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent event)
@@ -42,7 +40,7 @@ public class PlayOnlineButton extends BaseButton {
 				
 				app.updateScene(scene);
 			}
-		});
+		});*/
 		this.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {

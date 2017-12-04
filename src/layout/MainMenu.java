@@ -57,7 +57,7 @@ public class MainMenu extends Scene{
 		
 		// GridPane
 		gridpane = (GridPane) getRoot();
-		ColumnConstraints cons1 = new ColumnConstraints();
+		/*ColumnConstraints cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
         ColumnConstraints cons2 = new ColumnConstraints();
@@ -73,7 +73,9 @@ public class MainMenu extends Scene{
 		
         gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");
+				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
 		 
 		// BounceBlast text
 		Text gameTitle = new Text();

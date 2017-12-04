@@ -57,7 +57,7 @@ public class Leaderboard extends Scene {
 		gridpane = (GridPane) getRoot();
 		
 		// Setup gridpane
-		cons1 = new ColumnConstraints();
+		/*cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
         cons2 = new ColumnConstraints();
@@ -70,7 +70,9 @@ public class Leaderboard extends Scene {
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");
+				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
 		 
 		// Leader Board text
 		gameTitle = new Text();

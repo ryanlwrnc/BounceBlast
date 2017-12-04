@@ -49,7 +49,7 @@ public class InGame extends Scene {
 		*/
 		
 		// Gridpane
-		cons1 = new ColumnConstraints();
+		/*cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
 
@@ -67,7 +67,9 @@ public class InGame extends Scene {
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");
+				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
 		
 		// BounceBlast text
 		gameTitle = new Text();

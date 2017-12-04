@@ -46,6 +46,7 @@ public class PlayOffline extends Scene {
 		super(new GridPane(), 800, 600);
 		
 		gridpane = (GridPane) getRoot();
+		/*
 		ColumnConstraints cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
         gridpane.getColumnConstraints().add(cons1);
@@ -64,10 +65,13 @@ public class PlayOffline extends Scene {
         gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");
+				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
+		
 		 
 		// BounceBlast text
-		gameTitle = new Text();
+		/*gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Play Offline");
@@ -75,7 +79,8 @@ public class PlayOffline extends Scene {
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
 		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
-		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
+		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));*/
+		gridpane = screenHelper.setTitle(gridpane, "Play Offline", SCREENBUTTONCOL);
 		
 		 //Adding GridPane
         box = new GridPane();
@@ -84,8 +89,8 @@ public class PlayOffline extends Scene {
         box.setMaxHeight(250);
         box.setHgap(5);
         box.setVgap(5);
-        box.getColumnConstraints().addAll(cons1, cons2);
-        box.getRowConstraints().addAll(rcons1, rcons2);
+        //box.getColumnConstraints().addAll(cons1, cons2);
+        //box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
 				 BORDERCOLORWHITE + BORDERWIDTH3);

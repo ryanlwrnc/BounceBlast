@@ -63,7 +63,7 @@ public class PlayOnline extends Scene {
 		this.gridpane =  (GridPane) getRoot();
 		
 		// Gridpane
-		cons1 = new ColumnConstraints();
+		/*cons1 = new ColumnConstraints();
       cons1.setHgrow(Priority.NEVER);
       gridpane.getColumnConstraints().add(cons1);
 
@@ -81,10 +81,12 @@ public class PlayOnline extends Scene {
       gridpane.getRowConstraints().addAll(rcons1, rcons2);
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");
+				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
 		 
 		// BounceBlast text
-		gameTitle = new Text();
+		/*gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Play Online");
@@ -105,7 +107,11 @@ public class PlayOnline extends Scene {
         box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");
+				 "-fx-border-color: white;-fx-border-width: 3;");*/
+		GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
+    			cons1, cons2, SCREENBUTTONCOL, "Play Online");
+        gridpane = gridpanes[0];
+        box = gridpanes[1];
 	    
 	    ballTypes = new Text();
 	    ballTypes.setFont(new Font(20));
