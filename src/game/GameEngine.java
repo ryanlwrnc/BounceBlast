@@ -330,13 +330,13 @@ public class GameEngine implements Runnable {
 	public boolean reachedEnd(Dir dir) {
 		switch (dir) {
 		case UP:
-			return !(scene.board.getY() < scene.v.getEndY());
+			return (scene.board.getY() >= scene.v.getEndY());
 		case LEFT:
-			return !(scene.board.getX() < scene.h.getEndX());
+			return (scene.board.getX() >= scene.h.getEndX());
 		case RIGHT:
-			return !(scene.h.getEndX() < scene.board.xmax());
+			return (scene.h.getEndX() >= scene.board.xmax());
 		case DOWN:
-			return !(scene.v.getEndY() < scene.board.ymax());
+			return (scene.v.getEndY() >= scene.board.ymax());
 		default:
 			return true;
 		}
