@@ -42,8 +42,8 @@ public class TutorialStrategy extends Scene {
         final int numRows = 5 ;
         for (int i = 0; i < numCols; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
-            colConst.setPercentWidth(100.0 / numCols);
             colConst.setHgrow(Priority.ALWAYS);
+            colConst.setPercentWidth(100.0 / numCols);
             gridpane.getColumnConstraints().add(colConst);
         }
         for (int i = 0; i < numRows; i++) {
@@ -53,16 +53,16 @@ public class TutorialStrategy extends Scene {
             gridpane.getRowConstraints().add(rowConst);         
         }
 
-		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
+		gridpane.setAlignment(Pos.TOP_CENTER);
 		 
 		// BounceBlast text
 		Text gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
-		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("Tutorial");
 		gameTitle.setStyle("-fx-font: 75 arial;");
+		gameTitle.setFill(Color.WHITE);
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
 		gridpane.add(gameTitle, 2, 0);
@@ -106,14 +106,14 @@ public class TutorialStrategy extends Scene {
 				 BORDERCOLORGRAY
 				 + BORDERWIDTH3);
         Text rulesTitle = new Text();
-        rulesTitle.setText("Rules");
         rulesTitle.setStyle(FILL000000
         		+ FONT20);
         rulesTitle.setTextAlignment(TextAlignment.CENTER);
+        rulesTitle.setText("Rules");
         rules.getChildren().add(rulesTitle);
         StackPane.setAlignment(rulesTitle, Pos.CENTER);
         gridpane.add(rules, 1, 1, 1, 1);
-        rules.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        /*rules.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				app.updateScene(new TutorialRules(app));
 			}
@@ -139,24 +139,27 @@ public class TutorialStrategy extends Scene {
 	        		rulesTitle.setStyle(FILL000000
 	        				+ FONT20);
 	        }
-	    });
+	    });*/
+        ScreenHelper screenHelper = new ScreenHelper();
+        rules = screenHelper.tutorialButton(app, rules, rulesTitle);
+        rulesTitle = screenHelper.getRulesTitle();
         
         StackPane controls = new StackPane();
-		controls.setMinWidth(200);
-        controls.setMinHeight(50);
         controls.setMaxWidth(200);
+		controls.setMinWidth(200);
         controls.setMaxHeight(50);
+        controls.setMinHeight(50);
         controls.setStyle(BACKGROUNDCOLORWHITE +
         		BACKGROUNDPOSITIONCENTERTOP +
 				 BORDERCOLORGRAY
 				 + BORDERWIDTH3);
         Text controlsTitle = new Text();
         controlsTitle.setText("Controls");
+        controlsTitle.setTextAlignment(TextAlignment.CENTER);
         controlsTitle.setStyle(FILL000000
         		+ FONT20);
-        controlsTitle.setTextAlignment(TextAlignment.CENTER);
-        controls.getChildren().add(controlsTitle);
         StackPane.setAlignment(controlsTitle, Pos.CENTER);
+        controls.getChildren().add(controlsTitle);
         gridpane.add(controls, 2, 1, 1, 1);
         controls.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
@@ -166,23 +169,23 @@ public class TutorialStrategy extends Scene {
         controls.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
+	        		controlsTitle.setStyle(FILLFFFFFF
+        				+ FONT20);
 	        		controls.setStyle(BACKGROUNDCOLOR003399 +
 	        				BACKGROUNDPOSITIONCENTERTOP +
 	       				 BORDERCOLORGRAY
 	       				 + BORDERWIDTH3);
-	        		controlsTitle.setStyle(FILLFFFFFF
-	        				+ FONT20);
 	        }
 	    });
         controls.setOnMouseExited(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {
+	        		controlsTitle.setStyle(FILL000000
+        				+ FONT20);
 	        		controls.setStyle(BACKGROUNDCOLORWHITE +
 	        				BACKGROUNDPOSITIONCENTERTOP +
 	       				 BORDERCOLORGRAY
 	       				 + BORDERWIDTH3);
-	        		controlsTitle.setStyle(FILL000000
-	        				+ FONT20);
 	        }
 	    });
 		

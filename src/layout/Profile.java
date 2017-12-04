@@ -85,8 +85,8 @@ public class Profile extends Scene {
 				 "-fx-border-color: white;-fx-border-width: 3;");*/
 		GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
     			cons1, cons2, SCREENBUTTONCOL, "User Profile");
-        gridpane = gridpanes[0];
         box = gridpanes[1];
+        gridpane = gridpanes[0];
         
         // User name text
         username = new Text();
@@ -94,25 +94,25 @@ public class Profile extends Scene {
         //String playerName = "Test";
         username.setFont(new Font(20));
         username.setFill(Color.WHITE);
-        username.setText("Username: " + name);
         username.setStyle("-fx-font: 30 arial;");
+        username.setText("Username: " + name);
         username.setTextAlignment(TextAlignment.RIGHT);
         GridPane.setHalignment(username, HPos.RIGHT);
         
         // Password text
         password = new Text();
-        password.setFont(new Font(20));
         password.setFill(Color.WHITE);
+        password.setFont(new Font(20));
         password.setText("Change Password");
-        password.setStyle("-fx-font: 30 arial;");
         password.setTextAlignment(TextAlignment.RIGHT);
+        password.setStyle("-fx-font: 30 arial;");
         GridPane.setHalignment(password, HPos.RIGHT);
         
-        box.add(username, 0, 0);
         box.add(password, 0, 1);
+        box.add(username, 0, 0);
         
-        GridPane.setMargin(username, new Insets(5, 10, 5, 10));
         GridPane.setMargin(password, new Insets(5, 10, 5, 10));
+        GridPane.setMargin(username, new Insets(5, 10, 5, 10));
    
         // Change password field
         passwordField = new PasswordField();

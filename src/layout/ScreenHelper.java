@@ -1,19 +1,32 @@
 package layout;
 
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class ScreenHelper {
+	// Constants
+	private static final String BACKGROUNDPOSITIONCENTERTOP = "-fx-background-position:center top;";
+	private static final String BORDERWIDTH3 = "-fx-border-width: 3;";
+	private static final String FONT20 = "-fx-font: 20 arial;";
+	private static final String BACKGROUNDCOLORWHITE = "-fx-background-color: white;";
+	private static final String BACKGROUNDCOLOR003399 ="-fx-background-color: #003399;";
+	private static final String BORDERCOLORGRAY = "-fx-border-color: gray;";
+	private static final String FILL000000 ="-fx-fill: #000000;";
+	private static final String FILLFFFFFF ="-fx-fill: #FFFFFF;";
+	private Text rulesTitle;
 	
 	ComboBox<String> cbBall = new ComboBox<>();
 	public GridPane setupGridpane(GridPane gridpane) {
@@ -39,8 +52,8 @@ public class ScreenHelper {
 	public GridPane[] titleAndBox(GridPane gridpane, RowConstraints rcons1, RowConstraints rcons2,
 			ColumnConstraints cons1, ColumnConstraints cons2, int sCREENBUTTONCOL, String title) {
 		GridPane[] gridpanes = new GridPane[2];
-		GridPane newGridpane = gridpane;
-		newGridpane = setTitle(gridpane, title, sCREENBUTTONCOL);
+		//GridPane newGridpane = gridpane;
+		gridpane = setTitle(gridpane, title, sCREENBUTTONCOL);
 		/*Text gameTitle = new Text();
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
@@ -63,7 +76,7 @@ public class ScreenHelper {
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");
-        gridpanes[0] = newGridpane;
+        gridpanes[0] = gridpane;
         gridpanes[1] = box;
         return gridpanes;
 	}
@@ -107,5 +120,40 @@ public class ScreenHelper {
 	}
 	public ComboBox<String> getCbBall() {
 	    return cbBall;
+	}
+	
+	public StackPane tutorialButton(Main app, StackPane rules, Text rulesTitle) {
+		this.rulesTitle = rulesTitle;
+		rules.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent event) {
+				app.updateScene(new TutorialRules(app));
+			}
+		});
+        rules.setOnMouseEntered(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent t) {
+	        		rules.setStyle(BACKGROUNDCOLOR003399 +
+	        				BACKGROUNDPOSITIONCENTERTOP +
+	       				 BORDERCOLORGRAY
+	       				 + BORDERWIDTH3);
+	        		rulesTitle.setStyle(FILLFFFFFF
+	        				+ FONT20);
+	        }
+	    });
+        rules.setOnMouseExited(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent t) {
+	        		rules.setStyle(BACKGROUNDCOLORWHITE +
+	        				BACKGROUNDPOSITIONCENTERTOP +
+	       				 BORDERCOLORGRAY
+	       				 + BORDERWIDTH3);
+	        		rulesTitle.setStyle(FILL000000
+	        				+ FONT20);
+	        }
+	    });
+        return rules;
+	}
+	public Text getRulesTitle() {
+		return this.rulesTitle;
 	}
 }

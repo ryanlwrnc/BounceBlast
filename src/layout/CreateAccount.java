@@ -94,47 +94,47 @@ public class CreateAccount extends Scene {
 		
 		GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
     			cons1, cons2, SCREENBUTTONCOL, "Create Account");
-        gridpane = gridpanes[0];
         box = gridpanes[1];
+        gridpane = gridpanes[0];
         
         // User name text
         username = new Text();
-        username.setFont(new Font(20));
         username.setFill(Color.WHITE);
-        username.setText("Username");
+        username.setFont(new Font(20));
         username.setStyle("-fx-font: 30 arial;");
         username.setTextAlignment(TextAlignment.RIGHT);
+        username.setText("Username");
         GridPane.setHalignment(username, HPos.RIGHT);
         
         // Password text
         password = new Text();
+        password.setStyle("-fx-font: 30 arial;");
+        password.setTextAlignment(TextAlignment.RIGHT);
         password.setFont(new Font(20));
         password.setFill(Color.WHITE);
         password.setText("Password");
-        password.setStyle("-fx-font: 30 arial;");
-        password.setTextAlignment(TextAlignment.RIGHT);
         GridPane.setHalignment(password, HPos.RIGHT);
         
-        box.add(username, 0, 0);
         box.add(password, 0, 1);
+        box.add(username, 0, 0);
         
-        GridPane.setMargin(username, new Insets(5, 10, 5, 10));
         GridPane.setMargin(password, new Insets(5, 10, 5, 10));
+        GridPane.setMargin(username, new Insets(5, 10, 5, 10));
         
         // User name field
         usernameField = new TextField();
         usernameField.setPromptText("Enter your username");
         box.add(usernameField, 1, 0);
         
-        // Password field
-        passwordField = new PasswordField();
-        passwordField.setPromptText("Enter your password");
-        box.add(passwordField, 1, 1);
-        
         // Confirm Password field
         confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Confirm password");
         box.add(confirmPasswordField, 1, 2);
+        
+        // Password field
+        passwordField = new PasswordField();
+        passwordField.setPromptText("Enter your password");
+        box.add(passwordField, 1, 1);
         
         // Create Account button
         makeAccount = new Button("Create Account");

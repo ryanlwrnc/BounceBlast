@@ -42,10 +42,10 @@ public class PlayOnline extends Scene {
 	private Button start;
 	private GridPane box;
 	private ComboBox<String> cbBall;
-	private ColumnConstraints cons1;
+	/*private ColumnConstraints cons1;
 	private ColumnConstraints cons2;
 	private RowConstraints rcons1;
-	private RowConstraints rcons2;
+	private RowConstraints rcons2;*/
 	private TableView<Username> table;
 	
 	// Constants
@@ -78,7 +78,7 @@ public class PlayOnline extends Scene {
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
 		 
-		cons1 = new ColumnConstraints();
+		/*cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
 
         cons2 = new ColumnConstraints();
@@ -108,8 +108,8 @@ public class PlayOnline extends Scene {
         box.setMaxHeight(250);
         box.setHgap(5);
         box.setVgap(5);
-        box.getColumnConstraints().addAll(cons1, cons2);
-        box.getRowConstraints().addAll(rcons1, rcons2);
+        //box.getColumnConstraints().addAll(cons1, cons2);
+        //box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");

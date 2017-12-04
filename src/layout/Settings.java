@@ -62,17 +62,18 @@ public class Settings extends Scene{
 				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
+		
+		rcons1 = new RowConstraints();
+        rcons1.setVgrow(Priority.NEVER);
+		
 		cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
-
-        cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        
-        rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
         
         rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
+
+        cons2 = new ColumnConstraints();
+        cons2.setHgrow(Priority.ALWAYS);
 		 
 		// BounceBlast text
 		/*gameTitle = new Text();
