@@ -41,6 +41,7 @@ public class MainMenu extends Scene{
 	private static final String BORDERWHITE = "-fx-border-color: white;";
 	private static final String TEXTFILLWHITE = "-fx-text-fill: white;";
 	private static final String FONT16 = "-fx-font-size: 16;";
+	private final Font titleFont = Font.loadFont(MainMenu.class.getResource("VT323-Regular.ttf").toExternalForm(), 100);
 	
 	public MainMenu(Main app) {
 		super(new GridPane(), 800, 600);
@@ -77,8 +78,9 @@ public class MainMenu extends Scene{
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("BounceBlast");
-		gameTitle.setStyle("-fx-font: 75 arial;");
+		//gameTitle.setStyle("-fx-font: 75 arial;");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
+		gameTitle.setFont(titleFont);
 		GridPane.setHalignment(gameTitle, HPos.CENTER);
 		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));

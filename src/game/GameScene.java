@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import layout.Main;
+import layout.MainMenu;
 
 public class GameScene extends Scene {
 	// JavaFx
@@ -39,6 +40,7 @@ public class GameScene extends Scene {
 	// Constants
 	public final List<Ball> allPossiblePlayers;
 	BallFactory ballFactory = new BallFactory();
+	private final Font titleFont = Font.loadFont(MainMenu.class.getResource("VT323-Regular.ttf").toExternalForm(), 100);
 	
 	int screenButtonCol = 2;
 	String buttonStyle = "-fx-border-width: 3;" + 
@@ -74,7 +76,7 @@ public class GameScene extends Scene {
 		gameTitle.setFont(new Font(20));
 		gameTitle.setFill(Color.WHITE);
 		gameTitle.setText("BounceBlast");
-		gameTitle.setStyle("-fx-font: 75 arial;");
+		gameTitle.setFont(titleFont);
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		gameTitle.setY(100);
 		gameTitle.setX(800);
