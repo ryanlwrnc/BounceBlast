@@ -83,7 +83,7 @@ public class TutorialControls extends Scene {
 			"-fx-border-color: white;" +
 			BORDERWIDTH3);
         
-        Image moveImg = new Image("file:arrowKeys.png");
+        Image moveImg = new Image("file:resource/arrowKeys.png");
         ImageView moveView = new ImageView(moveImg);
         moveView.setFitHeight(110);
         moveView.setFitWidth(200);
@@ -109,7 +109,7 @@ public class TutorialControls extends Scene {
 		box.add(accelerate, 1, 1);
 		GridPane.setMargin(accelerate, new Insets(5, 10, 5, 10));	
 		
-		Image accelerateImg = new Image("file:spacebar.png");
+		Image accelerateImg = new Image("file:resource/spacebar.png");
         ImageView accelerateView = new ImageView(accelerateImg);
         accelerateView.setFitHeight(60);
         accelerateView.setFitWidth(200);
