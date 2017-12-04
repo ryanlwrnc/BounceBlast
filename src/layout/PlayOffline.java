@@ -154,7 +154,7 @@ public class PlayOffline extends Scene {
 
 					app.updateScene(scene);
 					
-					app.setThread(new Thread(new GameEngine(app, scene)));
+					app.setThread(new Thread(new GameEngine(app, scene,cbCPU.getValue())));
 					Thread mainThread = app.getThread();
 					mainThread.start();
 			        //app.thread = new Thread(new GameEngine(app, scene));
