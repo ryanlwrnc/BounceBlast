@@ -113,7 +113,7 @@ public class PlayOnline extends Scene {
         gridpane = gridpanes[0];
         box = gridpanes[1];
 	    
-	    ballTypes = new Text();
+	    /*ballTypes = new Text();
 	    ballTypes.setFont(new Font(20));
 	    ballTypes.setFill(Color.WHITE);
 	    ballTypes.setText("Balls");
@@ -130,7 +130,9 @@ public class PlayOnline extends Scene {
 	    box.add(cbBall, 1, 1);
 		
 	    GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, SCREENBUTTONCOL, 1);
+		gridpane.add(box, SCREENBUTTONCOL, 1);*/
+        gridpane = screenHelper.setupPlayGame(gridpane, box, SCREENBUTTONCOL);
+	    cbBall = screenHelper.getCbBall();
 
 		// Start Button
 		start = new PlayOnlineButton(app, "Start", new GameScene(app, "3", "Basketball"));
@@ -152,7 +154,7 @@ public class PlayOnline extends Scene {
 
 							app.updateScene(scene);
 							
-							app.setThread(new Thread(new GameEngine(app, scene)));
+							app.setThread(new Thread(new GameEngine(app, scene, "3")));
 							Thread mainThread = app.getThread();
 							mainThread.start();
 							

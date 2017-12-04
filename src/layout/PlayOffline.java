@@ -106,12 +106,12 @@ public class PlayOffline extends Scene {
 		 GridPane.setMargin(numCPULabel, new Insets(5, 10, 5, 10));	
 		
 		 cbCPU = new ComboBox<>();
-       cbCPU.getItems().add("1");
-       cbCPU.getItems().add("2");
-       cbCPU.getItems().add("3");
+		 cbCPU.getItems().add("1");
+		 cbCPU.getItems().add("2");
+		 cbCPU.getItems().add("3");
 	    box.add(cbCPU, 1, 0);
 	    
-	    ballTypes = new Text();
+	    /*ballTypes = new Text();
 	    ballTypes.setFont(new Font(20));
 	    ballTypes.setFill(Color.WHITE);
 	    ballTypes.setText("Select Your Game Ball");
@@ -129,8 +129,10 @@ public class PlayOffline extends Scene {
 	    box.add(cbBall, 1, 1);
 	    
 	    GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, SCREENBUTTONCOL, 1);
-
+		gridpane.add(box, SCREENBUTTONCOL, 1);*/
+	    gridpane = screenHelper.setupPlayGame(gridpane, box, SCREENBUTTONCOL);
+	    cbBall = screenHelper.getCbBall();
+	    
 		// Start Button
 		start = new Button("Start");
 		start.setPrefHeight(25);

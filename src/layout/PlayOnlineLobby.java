@@ -138,7 +138,7 @@ public class PlayOnlineLobby extends Scene {
 				GameScene scene = new GameScene(app, "1", "Basketball");
 				app.updateScene(scene);
 				
-				app.setThread(new Thread(new GameEngine(app, scene)));
+				app.setThread(new Thread(new GameEngine(app, scene, "3")));
 				Thread mainThread = app.getThread();
 				mainThread.start();
 				

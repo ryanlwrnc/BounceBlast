@@ -3,6 +3,7 @@ package layout;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -13,6 +14,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class ScreenHelper {
+	
+	ComboBox<String> cbBall = new ComboBox<>();
 	public GridPane setupGridpane(GridPane gridpane) {
 		ColumnConstraints cons1 = new ColumnConstraints();
         cons1.setHgrow(Priority.NEVER);
@@ -75,5 +78,34 @@ public class ScreenHelper {
 		gridpane.add(gameTitle, sCREENBUTTONCOL, 0);
 		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
 		return gridpane;
+	}
+	
+	public GridPane setupPlayGame(GridPane gridpane, GridPane box, int sCREENBUTTONCOL) {
+
+		Text ballTypes = new Text();
+	    ballTypes.setFont(new Font(20));
+	    ballTypes.setFill(Color.WHITE);
+	    ballTypes.setText("Select Your Game Ball");
+	    ballTypes.setStyle("-fx-font: 30 arial;");
+	    ballTypes.setTextAlignment(TextAlignment.LEFT);
+		GridPane.setHalignment(ballTypes, HPos.LEFT);
+		box.add(ballTypes, 0, 1);
+		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 10));	
+		
+		//ComboBox<String> cbBall = new ComboBox<>();
+		cbBall = new ComboBox<>();
+	    cbBall.getItems().add("Basketball");
+	    cbBall.getItems().add("Bowling Ball");
+	    cbBall.getItems().add("Tennis Ball");
+	    cbBall.getItems().add("Soccer Ball");
+	    box.add(cbBall, 1, 1);
+	    
+	    GridPane.setHalignment(box, HPos.CENTER);
+		gridpane.add(box, sCREENBUTTONCOL, 1);
+
+		return gridpane;
+	}
+	public ComboBox<String> getCbBall() {
+	    return cbBall;
 	}
 }
