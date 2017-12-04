@@ -39,7 +39,7 @@ public class GameScene extends Scene {
 	// Constants
 	public final List<Ball> allPossiblePlayers;
 	BallFactory ballFactory = new BallFactory();
-	private final Font titleFont = Font.loadFont(MainMenu.class.getResource("VT323-Regular.ttf").toExternalForm(), 100);
+	private final Font titleFont = Font.loadFont(MainMenu.class.getResource("VT323-Regular.ttf").toExternalForm(), 120);
 	
 	int screenButtonCol = 2;
 	String buttonStyle = "-fx-border-width: 3;" + 
@@ -77,7 +77,7 @@ public class GameScene extends Scene {
 		gameTitle.setFont(titleFont);
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		gameTitle.setY(100);
-		gameTitle.setX(800);
+		gameTitle.setX(400);
 		
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
@@ -91,7 +91,7 @@ public class GameScene extends Scene {
 		g.getChildren().addAll(board, h, v);
 		g.getChildren().addAll(getAllPlayers());
 		p.getChildren().addAll(gameTitle,g);
-		g.setLayoutX(450);
+		
 		
 		List<Ball> playerOnePlayers = getAllPlayers();
 		
