@@ -89,13 +89,17 @@ public class Leaderboard extends Scene {
 		public void onDataChange(DataSnapshot snapshot) {
 			// Create a new hashmap to place leaderboard data from Firebase
 			HashMap<String,User> leaderboard = new HashMap<>();
-			
+	
 			// For each data entry in Firebase
 			for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 				// Obtain the individual data
 				User post = postSnapshot.getValue(User.class);
 				// Place the data into hashmap
 				leaderboard.put(post.getUsername(), post);
+				
+				for(int i = 0; i < data.size(); i++) {
+					data.remove(i);
+				}
 		   }
 			
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
