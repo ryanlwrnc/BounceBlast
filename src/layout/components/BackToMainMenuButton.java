@@ -15,12 +15,10 @@ public class BackToMainMenuButton extends BaseButton {
 	public static final String BACKGROUNDCOLOR24618F = "-fx-background-color: #24618F;";
 	public static final String FONTSIZE16 = "-fx-font-size: 16;";
 	public static final String TEXTFILLWHITE = "-fx-text-fill: white;";
-	//private Main app;
 	private boolean beenClicked = false;
 	
 	public BackToMainMenuButton(Main app, String label) {
 		super(label);
-	//	this.app = app;
 		
 		setPrefHeight(25);
 		setPrefWidth(65);

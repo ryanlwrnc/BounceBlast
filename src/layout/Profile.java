@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -37,52 +38,36 @@ public class Profile extends Scene {
 	public Profile(Main app, String name) {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
-		/*
-		cons1 = new ColumnConstraints();
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
+
+		 //Adding GridPane
+        box = new GridPane();
+        box.setMaxHeight(250);
+        box.setPadding(new Insets(20,20,20,20));
+        box.setVgap(5);
+        box.setMaxWidth(650);	
+        box.setHgap(5);
+        
+        cons1 = new ColumnConstraints();
 		cons1.setHgrow(Priority.NEVER);
 		gridpane.getColumnConstraints().add(cons1);
+        rcons2 = new RowConstraints();
+        rcons2.setVgrow(Priority.ALWAYS);  
 		
 		cons2 = new ColumnConstraints();
 		cons2.setHgrow(Priority.ALWAYS);
 		
 		gridpane.getColumnConstraints().addAll(cons1, cons2);
 		
-	    rcons1 = new RowConstraints();
+		rcons1 = new RowConstraints();
         rcons1.setVgrow(Priority.NEVER);
         
-        rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-        
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
-		ScreenHelper screenHelper = new ScreenHelper();
-		gridpane = screenHelper.setupGridpane(gridpane);
-		 
-		// BounceBlast text
-		/*gameTitle = new Text();
-		gameTitle.setFont(new Font(20));
-		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("User Profile");
-		gameTitle.setStyle("-fx-font: 75 arial;");
-		gameTitle.setTextAlignment(TextAlignment.CENTER);
-		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);		// ADDEd
-		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
-		
-		 //Adding GridPane
-        box = new GridPane();
-        box.setPadding(new Insets(20,20,20,20));
-        box.setMaxWidth(650);	
-        box.setMaxHeight(250);
-        box.setHgap(5);
-        box.setVgap(5);
         box.getColumnConstraints().addAll(cons1, cons2);
         box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");*/
+				 "-fx-border-color: white;-fx-border-width: 3;");
 		GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
     			cons1, cons2, SCREENBUTTONCOL, "User Profile");
         box = gridpanes[1];
@@ -91,7 +76,6 @@ public class Profile extends Scene {
         // User name text
         username = new Text();
         // Will get the current user's name from the database
-        //String playerName = "Test";
         username.setFont(new Font(20));
         username.setFill(Color.WHITE);
         username.setStyle("-fx-font: 30 arial;");

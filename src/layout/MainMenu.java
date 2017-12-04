@@ -53,23 +53,6 @@ public class MainMenu extends Scene{
 		
 		// GridPane
 		gridpane = (GridPane) getRoot();
-		/*ColumnConstraints cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-        gridpane.getColumnConstraints().add(cons1);
-        ColumnConstraints cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        gridpane.getColumnConstraints().addAll(cons1, cons2);
-        
-        RowConstraints rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
-        RowConstraints rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-        gridpane.getRowConstraints(
-        		).addAll(rcons1, rcons2);
-		
-        gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
 		 
@@ -110,12 +93,6 @@ public class MainMenu extends Scene{
 		GridPane.setMargin(screenTitle, new Insets(5, 10, 5, 10));
 		
 		// Login & Profile button
-		
-		/* Delete 
-		app.setUsername("anand");
-		loggedIn = true;
-		 Delete */
-		
 		if(this.loggedIn)
 			login = new MainMenuButton(app, "Profile", new Profile(app,this.username));
 		else
@@ -137,7 +114,6 @@ public class MainMenu extends Scene{
 				alert.setTitle("Error");
 				alert.setContentText("Must be logged in to play online.");
 				alert.showAndWait();
-	        		//JOptionPane.showMessageDialog(null, "Must be logged in to play online", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
 	        	}
 	        }
 	    });

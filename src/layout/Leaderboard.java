@@ -103,13 +103,6 @@ public class Leaderboard extends Scene {
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
 	      Set<Entry<String, User>> set = leaderboard.entrySet();
 	      List<Entry<String, User>> list = new ArrayList<>(set);
-	      /*Collections.sort( list, new Comparator<Map.Entry<String, User>>()
-	      {
-	      		public int compare( Map.Entry<String,User> o1, Map.Entry<String,User> o2 )
-	      		{
-	      			return o2.getValue().getScore().compareTo(o1.getValue().getScore());
-	      		}
-	      } );*/
 	      Collections.sort(list, (Map.Entry<String,User> o1, Map.Entry<String,User> o2) -> o2.getValue().getScore().compareTo(o1.getValue().getScore()));
 	      // -----
 	      

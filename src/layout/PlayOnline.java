@@ -25,11 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
 import layout.components.BackToMainMenuButton;
 import layout.components.PlayOnlineButton;
 
@@ -42,10 +38,6 @@ public class PlayOnline extends Scene {
 	private Button start;
 	private GridPane box;
 	private ComboBox<String> cbBall;
-	/*private ColumnConstraints cons1;
-	private ColumnConstraints cons2;
-	private RowConstraints rcons1;
-	private RowConstraints rcons2;*/
 	private TableView<Username> table;
 	
 	// Constants
@@ -56,49 +48,9 @@ public class PlayOnline extends Scene {
 		this.gridpane =  (GridPane) getRoot();
 		
 		// Gridpane
-		/*cons1 = new ColumnConstraints();
-      cons1.setHgrow(Priority.NEVER);
-      gridpane.getColumnConstraints().add(cons1);
-
-      cons2 = new ColumnConstraints();
-      cons2.setHgrow(Priority.ALWAYS);
-      
-      gridpane.getColumnConstraints().addAll(cons1, cons2);
-      
-      rcons1 = new RowConstraints();
-      rcons1.setVgrow(Priority.NEVER);
-      
-      rcons2 = new RowConstraints();
-      rcons2.setVgrow(Priority.ALWAYS);    
-      
-      gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
 		 
-		/*cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-
-        cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        
-        rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
-        
-        rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-		// BounceBlast text
-		/*gameTitle = new Text();
-		gameTitle.setFont(new Font(20));
-		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("Play Online");
-		gameTitle.setStyle("-fx-font: 75 arial;");
-		gameTitle.setTextAlignment(TextAlignment.CENTER);
-		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
-		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));*/
         gridpane = screenHelper.setTitle(gridpane, "Play Online", SCREENBUTTONCOL);
 		
 		 //Adding GridPane
@@ -108,30 +60,10 @@ public class PlayOnline extends Scene {
         box.setMaxHeight(250);
         box.setHgap(5);
         box.setVgap(5);
-        //box.getColumnConstraints().addAll(cons1, cons2);
-        //box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
 				 "-fx-border-color: white;-fx-border-width: 3;");
 	    
-	    /*ballTypes = new Text();
-	    ballTypes.setFont(new Font(20));
-	    ballTypes.setFill(Color.WHITE);
-	    ballTypes.setText("Balls");
-	    ballTypes.setStyle("-fx-font: 30 arial;");
-	    ballTypes.setTextAlignment(TextAlignment.LEFT);
-		GridPane.setHalignment(ballTypes, HPos.LEFT);
-		box.add(ballTypes, 0, 1);
-		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 200));	
-		
-		cbBall = new ComboBox<>();
-        cbBall.getItems().add("Basketball");
-        cbBall.getItems().add("Bowling Ball");
-        cbBall.getItems().add("Tennis Ball");
-	    box.add(cbBall, 1, 1);
-		
-	    GridPane.setHalignment(box, HPos.CENTER);
-		gridpane.add(box, SCREENBUTTONCOL, 1);*/
         gridpane = screenHelper.setupPlayGame(gridpane, box, SCREENBUTTONCOL);
 	    cbBall = screenHelper.getCbBall();
 
@@ -159,8 +91,6 @@ public class PlayOnline extends Scene {
 							Thread mainThread = app.getThread();
 							mainThread.start();
 							
-					        //app.thread = new Thread(new GameEngine(app, scene));
-					        //app.thread.start();
 						}
 					}
 				});
@@ -182,7 +112,6 @@ public class PlayOnline extends Scene {
 		table.setPrefWidth(300);
 		gridpane.add(table, 2, 2);
 		GridPane.setHalignment(table, HPos.CENTER);
-		//GridPane.setMargin(start, new Insets(5, 80, 30, 10));
 		
 		table.getColumns().addAll(Username.getColumn(table));
 		table.setItems(getPlayerDummy());
@@ -219,18 +148,10 @@ public class PlayOnline extends Scene {
 			// ----- Utility code to help sort the leaderboard hashmap based on the score value.
 	      Set<Entry<String, Username>> set = leaderboard.entrySet();
 	      List<Entry<String, Username>> list = new ArrayList<>(set);
-	      /*Collections.sort( list, new Comparator<Map.Entry<String, Username>>()
-	      {
-	      		public int compare( Map.Entry<String,Username> o1, Map.Entry<String,Username> o2 )
-	      		{
-	      			return o2.getValue().getUsername().compareTo(o1.getValue().getUsername());
-	      		}
-	      } );*/
 	      Collections.sort(list, (Map.Entry<String,Username> o1, Map.Entry<String,Username> o2) -> o2.getValue().getUsername().compareTo(o1.getValue().getUsername()));
 	      // -----
 	      
 	      // Now that the data from Firebase is sorted, now place each entry into the leaderboard.
-	      	//int rank = 1;
 	      	for(Map.Entry<String, Username> entry : list) {
 	      		data.addAll(entry.getValue());
 	      	}

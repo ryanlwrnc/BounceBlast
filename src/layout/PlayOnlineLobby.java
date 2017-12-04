@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
 import layout.components.BackToMainMenuButton;
 import layout.components.PlayOnlineButton;
 
@@ -37,47 +36,10 @@ public class PlayOnlineLobby extends Scene {
 		this.gridpane =  (GridPane) getRoot();
 		
 		// Gridpane
-		/*cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-        gridpane.getColumnConstraints().add(cons1);
-        cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        gridpane.getColumnConstraints().addAll(cons1, cons2);
-        rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
-        rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);    
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
 		 
 		// BounceBlast text
-		/*gameTitle = new Text();
-		gameTitle.setFont(new Font(20));
-		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("Play Online");
-		gameTitle.setStyle("-fx-font: 75 arial;");
-		gameTitle.setTextAlignment(TextAlignment.CENTER);
-		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);
-		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
-		
-		 //Adding GridPane
-        box = new GridPane();
-        box.setPadding(new Insets(20,20,20,20));
-        box.setMaxWidth(650);
-        box.setMaxHeight(250);
-        box.setHgap(5);
-        box.setVgap(5);
-        box.getColumnConstraints().addAll(cons1, cons2);
-        box.getRowConstraints().addAll(rcons1, rcons2);
-        box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
-				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");*/
-		
 		GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
     			cons1, cons2, SCREENBUTTONCOL, "Play Online");
         gridpane = gridpanes[0];
@@ -135,9 +97,6 @@ public class PlayOnlineLobby extends Scene {
 				app.setThread(new Thread(new GameEngine(app, scene, "3")));
 				Thread mainThread = app.getThread();
 				mainThread.start();
-				
-		        //app.thread = new Thread(new GameEngine(app, scene));
-		        //app.thread.start();
 			}
 		});
 	}

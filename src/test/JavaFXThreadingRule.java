@@ -7,7 +7,6 @@ import java.util.concurrent.CountDownLatch;
 
 import javax.swing.SwingUtilities;
 
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 
 import org.junit.Rule;
@@ -32,7 +31,6 @@ public class JavaFXThreadingRule implements TestRule {
     /**
      * Flag for setting up the JavaFX, we only need to do this once for all tests.
      */
-    //private static boolean jfxIsSetup;
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -54,32 +52,9 @@ public class JavaFXThreadingRule implements TestRule {
         public void evaluate() throws Throwable {
             
         		setupJavaFX();
-            /*if(!jfxIsSetup) {
-                setupJavaFX();
-                
-                jfxIsSetup = true;
-            }*/
             
             final CountDownLatch countDownLatch = new CountDownLatch(1);
             
-            /*Platform.runLater(new Runnable() {
-                @Override
-                public void run(){
-                    try {
-                        statement.evaluate();
-                    } catch (Throwable e) {
-                        rethrownException = e;
-                    }
-                    countDownLatch.countDown();
-                }});*/
-            /*Platform.runLater(() -> {try {
-		                statement.evaluate();
-
-		            } catch (Throwable e) {
-		                rethrownException = e;
-		            }
-		            countDownLatch.countDown();});
-            */
             countDownLatch.countDown();
             statement.evaluate();
             countDownLatch.await();
@@ -93,18 +68,8 @@ public class JavaFXThreadingRule implements TestRule {
 
         protected void setupJavaFX() throws InterruptedException {
             
-            //long timeMillis = System.currentTimeMillis();
-            
             final CountDownLatch latch = new CountDownLatch(1);
-            
-            /*SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    // initializes JavaFX environment
-                    new JFXPanel(); 
-                    
-                    latch.countDown();
-                }
-            });*/
+
             SwingUtilities.invokeLater(() -> {new JFXPanel(); latch.countDown();});
             
             latch.await();

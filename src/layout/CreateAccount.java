@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -46,7 +47,18 @@ public class CreateAccount extends Scene {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
 		
-		/*cons1 = new ColumnConstraints();
+		ScreenHelper screenHelper = new ScreenHelper();
+		gridpane = screenHelper.setupGridpane(gridpane);
+		 
+		 //Adding GridPane
+        box = new GridPane();
+        box.setPadding(new Insets(20,20,20,20));
+        box.setMaxWidth(650);	
+        box.setMaxHeight(250);
+        box.setHgap(5);
+        box.setVgap(5);
+        
+        cons1 = new ColumnConstraints();
 		cons1.setHgrow(Priority.NEVER);
 		gridpane.getColumnConstraints().add(cons1);
 		
@@ -61,41 +73,20 @@ public class CreateAccount extends Scene {
         rcons2 = new RowConstraints();
         rcons2.setVgrow(Priority.ALWAYS);  
         
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
-		ScreenHelper screenHelper = new ScreenHelper();
-		gridpane = screenHelper.setupGridpane(gridpane);
-		 
-		// BounceBlast text
-		/*gameTitle = new Text();
-		gameTitle.setFont(new Font(20));
-		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("Create Account");
-		gameTitle.setStyle("-fx-font: 75 arial;");
-		gameTitle.setTextAlignment(TextAlignment.CENTER);
-		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, SCREENBUTTONCOL, 0);		// ADDEd
-		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));
-		
-		 //Adding GridPane
-        box = new GridPane();
-        box.setPadding(new Insets(20,20,20,20));
-        box.setMaxWidth(650);	
-        box.setMaxHeight(250);
-        box.setHgap(5);
-        box.setVgap(5);
         box.getColumnConstraints().addAll(cons1, cons2);
         box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
 				 "-fx-background-position:center top;" +
-				 "-fx-border-color: white;-fx-border-width: 3;");*/
+				 "-fx-border-color: white;-fx-border-width: 3;");
+		
 		
 		GridPane[] gridpanes = screenHelper.titleAndBox(gridpane, rcons1, rcons2,
     			cons1, cons2, SCREENBUTTONCOL, "Create Account");
         box = gridpanes[1];
         gridpane = gridpanes[0];
+ 
+		box.getColumnConstraints().addAll(cons1, cons2);
+        box.getRowConstraints().addAll(rcons1, rcons2);
         
         // User name text
         username = new Text();
@@ -152,33 +143,19 @@ public class CreateAccount extends Scene {
 		// Create Account Pressed
 		makeAccount.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				/*
-				CustomScreen mainmenu = screenFactory.newScreen(ScreenFactory.ScreenType.MAIN_MENU);
-				updateScene(mainmenu.getScene());
-				*/
-				
 				// Verify users input
 				// If username field is not empty:
 				if ((!usernameField.getText().trim().isEmpty()) && 
 						(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty()) &&
 						(passwordField.getText().equals(confirmPasswordField.getText()))) {
 					// Verify if the two password fields are not empty
-					//if(!passwordField.getText().trim().isEmpty() && !confirmPasswordField.getText().trim().isEmpty())
-						// Make sure the two password fields match
-						//if(passwordField.getText().equals(confirmPasswordField.getText()))
-						//{
 							// Write to database
-					// final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
 					final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(usernameField.getText());
 					
-					//Map<String,User> user = new HashMap<>();
-					//user.put(usernameField.getText(), new User(passwordField.getText()));
 					database.setValueAsync(new User(usernameField.getText(), passwordField.getText()));
 					
 					// Go back to the main menu
-					//	mainmenu.logIn(usernameField.getText());
 					app.updateScene(new Profile(app, usernameField.getText()));
-						//}
 				}
 			}
 		});

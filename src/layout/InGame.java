@@ -33,39 +33,8 @@ public class InGame extends Scene {
 		this.gridpane =  (GridPane) getRoot();
 		
 		int screenButtonCol = 2;
-		/*
-		String buttonStyle = "-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #24618F;" +
-				"-fx-font-size: 24;" + 
-				"-fx-text-fill: white;";
-		String buttonHoverStyle = "-fx-border-width: 3;" + 
-				"-fx-border-color: white;" + 
-				"-fx-background-color: #003399;" +
-				"-fx-font-size: 24;" + 
-				"-fx-text-fill: white;";
-		*/
 		
 		// Gridpane
-		/*cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-        gridpane.getColumnConstraints().add(cons1);
-
-        cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-    
-        gridpane.getColumnConstraints().addAll(cons1, cons2);
-        
-        rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
-        
-        rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-        
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
 		
@@ -146,7 +115,7 @@ public class InGame extends Scene {
 		name3.setFont(new Font(20));
 		name3.setFill(Color.WHITE);
 		name3.setText("pooksieboo");
-		name3.setStyle("-fx-font: 16 arial;");
+		name3.setStyle(FONT16);
 		name3.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setHalignment(name3, HPos.LEFT);
 		nameGrid.add(name3, 0, 3);

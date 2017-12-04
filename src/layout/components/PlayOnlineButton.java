@@ -27,20 +27,6 @@ public class PlayOnlineButton extends BaseButton {
 		this.setStyle(style);
 		ButtonHelper buttonHelper = new ButtonHelper();
 		buttonHelper.setClickAction(app, this, scene);
-		/*this.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				String path = BaseButton.class.getResource("button.mp3").toString();
-				Media sound = new Media(path);
-				MediaPlayer player = new MediaPlayer(sound);
-				player.setVolume(0.5);
-				player.play();
-				
-				app.updateScene(scene);
-			}
-		});*/
 		this.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent t) {

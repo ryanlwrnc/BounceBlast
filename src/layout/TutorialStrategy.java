@@ -113,33 +113,7 @@ public class TutorialStrategy extends Scene {
         rules.getChildren().add(rulesTitle);
         StackPane.setAlignment(rulesTitle, Pos.CENTER);
         gridpane.add(rules, 1, 1, 1, 1);
-        /*rules.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent event) {
-				app.updateScene(new TutorialRules(app));
-			}
-		});
-        rules.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		rules.setStyle(BACKGROUNDCOLOR003399 +
-	        				BACKGROUNDPOSITIONCENTERTOP +
-	       				 BORDERCOLORGRAY
-	       				 + BORDERWIDTH3);
-	        		rulesTitle.setStyle(FILLFFFFFF
-	        				+ FONT20);
-	        }
-	    });
-        rules.setOnMouseExited(new EventHandler<MouseEvent>() {
-	        @Override
-	        public void handle(MouseEvent t) {
-	        		rules.setStyle(BACKGROUNDCOLORWHITE +
-	        				BACKGROUNDPOSITIONCENTERTOP +
-	       				 BORDERCOLORGRAY
-	       				 + BORDERWIDTH3);
-	        		rulesTitle.setStyle(FILL000000
-	        				+ FONT20);
-	        }
-	    });*/
+
         ScreenHelper screenHelper = new ScreenHelper();
         rules = screenHelper.tutorialButton(app, rules, rulesTitle);
         rulesTitle = screenHelper.getRulesTitle();

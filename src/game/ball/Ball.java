@@ -16,7 +16,6 @@ public class Ball extends Circle {
 		UP, DOWN, LEFT, RIGHT, SPACE, W, A, S, D;
 	}
 	
-	//private Map<Button, Boolean> pressed = new HashMap<>();
 	private EnumMap<Button, Boolean> pressed = new EnumMap<>(Button.class);
 	
 	// Have public setters
@@ -99,60 +98,12 @@ public class Ball extends Circle {
 			double[] newAccelerations = moveTowardTarget(target, ax, ay);
 			ax = newAccelerations[0];
 			ay = newAccelerations[1];
-			/*if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
-				// move right
-				ax = f/m;
-				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
-					// move down
-					ay = ay + f / m;
-				}
-				else {
-					// move up
-					ay = -f / m;
-				}
-			}
-			if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
-				// move left
-				ax = -f / m;
-				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
-					// move down
-					ay = ay + f / m;
-				}
-				else {
-					// move up
-					ay = -f / m;
-				}
-			}*/
 		}
 		// move away from target
 		else {
 			double[] newAccelerations = moveAwayFromTarget(target, ax, ay);
 			ax = newAccelerations[0];
 			ay = newAccelerations[1];
-			/*if (target.getCenterX() + (target.getRadius() / 2) > getCenterX() + (this.getRadius() / 2)) {
-				// move left
-				ax = -f / m;
-				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
-					// move up
-					ay = -f / m;
-				}
-				else {
-					// move down
-					ay = ay + f / m;
-				}
-			}
-			if (target.getCenterX() + (target.getRadius() / 2) < getCenterX() + (this.getRadius() / 2)) {
-				// move right
-				ax = f/m;
-				if (target.getCenterY() + (target.getRadius() / 2) > getCenterY() + (this.getRadius() / 2)) {
-					// move up
-					ay = -f / m;
-				}
-				else {
-					// move down
-					ay = ay + f / m;
-				}
-			}*/
 		}
 		
 		

@@ -52,18 +52,8 @@ public class ScreenHelper {
 	public GridPane[] titleAndBox(GridPane gridpane, RowConstraints rcons1, RowConstraints rcons2,
 			ColumnConstraints cons1, ColumnConstraints cons2, int sCREENBUTTONCOL, String title) {
 		GridPane[] gridpanes = new GridPane[2];
-		//GridPane newGridpane = gridpane;
-		gridpane = setTitle(gridpane, title, sCREENBUTTONCOL);
-		/*Text gameTitle = new Text();
-		gameTitle.setFont(new Font(20));
-		gameTitle.setFill(Color.WHITE);
-		gameTitle.setText("Settings");
-		gameTitle.setStyle("-fx-font: 75 arial;");
-		gameTitle.setTextAlignment(TextAlignment.CENTER);
-		GridPane.setHalignment(gameTitle, HPos.CENTER);
-		gridpane.add(gameTitle, sCREENBUTTONCOL, 0);
-		GridPane.setMargin(gameTitle, new Insets(5, 10, 5, 10));*/
-		
+		GridPane newGridpane = gridpane;
+		newGridpane = setTitle(newGridpane, title, sCREENBUTTONCOL);
 		 //Adding GridPane
         GridPane box = new GridPane();
         box.setPadding(new Insets(20,20,20,20));
@@ -74,9 +64,9 @@ public class ScreenHelper {
         box.getColumnConstraints().addAll(cons1, cons2);
         box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
-				 "-fx-background-position:center top;" +
+        		BACKGROUNDPOSITIONCENTERTOP +
 				 "-fx-border-color: white;-fx-border-width: 3;");
-        gridpanes[0] = gridpane;
+        gridpanes[0] = newGridpane;
         gridpanes[1] = box;
         return gridpanes;
 	}
@@ -105,7 +95,6 @@ public class ScreenHelper {
 		box.add(ballTypes, 0, 1);
 		GridPane.setMargin(ballTypes, new Insets(5, 10, 5, 10));	
 		
-		//ComboBox<String> cbBall = new ComboBox<>();
 		cbBall = new ComboBox<>();
 	    cbBall.getItems().add("Basketball");
 	    cbBall.getItems().add("Bowling Ball");

@@ -53,25 +53,6 @@ public class TutorialRules extends Scene {
             rowConst.setVgrow(Priority.ALWAYS);
             gridpane.getRowConstraints().add(rowConst);         
         }
-		/*ColumnConstraints cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-        gridpane.getColumnConstraints().add(cons1);
-
-        ColumnConstraints cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        
-        ColumnConstraints cons3 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        
-        gridpane.getColumnConstraints().addAll(cons1, cons2);
-        
-        RowConstraints rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.ALWAYS);
-        
-        RowConstraints rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-        
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);*/
 		gridpane.setAlignment(Pos.TOP_CENTER);
 		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
@@ -94,8 +75,6 @@ public class TutorialRules extends Scene {
         box.setMaxHeight(300);
         box.setHgap(5);
         box.setVgap(5);
-        //box.getColumnConstraints().addAll(cons1, cons2);
-        //box.getRowConstraints().addAll(rcons1, rcons2);
         box.setStyle("-fx-background-color: rgba(0, 0, 128, 0.4);" +
         		BACKGROUNDPOSITIONCENTERTOP +
 				 "-fx-border-color: white;"

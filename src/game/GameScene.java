@@ -24,7 +24,6 @@ import layout.MainMenu;
 
 public class GameScene extends Scene {
 	// JavaFx
-	//private Group root;
 	Pane p;
 	
 	// Components
@@ -57,7 +56,6 @@ public class GameScene extends Scene {
 	// GameScene Constructor for Play Offline
 	public GameScene(Main app, String numCPU, String chosenBall) {
 		super(new Pane(), 800, 600);
-		//VBox box = (VBox)getRoot();
 		
 		int numberCPUs = Integer.parseInt(numCPU);
 
@@ -80,7 +78,6 @@ public class GameScene extends Scene {
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		gameTitle.setY(100);
 		gameTitle.setX(800);
-		//gameTitle.layoutXProperty().bind(p.widthProperty().subtract(gameTitle.xProperty()).divide(2));
 		
 		// Create board
 		board = new GameBoard(250, 250, 600, 400);
@@ -97,7 +94,6 @@ public class GameScene extends Scene {
 		g.setLayoutX(450);
 		
 		List<Ball> playerOnePlayers = getAllPlayers();
-		//box.getChildren().addAll(g);//added
 		
 		if(numberCPUs == 1) {
 			playerOnePlayers.remove(playerOne);

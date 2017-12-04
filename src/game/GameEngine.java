@@ -40,7 +40,6 @@ public class GameEngine implements Runnable {
 	}
 	
 	private static final double UPDATE_CAP = 1.0/60.0;
-	//private static final int HANDLED = 1;
 	private GameScene scene;
 	private Main app;
 	//
@@ -91,8 +90,6 @@ public class GameEngine implements Runnable {
 		double unprocessedTime = 0;
 		double lastTime = System.nanoTime() / 1000000000.0;
 		double frameTime = 0; 
-		//double frames = 0; 
-		//double fps = 0;
 		
 		scene.h.setStartX(scene.board.getX());
 		scene.h.setStartY(scene.board.getY());
@@ -104,7 +101,6 @@ public class GameEngine implements Runnable {
 		scene.v.setEndX(-100);
 		scene.v.setEndY(-100);
 		
-		//while(!Thread.currentThread().interrupted()) {
 		while(!Thread.interrupted()) {
 			render = false;
 			firstTime = System.nanoTime() / 1000000000.0;
@@ -134,7 +130,6 @@ public class GameEngine implements Runnable {
 						ballHitsPlatform();
 						
 						handleCollisions(scene.getAllPlayers());	});
-				//frames++;
 			}
 		}
 	}
@@ -230,7 +225,6 @@ public class GameEngine implements Runnable {
 		// If the user's ball hits the platform.
 		if (scene.v.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent()) ||
 				scene.h.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent())) {
-			//scene.mainPlayer.setFill(Color.WHITE);
 			gameOver("Game Over! You lost!");
 		}
 		
@@ -264,12 +258,10 @@ public class GameEngine implements Runnable {
 			Thread mainThread = app.getThread();
 			mainThread.interrupt();
 			
-			//app.thread.interrupt();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("BounceBlast");
 			alert.setContentText(s);
 			alert.showAndWait();
-			//JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
 			app.updateScene(new MainMenu(app));
 		}
 	}
