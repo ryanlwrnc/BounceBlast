@@ -78,7 +78,6 @@ public class Main extends Application {
 		if (pod != null) {
 			pod.interrupt();
 		}
-		//System.out.println("Stopping application");
 	}
 	
 	public void setUsername(String s)

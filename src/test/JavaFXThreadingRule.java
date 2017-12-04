@@ -107,9 +107,7 @@ public class JavaFXThreadingRule implements TestRule {
             });*/
             SwingUtilities.invokeLater(() -> {new JFXPanel(); latch.countDown();});
             
-            //System.out.println("javafx initialising...");
             latch.await();
-            //System.out.println("javafx is initialised in " + (System.currentTimeMillis() - timeMillis) + "ms");
         }
         
     }

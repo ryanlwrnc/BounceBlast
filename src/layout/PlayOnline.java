@@ -210,10 +210,8 @@ public class PlayOnline extends Scene {
 			
 			// For each data entry in Firebase
 			for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-				System.out.println(postSnapshot.toString());
 				// Obtain the individual data
 				Username post = postSnapshot.getValue(Username.class);
-				System.out.println(post.toString());
 				// Place the data into hashmap
 				leaderboard.put(post.getUsername(), post);
 		   }

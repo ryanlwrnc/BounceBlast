@@ -167,7 +167,6 @@ public class CreateAccount extends Scene {
 						// Make sure the two password fields match
 						//if(passwordField.getText().equals(confirmPasswordField.getText()))
 						//{
-							//System.out.println("Passwords match!");
 							// Write to database
 					// final DatabaseReference database = FirebaseDatabase.getInstance().getReference(usernameField.getText());
 					final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(usernameField.getText());

@@ -69,16 +69,16 @@ public class Ball extends Circle {
 		ay = 0;
 		
 		if (pressed.get(Button.UP)) {
-			ay = -f / m;
+			ay += -f / m;
 		}
 		if (pressed.get(Button.DOWN)) {
-			ay = ay + f / m;
+			ay += f / m;
 		}
 		if (pressed.get(Button.LEFT)) {
-			ax = -f / m;
+			ax += -f / m;
 		}
 		if (pressed.get(Button.RIGHT)) {
-			ax = f/m;
+			ax += f/m;
 		}
 		
 		setCenterX(getNewX(getCenterX(), vx, t, ax));

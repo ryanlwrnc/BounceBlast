@@ -107,9 +107,6 @@ public class GameEngine implements Runnable {
 				// Adjust frame values
 				if (frameTime >= 1.0) {
 					frameTime = 0;
-					//fps = frames;
-					//frames = 0;
-					//System.out.println("FPS: " + fps);
 				}
 			}
 			
@@ -127,7 +124,6 @@ public class GameEngine implements Runnable {
 				//frames++;
 			}
 		}
-		System.out.println("Game is done");
 	}
 	
 	public void updateGame(Ball player) {
