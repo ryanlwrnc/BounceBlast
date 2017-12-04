@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import game.ball.Ball;
 import game.ball.Ball.Button;
+import game.ball.BallFactory;
 import game.ball.BasketBall;
 import game.ball.BowlingBall;
 import game.ball.SoccerBall;
@@ -25,7 +26,6 @@ import javafx.scene.text.TextAlignment;
 import layout.Main;
 
 public class GameScene extends Scene {
-	
 	// JavaFx
 	//private Group root;
 	Pane p;
@@ -42,10 +42,8 @@ public class GameScene extends Scene {
 	
 	// Constants
 	public final List<Ball> allPossiblePlayers;
-	private static final String BASKETBALL = "Basketball";
-	private static final String BOWLINGBALL = "Bowling Ball";
-	private static final String TENNISBALL = "Tennis Ball";
-	private static final String SOCCERBALL = "Soccer Ball";
+	BallFactory ballFactory = new BallFactory();
+	
 	int screenButtonCol = 2;
 	String buttonStyle = "-fx-border-width: 3;" + 
 			"-fx-border-color: white;" + 
@@ -57,76 +55,6 @@ public class GameScene extends Scene {
 			"-fx-background-color: #003399;" +
 			"-fx-font-size: 24;" + 
 			"-fx-text-fill: white;";
-	
-	
-	/*public GameScene() {
-		super(new Group(), 800, 600);
-
-		root = (Group) getRoot();
-		// Create players
-		mainPlayer = new BowlingBall(400, 400);
-		playerOne = new TennisBall(300, 300);
-		
-		allPossiblePlayers = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
-		// Create board
-		board = new GameBoard(250, 250, 600, 400);
-		h = new Line();
-		v = new Line();
-		h.setStrokeWidth(6);
-		v.setStrokeWidth(6);
-		h.setStroke(Color.ORANGE);
-		v.setStroke(Color.ORANGE);
-		
-		root.getChildren().addAll(board, h, v);
-		root.getChildren().addAll(getAllPlayers());
-		List<Ball> playerOnePlayers = getAllPlayers();
-		playerOnePlayers.remove(playerOne);
-		playerOne.setAI(true, playerOnePlayers);
-		
-		setOnKeyPressed(new EventHandler<KeyEvent>() 
-		{
-			@Override
-			public void handle(KeyEvent e)
-			{
-				switch (e.getCode()) 
-				{
-					case UP: mainPlayer.press(Button.UP, true); break;
-					case DOWN: mainPlayer.press(Button.DOWN, true); break;
-					case LEFT: mainPlayer.press(Button.LEFT, true); break;
-					case RIGHT: mainPlayer.press(Button.RIGHT, true); break;
-					case SHIFT: mainPlayer.press(Button.SPACE, true); break;
-					case W: mainPlayer.press(Button.UP, true); break;
-					case S: mainPlayer.press(Button.DOWN, true); break;
-					case A: mainPlayer.press(Button.LEFT, true); break;
-					case D: mainPlayer.press(Button.RIGHT, true); break;
-				default:
-					break;
-				}
-			}
-		});
-		
-		setOnKeyReleased(new EventHandler<KeyEvent>() 
-		{
-			@Override
-			public void handle(KeyEvent e)
-			{
-				switch (e.getCode()) 
-				{
-					case UP: mainPlayer.press(Button.UP, false); break;
-					case DOWN: mainPlayer.press(Button.DOWN, false); break;
-					case LEFT: mainPlayer.press(Button.LEFT, false); break;
-					case RIGHT: mainPlayer.press(Button.RIGHT, false); break;
-					case SHIFT: mainPlayer.press(Button.SPACE, false); break;
-					case W: mainPlayer.press(Button.UP, false); break;
-					case S: mainPlayer.press(Button.DOWN, false); break;
-					case A: mainPlayer.press(Button.LEFT, false); break;
-					case D: mainPlayer.press(Button.RIGHT, false); break;
-				default:
-					break;
-				}
-			}
-		});
-	}*/
 	
 	// GameScene Constructor for Play Offline
 	public GameScene(Main app, String numCPU, String chosenBall) {
@@ -141,106 +69,7 @@ public class GameScene extends Scene {
 				 "-fx-background-size: stretch;-fx-background-position:center top;");
 		
 		// Create Players
-		/*
-		mainPlayer = new BowlingBall(400, 400);
-		playerOne = new TennisBall(300, 300);
-		*/
-		
-		/*
-		  cbBall.getItems().add("Basketball");
-        cbBall.getItems().add("Bowling Ball");
-        cbBall.getItems().add("Tennis Ball");
-        cbBall.getItems().add("Soccer Ball");
-		 */
 		checkChosenBall(chosenBall, numberCPUs);
-		/*if(chosenBall.equals(BASKETBALL)) {
-			mainPlayer = new BasketBall(300,300);
-			playerOne = new TennisBall(800, 300);
-			if(numberCPUs>1)
-				playerTwo = new BowlingBall(300,600);
-			if(numberCPUs>2)
-				playerThree = new SoccerBall(600,600);
-		}else if(chosenBall.equals(BOWLINGBALL)) {
-			mainPlayer = new BowlingBall(300, 300);
-			playerOne = new TennisBall(800, 300);
-			if(numberCPUs>1)
-				playerTwo = new SoccerBall(600,600);
-			if(numberCPUs>2)
-				playerThree = new BasketBall(300,600);
-		}else if(chosenBall.equals(TENNISBALL)) {
-			mainPlayer = new TennisBall(400, 400);
-			playerOne = new BasketBall(300, 300);
-			if(numberCPUs>1)
-				playerTwo = new SoccerBall(600,600);
-			if(numberCPUs>2)
-				playerThree = new BowlingBall(800,300);
-		}else if(chosenBall.equals(SOCCERBALL)) {
-			mainPlayer = new SoccerBall(400, 400);
-			playerOne = new TennisBall(800, 300);
-			if(numberCPUs>1)
-				playerTwo = new BasketBall(300, 300);
-			if(numberCPUs>2)
-				playerThree = new BowlingBall(300,600);
-		}*/
-		
-		/*
-		if(numberCPUs == 1) {
-			if(chosenBall.equals(BASKETBALL)) {
-				mainPlayer = new BasketBall(300,300);
-				playerOne = new TennisBall(800, 300);
-			}else if(chosenBall.equals(BOWLINGBALL)) {
-				mainPlayer = new BowlingBall(300, 300);
-				playerOne = new TennisBall(800, 300);
-			}else if(chosenBall.equals(TENNISBALL)) {
-				mainPlayer = new TennisBall(400, 400);
-				playerOne = new TennisBall(800, 300);
-			}else if(chosenBall.equals(SOCCERBALL)) {
-				mainPlayer = new SoccerBall(400, 400);
-				playerOne = new TennisBall(800, 300);
-			}
-		}
-		else if(numberCPUs == 2) {
-			if(chosenBall.equals(BASKETBALL)) {
-				mainPlayer = new BasketBall(300,300);
-				playerOne = new TennisBall(800, 300);
-				playerTwo = new BowlingBall(300, 600); 
-			}else if(chosenBall.equals(BOWLINGBALL)) {
-				mainPlayer = new BowlingBall(300, 300);
-				playerOne = new TennisBall(800, 300);
-				playerTwo = new BasketBall(300, 600); 
-			}else if(chosenBall.equals(TENNISBALL)) {
-				mainPlayer = new TennisBall(400, 400);
-				playerOne = new SoccerBall(800, 300);
-				playerTwo = new BowlingBall(300, 600); 
-			}else if(chosenBall.equals(SOCCERBALL)) {
-				mainPlayer = new SoccerBall(400, 400);
-				playerOne = new TennisBall(800, 300);
-				playerTwo = new BowlingBall(300, 600); 
-			}
-		}
-		else if(numberCPUs == 3) {
-			if(chosenBall.equals(BASKETBALL)) {
-				mainPlayer = new BasketBall(300,300);
-				playerOne = new TennisBall(800, 300);
-				playerTwo = new BowlingBall(300, 600); 
-				playerThree = new SoccerBall(600, 600); 
-			}else if(chosenBall.equals(BOWLINGBALL)) {
-				mainPlayer = new BowlingBall(300, 300);
-				playerOne = new TennisBall(800, 300);
-				playerTwo = new BasketBall(300, 600);
-				playerThree = new SoccerBall(600, 600); 
-			}else if(chosenBall.equals(TENNISBALL)) {
-				mainPlayer = new TennisBall(400, 400);
-				playerOne = new BasketBall(800, 300);
-				playerTwo = new BowlingBall(300, 600); 
-				playerThree = new SoccerBall(600, 600); 
-			}else if(chosenBall.equals(SOCCERBALL)) {
-				mainPlayer = new SoccerBall(400, 400);
-				playerOne = new TennisBall(800, 300);
-				playerTwo = new BowlingBall(300, 600); 
-				playerThree = new BasketBall(600, 600); 
-			}
-		}*/
 		
 		allPossiblePlayers = Arrays.asList(mainPlayer, playerOne, playerTwo, playerThree);
 		//Create text
@@ -326,63 +155,49 @@ public class GameScene extends Scene {
 	}
 	
 	public void checkChosenBall(String chosenBall, int numberCPUs) {
-		if(chosenBall.equals(BASKETBALL)) {
-			mainPlayer = new BasketBall(300,300);
-			playerOne = new TennisBall(800, 300);
+		if(chosenBall.equals(BallFactory.BallType.BASKETBALL.getBallName())) {
+			mainPlayer = ballFactory.newGameBall(BallFactory.BallType.BASKETBALL,300,300);
+			playerOne = ballFactory.newGameBall(BallFactory.BallType.TENNISBALL,800,300);
 			checkNumberCPUsBasketball(numberCPUs);
-			/*if(numberCPUs>1)
-				playerTwo = new BowlingBall(300,600);
-			if(numberCPUs>2)
-				playerThree = new SoccerBall(600,600);*/
-		}else if(chosenBall.equals(BOWLINGBALL)) {
-			mainPlayer = new BowlingBall(300, 300);
-			playerOne = new TennisBall(800, 300);
+		}
+		else if(chosenBall.equals(BallFactory.BallType.BOWLINGBALL.getBallName())) {
+			mainPlayer = ballFactory.newGameBall(BallFactory.BallType.BOWLINGBALL,300,300);
+			playerOne = ballFactory.newGameBall(BallFactory.BallType.TENNISBALL,800,300);
 			checkNumberCPUsBowlingBall(numberCPUs);
-			/*if(numberCPUs>1)
-				playerTwo = new SoccerBall(600,600);
-			if(numberCPUs>2)
-				playerThree = new BasketBall(300,600);*/
-		}else if(chosenBall.equals(TENNISBALL)) {
-			mainPlayer = new TennisBall(400, 400);
-			playerOne = new BasketBall(300, 300);
+		}else if(chosenBall.equals(BallFactory.BallType.TENNISBALL.getBallName())) {
+			mainPlayer = ballFactory.newGameBall(BallFactory.BallType.TENNISBALL,300,300);
+			playerOne = ballFactory.newGameBall(BallFactory.BallType.BASKETBALL,800,300);
 			checkNumberCPUsTennisBall(numberCPUs);
-			/*if(numberCPUs>1)
-				playerTwo = new SoccerBall(600,600);
-			if(numberCPUs>2)
-				playerThree = new BowlingBall(800,300);*/
-		}else if(chosenBall.equals(SOCCERBALL)) {
-			mainPlayer = new SoccerBall(400, 400);
-			playerOne = new TennisBall(800, 300);
+		}else if(chosenBall.equals(BallFactory.BallType.SOCCERBALL.getBallName())) {
+			mainPlayer = ballFactory.newGameBall(BallFactory.BallType.SOCCERBALL,300,300);
+			playerOne = ballFactory.newGameBall(BallFactory.BallType.TENNISBALL,800,300);
 			checkNumberCPUsSoccerBall(numberCPUs);
-			/*if(numberCPUs>1)
-				playerTwo = new BasketBall(300, 300);
-			if(numberCPUs>2)
-				playerThree = new BowlingBall(300,600);*/
 		}
 	}
+	
 	public void checkNumberCPUsBasketball(int numberCPUs) {
 		if(numberCPUs>1)
-			playerTwo = new BowlingBall(300,600);
+			playerTwo = ballFactory.newGameBall(BallFactory.BallType.BOWLINGBALL,300,600);
 		if(numberCPUs>2)
-			playerThree = new SoccerBall(600,600);
+			playerThree = ballFactory.newGameBall(BallFactory.BallType.SOCCERBALL,800,600);
 	}
 	public void checkNumberCPUsBowlingBall(int numberCPUs) {
 		if(numberCPUs>1)
-			playerTwo = new SoccerBall(600,600);
+			playerTwo = ballFactory.newGameBall(BallFactory.BallType.SOCCERBALL,300,600);
 		if(numberCPUs>2)
-			playerThree = new BasketBall(300,600);
+			playerThree = ballFactory.newGameBall(BallFactory.BallType.BASKETBALL,800,600);
 	}
 	public void checkNumberCPUsTennisBall(int numberCPUs) {
 		if(numberCPUs>1)
-			playerTwo = new SoccerBall(600,600);
+			playerTwo = ballFactory.newGameBall(BallFactory.BallType.SOCCERBALL,300,600);
 		if(numberCPUs>2)
-			playerThree = new BowlingBall(800,300);
+			playerThree = ballFactory.newGameBall(BallFactory.BallType.BOWLINGBALL,800,600);
 	}
 	public void checkNumberCPUsSoccerBall(int numberCPUs) {
 		if(numberCPUs>1)
-			playerTwo = new BasketBall(300, 300);
+			playerTwo = ballFactory.newGameBall(BallFactory.BallType.BASKETBALL,300,600);
 		if(numberCPUs>2)
-			playerThree = new BowlingBall(300,600);
+			playerThree = ballFactory.newGameBall(BallFactory.BallType.BOWLINGBALL,800,600);
 	}
 	
 	public List<Ball> getAllPlayers() {
