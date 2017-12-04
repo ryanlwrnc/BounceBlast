@@ -39,18 +39,16 @@ public class GameEngine implements Runnable {
 		}
 	}
 	
-	
 	private static final double UPDATE_CAP = 1.0/60.0;
 	//private static final int HANDLED = 1;
 	private GameScene scene;
 	private Main app;
 	//
 	private int remainingBalls;
-	private boolean cpuOneExists = true;
-	private boolean cpuTwoExists = true;
-	private boolean cpuThreeExists = true;
+	private boolean cpuOneExists;
+	private boolean cpuTwoExists;
+	private boolean cpuThreeExists;
 	//
-	
 	
 	private double delta = 5;
 	private double podLength = 100;
@@ -63,6 +61,21 @@ public class GameEngine implements Runnable {
 		this.app = a;
 		
 		int numberCPUs = Integer.parseInt(numCPU);
+		if(numberCPUs == 1) {
+			cpuOneExists = true;
+			cpuTwoExists = false;
+			cpuThreeExists = false;
+		}
+		if(numberCPUs == 2) {
+			cpuOneExists = true;
+			cpuTwoExists = true;
+			cpuThreeExists = false;
+		}
+		if(numberCPUs == 3) {
+			cpuOneExists = true;
+			cpuTwoExists = true;
+			cpuThreeExists = true;
+		}
 		
 		// Remaining balls equal to the number of cpus + 1, to take take into account the users ball.
 		remainingBalls = numberCPUs + 1;
@@ -241,8 +254,6 @@ public class GameEngine implements Runnable {
 				cpuThreeExists = false;
 			}
 		}
-
-		
 	}
 	
 	public void gameOver(String s)
