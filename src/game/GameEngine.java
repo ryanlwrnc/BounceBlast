@@ -23,7 +23,7 @@ public class GameEngine implements Runnable {
 	private boolean goingLeft = false;
 	private boolean goingUp = false;
 	private double delta = 5;
-	private double podLength = 50;
+	private double podLength = 100;
 	private int alertCount = 0;
 	
 	boolean[][] isExiting;
@@ -253,22 +253,31 @@ public class GameEngine implements Runnable {
 				scene.h.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent())) {
 			scene.mainPlayer.setFill(Color.WHITE);
 
-			if(alertCount==0)
-			{
-				alertCount++;
-				
-				Thread mainThread = app.getThread();
-				mainThread.interrupt();
-				
-				//app.thread.interrupt();
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("BounceBlast");
-				alert.setContentText("Game Over!");
-				alert.showAndWait();
-				//JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
-				
-				app.updateScene(new MainMenu(app));
-			}
+			gameOver("Game Over! You lost!");
+		}
+		if (scene.v.getBoundsInParent().intersects(scene.playerOne.getBoundsInParent()) ||
+				scene.h.getBoundsInParent().intersects(scene.playerOne.getBoundsInParent())) {
+			scene.playerOne.setFill(Color.WHITE);
+
+			gameOver("Game Over! You won!");
+		}
+	}
+	
+	public void gameOver(String s)
+	{
+		if(alertCount==0)
+		{
+			alertCount++;
+			Thread mainThread = app.getThread();
+			mainThread.interrupt();
+			
+			//app.thread.interrupt();
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("BounceBlast");
+			alert.setContentText(s);
+			alert.showAndWait();
+			//JOptionPane.showMessageDialog(null, "Game Over!", "BounceBlast", JOptionPane.INFORMATION_MESSAGE);
+			app.updateScene(new MainMenu(app));
 		}
 	}
 	
