@@ -191,6 +191,24 @@ public class GameEngine implements Runnable {
 		}
 	}
 	
+	public void eliminateBall(Ball player) {
+		if (scene.v.getBoundsInParent().intersects(player.getBoundsInParent()) ||
+				scene.h.getBoundsInParent().intersects(player.getBoundsInParent())) {
+			remainingBalls--;
+			
+			// If only the mainPlayer is left.
+			if(remainingBalls == 1) {
+				gameOver("Game Over! You won!");
+			}
+			// Move the eliminated ball to far away from the screen so it doesn't show on the board anymore
+			else {
+				player.setFill(Color.WHITE);
+				player.setCenterX(1000000);
+				player.setCenterX(1000000);
+			}
+		}
+	}
+	
 	public void ballHitsPlatform() {
 		// If the user's ball hits the platform.
 		if (scene.v.getBoundsInParent().intersects(scene.mainPlayer.getBoundsInParent()) ||
@@ -200,60 +218,18 @@ public class GameEngine implements Runnable {
 		}
 		
 		if(cpuOneExists) {
-			if (scene.v.getBoundsInParent().intersects(scene.playerOne.getBoundsInParent()) ||
-					scene.h.getBoundsInParent().intersects(scene.playerOne.getBoundsInParent())) {
-				remainingBalls--;
-				cpuOneExists = false;
-				
-				// If only the mainPlayer is left.
-				if(remainingBalls == 1) {
-					gameOver("Game Over! You won!");
-				}
-				else {
-					// Move the eliminated ball to far away from the screen so it doesn't show on the board anymore
-					scene.playerOne.setFill(Color.WHITE);
-					scene.playerOne.setCenterX(1000000);
-					scene.playerOne.setCenterX(1000000);
-				}
-			}
+			cpuOneExists = false;
+			eliminateBall(scene.playerOne);
 		}
 		
 		if(cpuTwoExists) {
-			if (scene.v.getBoundsInParent().intersects(scene.playerTwo.getBoundsInParent()) ||
-					scene.h.getBoundsInParent().intersects(scene.playerTwo.getBoundsInParent())) {
-				remainingBalls--;
-				cpuTwoExists = false;
-				
-				// If only the mainPlayer is left.
-				if(remainingBalls == 1) {
-					gameOver("Game Over! You won!");
-				}
-				else {
-					// Move the eliminated ball to far away from the screen so it doesn't show on the board anymore
-					scene.playerTwo.setFill(Color.WHITE);
-					scene.playerTwo.setCenterX(1000000);
-					scene.playerTwo.setCenterX(1000000);
-				}
-			}
+			cpuTwoExists = false;
+			eliminateBall(scene.playerTwo);
 		}
 		
 		if(cpuThreeExists) {
-			if (scene.v.getBoundsInParent().intersects(scene.playerThree.getBoundsInParent()) ||
-					scene.h.getBoundsInParent().intersects(scene.playerThree.getBoundsInParent())) {
-				remainingBalls--;
-				cpuThreeExists = false;
-				
-				// If only the mainPlayer is left.
-				if(remainingBalls == 1) {
-					gameOver("Game Over! You won!");
-				}
-				else {
-					// Move the eliminated ball to far away from the screen so it doesn't show on the board anymore
-					scene.playerThree.setFill(Color.WHITE);
-					scene.playerThree.setCenterX(1000000);
-					scene.playerThree.setCenterX(1000000);
-				}
-			}
+			cpuThreeExists = false;
+			eliminateBall(scene.playerThree);
 		}
 
 	}
