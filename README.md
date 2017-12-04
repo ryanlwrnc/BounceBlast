@@ -32,7 +32,7 @@ The purpose of BounceBlast is to provide a short, fun game for friends to play t
 - Maven
 
 ## Presentation Slides
-https://drive.google.com/drive/folders/0B5Dl8_86NIVWU1JmN29zUVR6elU
+https://drive.google.com/file/d/1zf3DVLnQDSLjmuWqUIgPMFEs3aJ1hmQD/view?usp=sharing
 
 
 <img width="1440" alt="screen shot 2017-12-04 at 2 57 28 pm" src="https://user-images.githubusercontent.com/19628705/33581042-340cd460-d904-11e7-85ca-fde50629abd6.png">
