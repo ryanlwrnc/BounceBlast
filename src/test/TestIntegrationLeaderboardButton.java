@@ -24,7 +24,7 @@ public class TestIntegrationLeaderboardButton {
 	public void testBackButton() throws IOException{
 		Main main = new Main();
 		main.setStage(new Stage());
-		Leaderboard leaderboard = new Leaderboard(main);
+		Leaderboard leaderboard =Leaderboard.getInstance(main);
 		BackToMainMenuButton back = leaderboard.getBackButton();
 		FileInputStream serviceAccount = new FileInputStream(
 				"bounceblast-12d9c-firebase-adminsdk-5agr2-4d1fd4fbc0.json");

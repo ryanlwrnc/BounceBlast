@@ -160,7 +160,7 @@ public class MainMenu extends Scene{
 		GridPane.setMargin(settings, new Insets(5, 10, 5, 10));
 		
 		// Leaderboard button
-		leaderboard = new MainMenuButton(app, "Leaderboard", new Leaderboard(app));
+		leaderboard = new MainMenuButton(app, "Leaderboard", Leaderboard.getInstance(app));
 		gridpane.add(leaderboard, SCREENBUTTONCOL, 6);
 		GridPane.setHalignment(leaderboard, HPos.CENTER);
 		GridPane.setMargin(leaderboard, new Insets(5, 10, 5, 10));
