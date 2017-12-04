@@ -10,7 +10,6 @@ import game.ball.Ball;
 import game.ball.Ball.Button;
 import game.ball.BallFactory;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;

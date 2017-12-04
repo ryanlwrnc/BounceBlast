@@ -1,7 +1,6 @@
 package layout;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,10 +29,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import layout.components.BackToMainMenuButton;
 import layout.components.PlayOnlineButton;
 
@@ -45,8 +40,6 @@ public class PlayOnline extends Scene {
 	// Components
 	private BackToMainMenuButton back;
 	private Button start;
-	private Text gameTitle;
-	private Text ballTypes;
 	private GridPane box;
 	private ComboBox<String> cbBall;
 	private ColumnConstraints cons1;

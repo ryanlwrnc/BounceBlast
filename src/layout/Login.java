@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -169,6 +168,7 @@ public class Login extends Scene {
 		
 		// Login is pressed
 		doLogin.setOnAction(new EventHandler<ActionEvent>() {
+			@SuppressWarnings("deprecation")
 			public void handle(ActionEvent event) {
 				// If username and password fields are filled.
 				if (!usernameField.getText().trim().isEmpty() && !passwordField.getText().trim().isEmpty()) {

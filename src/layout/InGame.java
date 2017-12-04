@@ -24,8 +24,6 @@ public class InGame extends Scene {
 	private Text gameTitle;
 	private Rectangle namesRect;
 	private GridPane nameGrid;
-	private ColumnConstraints cons1;
-	private ColumnConstraints cons2;
 	private RowConstraints rcons1;
 	private RowConstraints rcons2;
 	static final String FONT16 = "-fx-font: 16 arial;";

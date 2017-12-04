@@ -23,8 +23,6 @@ public class PlayOffline extends Scene {
 	// Components
 	private BackToMainMenuButton back;
 	private Button start;
-	private Text gameTitle;
-	private Text ballTypes;
 	private GridPane box;
 	private Text numCPULabel;
 	private ComboBox<String> cbCPU;

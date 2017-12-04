@@ -197,7 +197,6 @@ public class GameEngine implements Runnable {
 	}
 	
 	public boolean eliminateBall(Ball player) {
-		System.out.println(player);
 		if (scene.v.getBoundsInParent().intersects(player.getBoundsInParent()) ||
 				scene.h.getBoundsInParent().intersects(player.getBoundsInParent())) {
 			remainingBalls--;

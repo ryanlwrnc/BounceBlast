@@ -2,7 +2,6 @@ package layout;
 import java.util.ArrayList;
 //
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +18,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -43,10 +38,6 @@ public class Leaderboard extends Scene {
 	// Components
 	private BackToMainMenuButton back;
 	private Text gameTitle;
-	private ColumnConstraints cons1;
-	private ColumnConstraints cons2;
-	private RowConstraints rcons1;
-	private RowConstraints rcons2;
 	private TableView<PlayerName> table;
 		
 	// Constants
@@ -55,22 +46,7 @@ public class Leaderboard extends Scene {
 	private Leaderboard(Main app) {
 		super(new GridPane(), 800, 600);
 		gridpane = (GridPane) getRoot();
-		
-		// Setup gridpane
-		/*cons1 = new ColumnConstraints();
-        cons1.setHgrow(Priority.NEVER);
-        gridpane.getColumnConstraints().add(cons1);
-        cons2 = new ColumnConstraints();
-        cons2.setHgrow(Priority.ALWAYS);
-        gridpane.getColumnConstraints().addAll(cons1, cons2);
-        rcons1 = new RowConstraints();
-        rcons1.setVgrow(Priority.NEVER);
-        rcons2 = new RowConstraints();
-        rcons2.setVgrow(Priority.ALWAYS);  
-        gridpane.getRowConstraints().addAll(rcons1, rcons2);
-		gridpane.setAlignment(Pos.TOP_CENTER);
-		gridpane.setStyle("-fx-background-image: url('file:resource/background.jpg');" +
-				 "-fx-background-size: stretch;-fx-background-position:center top;");*/
+	
 		ScreenHelper screenHelper = new ScreenHelper();
 		gridpane = screenHelper.setupGridpane(gridpane);
 		 
