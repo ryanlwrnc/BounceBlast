@@ -20,7 +20,6 @@ public class Main extends Application {
 	// --- Used to obtain screen bounds for maximizing screen resolution
 	Screen screen = Screen.getPrimary();
 	Rectangle2D bounds = screen.getVisualBounds();
-	// ---
 
 	protected Scene myScene;
 	protected Stage myStage;
@@ -29,7 +28,6 @@ public class Main extends Application {
 	private String username = null;
 	
 	public static void main(String[] args) throws IOException {
-		// TESTING Firebase, to be removed later
 		FileInputStream serviceAccount = new FileInputStream(
 				"bounceblast-12d9c-firebase-adminsdk-5agr2-4d1fd4fbc0.json");
 
@@ -52,8 +50,6 @@ public class Main extends Application {
 		myStage.setY(bounds.getMinY());
 		myStage.setWidth(bounds.getWidth());
 		myStage.setHeight(bounds.getHeight());
-		// myStage.setFullScreen(true);
-		// ---
 		myStage.show();
 	}
 
@@ -64,8 +60,6 @@ public class Main extends Application {
 		myStage.setResizable(false);
 		myStage.setX(bounds.getMinX());
 		myStage.setY(bounds.getMinY());
-		// myStage.setFullScreen(true);
-		// ---
 		myStage.show();
 	}
 	
@@ -84,7 +78,6 @@ public class Main extends Application {
 	{
 		username = s;
 	}
-	
 	public String getUsername()
 	{
 		return username;
