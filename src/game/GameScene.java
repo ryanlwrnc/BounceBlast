@@ -91,7 +91,7 @@ public class GameScene extends Scene {
 		g.getChildren().addAll(board, h, v);
 		g.getChildren().addAll(getAllPlayers());
 		p.getChildren().addAll(gameTitle,g);
-		
+		g.setLayoutX(100);
 		
 		List<Ball> playerOnePlayers = getAllPlayers();
 		
