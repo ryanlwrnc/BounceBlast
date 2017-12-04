@@ -169,32 +169,25 @@ public class GameEngine implements Runnable {
 		Line mainDirection = (dir == Dir.RIGHT || dir == Dir.LEFT ? scene.v : scene.h);
 		Line otherDirection = (dir == Dir.RIGHT || dir == Dir.LEFT ? scene.h : scene.v);
 		
-		if (isDir(dir)) {
-			//end
-			//hasn't reached the end yet
-			if (!reachedEnd(dir)) {
-				handleReachedEnd(dir);
-			}
-			else if (!isDir(dir.nextDirection(dir)) ) {
-				setDir(dir.nextDirection(dir), true);
-				mainDirection.setStartX(startX);
-				mainDirection.setStartY(startY);
-				mainDirection.setEndX(endX);
-				mainDirection.setEndY(endY);
-			}
-			//scene.h.getStartX() < scene.board.xmax()
-			if (podNeedsToGrow(dir)) {
-				// pod growing in size
-				growPodIfNeeded(dir);
-				
-			}
-			else {
-				setDir(dir, false);
-				otherDirection.setStartX(-100);
-				otherDirection.setStartY(-100);
-				otherDirection.setEndX(-100);
-				otherDirection.setEndY(-100);
-			}
+		if (!reachedEnd(dir)) {
+			handleReachedEnd(dir);
+		}
+		else if (!isDir(dir.nextDirection(dir)) ) {
+			setDir(dir.nextDirection(dir), true);
+			mainDirection.setStartX(startX);
+			mainDirection.setStartY(startY);
+			mainDirection.setEndX(endX);
+			mainDirection.setEndY(endY);
+		}
+		if (podNeedsToGrow(dir)) {
+			growPodIfNeeded(dir);
+		}
+		else {
+			setDir(dir, false);
+			otherDirection.setStartX(-100);
+			otherDirection.setStartY(-100);
+			otherDirection.setEndX(-100);
+			otherDirection.setEndY(-100);
 		}
 	}
 	
